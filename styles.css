@@ -33,6 +33,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 24px 20px 48px; }
 .foot { text-align: center; color: var(--muted); font-size: 12px; padding: 18px; border-top: 1px solid var(--line); }
+.foot .sep { opacity: .5; margin: 0 6px; }
+/* quiet at rest, legible on hover — it should never compete with the video */
+.foot .gh { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); opacity: .8;
+  border-bottom: 1px solid transparent; transition: color .15s, opacity .15s, border-color .15s; }
+.foot .gh:hover, .foot .gh:focus-visible { color: var(--text); opacity: 1; border-bottom-color: var(--line); }
+.foot .gh:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+.foot .gh svg { width: 13px; height: 13px; flex: none; }
 .loading { color: var(--muted); padding: 40px; text-align: center; }
 
 h1 { font-size: 26px; margin: 0 0 6px; }
