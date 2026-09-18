@@ -7,7 +7,7 @@
   const KEY = 'ti-archive:v1';
   const defaults = () => ({
     v: 1,
-    settings: { lang: 'en', order: 'series', showDuration: false, blind: true, autoNext: true, volume: 100 },
+    settings: { lang: 'en', order: 'series', showDuration: false, blind: true, autoNext: true, volume: 100, quality: 'auto' },
     events: {},
   });
   let store = defaults();
@@ -153,6 +153,10 @@
   const badge = (ev, id) => { const t = team(ev, id); const hue = [...id].reduce((a, c) => a + c.charCodeAt(0) * 17, 0) % 360; return h('span', { class: 'badge', style: `background:hsl(${hue} 45% 38%)` }, t.short.slice(0, 2).toUpperCase()); };
   const updateBlindPill = () => { const p = $('#blind-indicator'); p.className = 'pill ' + (store.settings.blind ? 'pill-on' : 'pill-off'); p.textContent = store.settings.blind ? 'blind mode' : 'spoilers visible'; };
 
+  // YouTube's names for its quality levels, best first.
+  const QUALITIES = [['auto', 'Auto'], ['hd2160', '2160p'], ['hd1440', '1440p'], ['hd1080', '1080p'], ['hd720', '720p'], ['large', '480p'], ['medium', '360p'], ['small', '240p']];
+  const qualityLabel = (q) => (QUALITIES.find(x => x[0] === q) || [0, q === 'tiny' ? '144p' : (q || 'unknown')])[1];
+
   // ---------- pages ----------
   async function pageEvents() {
     setCrumbs({ text: 'Events' });
@@ -217,6 +221,7 @@
       setRow('Playback order', 'By series plays each series to the end. Strict chronological follows real game start times, which interleaves concurrent series but can never leak a result.', sel('order', [['series', 'By series'], ['chrono', 'Strict chronological']])),
       setRow('Show video duration', 'A short video hints at a stomp, a long one at a close game. Off by default.', sw('showDuration')),
       setRow('Auto-continue', 'Jump to the next game when one ends.', sw('autoNext')),
+      setRow('Preferred quality', 'Asked of YouTube on every video, but only asked: since 2019 embedded players choose their own quality and usually ignore this. To be sure, use \u201cChoose quality\u201d next to the player.', sel('quality', QUALITIES)),
       h('div', { class: 'setting' }, h('div', {}, h('div', {}, 'Progress'), h('div', { class: 'd' }, 'Stored in this browser only.')),
         h('div', { class: 'btn-row' },
           h('button', { class: 'btn small', onclick: exportProgress }, 'Export'),
@@ -378,7 +383,10 @@
     if (store.settings.blind && !seriesDone(ev, s)) gameList.append(h('div', { class: 'note' }, 'Further games appear as you finish them — how many there are is part of the story.'));
     const srcNote = () => src?.note ? h('div', { class: 'note warn' }, src.note) : null;
     const sideSources = h('div', { class: 'card' }, h('h3', {}, 'This game'), h('div', { class: 'note' }, `${r.name} · best of ${s.bestOf} · ${ev.short}`), g.matchId ? h('div', { class: 'note' }, `Match ID ${g.matchId}`) : null, s.advantage && (s.advantage[0] || s.advantage[1]) ? h('div', { class: 'note' }, `${team(ev, s.advantage[0] ? s.team1 : s.team2).short} start ${Math.max(...s.advantage)}\u20130 up as upper-bracket winners \u2014 that game was never played.`) : null, h('div', { class: 'note', id: 'src-note' }, srcNote()));
-    const side = h('div', { class: 'side' }, h('div', { class: 'card' }, h('h3', {}, 'Series'), h('div', { style: 'font-weight:600;margin-bottom:10px' }, badge(ev, s.team1), ' ', team(ev, s.team1).name, h('span', { class: 'muted' }, ' vs '), badge(ev, s.team2), ' ', team(ev, s.team2).name), gameList), sideSources,
+    const qNow = h('span', {}, '\u2026'), qHint = h('div', { class: 'note' });
+    const qBtn = h('button', { class: 'btn small', style: 'margin-top:8px', onclick: () => toggleNative() }, 'Choose quality\u2026');
+    const qualityCard = h('div', { class: 'card' }, h('h3', {}, 'Video quality'), h('div', { class: 'note' }, 'Playing at ', qNow, '. YouTube picks this from your connection and the size of the player, so fullscreen usually gets more.'), qHint, qBtn);
+    const side = h('div', { class: 'side' }, h('div', { class: 'card' }, h('h3', {}, 'Series'), h('div', { style: 'font-weight:600;margin-bottom:10px' }, badge(ev, s.team1), ' ', team(ev, s.team1).name, h('span', { class: 'muted' }, ' vs '), badge(ev, s.team2), ' ', team(ev, s.team2).name), gameList), sideSources, qualityCard,
       h('div', { class: 'card' }, h('h3', {}, 'Keys'), h('div', { class: 'note' }, h('kbd', {}, 'space'), ' play/pause · ', h('kbd', {}, '←'), ' ', h('kbd', {}, '→'), ' ±10 s · ', h('kbd', {}, 'J'), ' ', h('kbd', {}, 'L'), ' ±60 s · ', h('kbd', {}, 'F'), ' fullscreen · ', h('kbd', {}, 'M'), ' mute · ', h('kbd', {}, 'N'), ' next game · ', h('kbd', {}, 'R'), ' switch language')));
 
     const under = h('div', { class: 'under' },
@@ -394,6 +402,26 @@
     teardown();
     let seeking = false, ended = false, lastSave = 0, muted = false;
     const me = { player: null, timer: null, onKey: null };
+    let native = false, mount = () => { };
+    const toggleNative = async () => {
+      if (!native) {
+        const sliced = !!(src.end || src.offset);
+        if (!await ask({
+          title: 'Show YouTube\u2019s own controls?',
+          body: 'Quality can only be picked from YouTube\u2019s gear menu, and this site normally hides YouTube\u2019s controls because they give things away: the length of the video and preview pictures along its scrubber.'
+            + (sliced ? ' Here it matters more \u2014 this video is a whole broadcast day, so that scrubber reaches every later game.' : '')
+            + ' Pick a quality, then hide them again; YouTube usually keeps your choice for the videos that follow.',
+          cancelText: 'Keep them hidden', confirmText: 'Show controls',
+        })) return;
+      }
+      const wasPlaying = me.player?.getPlayerState?.() === 1, at = base() + now();
+      native = !native;
+      shield.style.display = native ? 'none' : ''; controls.style.display = native ? 'none' : '';
+      if (native) cover.classList.add('hidden');
+      qBtn.textContent = native ? 'Hide YouTube controls' : 'Choose quality\u2026';
+      qHint.textContent = native ? 'Use the gear in YouTube\u2019s bar, then hide the controls again.' : '';
+      mount(at, wasPlaying);
+    };
     current = me;
     // A source can be a slice of a longer video: from 2015 the official uploads are whole
     // broadcast days, and a game is [offset, end) inside one. Everything below runs on slice
@@ -403,7 +431,7 @@
     const dur = () => { try { const stop = src.end || me.player?.getDuration() || 0; return stop ? Math.max(0, stop - base()) : 0; } catch (e) { return 0; } };
     const now = () => { try { return Math.max(0, (me.player?.getCurrentTime() || 0) - base()); } catch (e) { return 0; } };
     const paint = (t, d) => { const p = d ? Math.min(1, t / d) : 0; fill.style.width = (p * 100) + '%'; knob.style.left = (p * 100) + '%'; if (!seeking) range.value = Math.round(p * 1000); };
-    const setPaused = (p) => { player.classList.toggle('paused', p); playBtn.innerHTML = p ? svgPlay : svgPause; coverBtn.innerHTML = p ? svgPlay : svgPause; coverBtn.classList.toggle('pause', !p); if (p && !ended) { cover.classList.remove('hidden'); cover.classList.add('paused'); } else if (!p) cover.classList.add('hidden'); };
+    const setPaused = (p) => { player.classList.toggle('paused', p); playBtn.innerHTML = p ? svgPlay : svgPause; coverBtn.innerHTML = p ? svgPlay : svgPause; coverBtn.classList.toggle('pause', !p); if (native && !ended) cover.classList.add('hidden'); else if (p && !ended) { cover.classList.remove('hidden'); cover.classList.add('paused'); } else if (!p) cover.classList.add('hidden'); };
     const togglePlay = () => { if (!me.player) return; if (ended) { seekTo(0); ended = false; } const st = me.player.getPlayerState(); if (st === 1) me.player.pauseVideo(); else me.player.playVideo(); };
     const seekTo = (t) => { const d = dur(); t = Math.max(0, d ? Math.min(t, d - 1) : t); me.player?.seekTo(base() + t, true); prog.pos = t; };
     const rel = (d) => { const t = Math.max(0, now() + d); seekTo(t); curEl.textContent = fmt(Math.min(t, dur() || t)); };
@@ -435,15 +463,27 @@
 
     const YT = await loadYT();
     if (current !== me) return; // navigated away while loading
-    me.player = new YT.Player(yt, {
-      videoId: src.id, width: '100%', height: '100%',
-      playerVars: Object.assign({ controls: 0, rel: 0, iv_load_policy: 3, modestbranding: 1, playsinline: 1, disablekb: 1, fs: 0, origin: location.origin, start: Math.floor(base() + (prog.pos > 30 ? prog.pos : 0)) }, src.end ? { end: Math.floor(src.end) } : {}),
-      events: {
-        onReady: (e) => { e.target.setVolume(store.settings.volume); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); },
-        onStateChange: (e) => { const S = YT.PlayerState; if (e.data === S.PLAYING) { ended = false; setPaused(false); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); } else if (e.data === S.PAUSED) setPaused(true); else if (e.data === S.ENDED) onEnd(); },
-        onError: (e) => { cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = 'This video is unavailable'; coverSub.textContent = `YouTube error ${e.data}. Try the other language, or run tools/check_links.py to find dead links.`; },
-      },
-    });
+    // (Re)build the player at an absolute video time. `native` shows YouTube's own controls:
+    // quality can only be chosen from their gear menu, which the embed API cannot open or drive.
+    const wantQuality = () => { const q = store.settings.quality; if (q && q !== 'auto') { try { me.player.setPlaybackQuality(q); } catch (e) { } } };
+    const showQuality = () => { try { qNow.textContent = qualityLabel(me.player.getPlaybackQuality()); } catch (e) { } };
+    mount = (startAt, autoplay) => {
+      try { me.player?.destroy(); } catch (e) { }
+      const slot = h('div'); yt.replaceChildren(slot);
+      const q = store.settings.quality;
+      me.player = new YT.Player(slot, {
+        videoId: src.id, width: '100%', height: '100%',
+        playerVars: Object.assign({ controls: native ? 1 : 0, rel: 0, iv_load_policy: 3, modestbranding: 1, playsinline: 1, disablekb: native ? 0 : 1, fs: 0, origin: location.origin, start: Math.floor(startAt) },
+          src.end ? { end: Math.floor(src.end) } : {}, q && q !== 'auto' ? { vq: q } : {}, autoplay ? { autoplay: 1 } : {}),
+        events: {
+          onReady: (e) => { e.target.setVolume(store.settings.volume); wantQuality(); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); },
+          onPlaybackQualityChange: showQuality,
+          onStateChange: (e) => { const S = YT.PlayerState; if (e.data === S.PLAYING) { ended = false; wantQuality(); showQuality(); setPaused(false); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); } else if (e.data === S.PAUSED) setPaused(true); else if (e.data === S.ENDED) onEnd(); },
+          onError: (e) => { cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = 'This video is unavailable'; coverSub.textContent = `YouTube error ${e.data}. Try the other language, or run tools/check_links.py to find dead links.`; },
+        },
+      });
+    };
+    mount(base() + (prog.pos > 30 ? prog.pos : 0), false);
     me.timer = setInterval(() => {
       if (!me.player || !me.player.getCurrentTime) return;
       const t = now(), d = dur();
