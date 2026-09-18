@@ -3,6 +3,7 @@
  {"id": "ti2", "name": "The International 2012", "short": "TI2", "year": 2012, "location": "Seattle", "file": "data/ti2.json", "status": "ready"},
  {"id": "ti3", "name": "The International 2013", "short": "TI3", "year": 2013, "location": "Seattle", "file": "data/ti3.json", "status": "ready"},
  {"id": "ti4", "name": "The International 2014", "short": "TI4", "year": 2014, "location": "Seattle", "file": "data/ti4.json", "status": "ready"},
+ {"id": "ti5", "name": "The International 2015", "short": "TI5", "year": 2015, "location": "Seattle", "file": "data/ti5.json", "status": "ready"},
  {"id": "ti6", "name": "The International 2016", "short": "TI6", "year": 2016, "location": "Seattle", "file": "data/ti6.json", "status": "ready"},
  {"id": "ti7", "name": "The International 2017", "short": "TI7", "year": 2017, "location": "Seattle", "file": "data/ti7.json", "status": "ready"},
  {"id": "ti8", "name": "The International 2018", "short": "TI8", "year": 2018, "location": "Vancouver", "file": "data/ti8.json", "status": "ready"}

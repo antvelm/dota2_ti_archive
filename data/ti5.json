@@ -1,0 +1,1354 @@
+{
+ "id": "ti5",
+ "name": "The International 2015",
+ "short": "TI5",
+ "location": "KeyArena, Seattle",
+ "dates": "August 3–8, 2015",
+ "stage": "Main Event",
+ "timezone": "America/Los_Angeles",
+ "notes": "Main event only. From 2015 Valve stopped uploading games one by one: most sources here are slices of that day's full broadcast, starting at the game and ending where the next one begins, so a finished game is followed by its post-game desk until you move on.",
+ "sourcesNote": "37 of 48 games are slices of the official day-long uploads on the 'dota2' YouTube channel, cut with the timestamps recorded on Liquipedia. The official channel has no upload of the final day at all, and a few other games were never timestamped: those 11 - the grand final, the lower-bracket final, EG's first two series and one lower-bracket Bo1 - are per-game copies from the Dota2.TV channel, flagged official:false. English only.",
+ "languages": {
+  "en": "English"
+ },
+ "teams": {
+  "lgd": {
+   "name": "LGD Gaming",
+   "short": "LGD",
+   "region": "CN"
+  },
+  "empire": {
+   "name": "Team Empire",
+   "short": "Empire",
+   "region": "RU"
+  },
+  "cdec": {
+   "name": "CDEC Gaming",
+   "short": "CDEC",
+   "region": "CN"
+  },
+  "c9": {
+   "name": "Cloud9",
+   "short": "C9",
+   "region": "US"
+  },
+  "eg": {
+   "name": "Evil Geniuses",
+   "short": "EG",
+   "region": "US"
+  },
+  "col": {
+   "name": "compLexity Gaming",
+   "short": "coL",
+   "region": "US"
+  },
+  "secret": {
+   "name": "Team Secret",
+   "short": "Secret",
+   "region": "EU"
+  },
+  "ehome": {
+   "name": "EHOME",
+   "short": "EHOME",
+   "region": "CN"
+  },
+  "mvpp": {
+   "name": "MVP Phoenix",
+   "short": "MVP",
+   "region": "KR"
+  },
+  "newbee": {
+   "name": "Newbee",
+   "short": "Newbee",
+   "region": "CN"
+  },
+  "vg": {
+   "name": "Vici Gaming",
+   "short": "VG",
+   "region": "CN"
+  },
+  "navi": {
+   "name": "Natus Vincere",
+   "short": "Na'Vi",
+   "region": "UA"
+  },
+  "vp": {
+   "name": "Virtus.pro",
+   "short": "VP",
+   "region": "RU"
+  },
+  "fnatic": {
+   "name": "Fnatic",
+   "short": "Fnatic",
+   "region": "MY"
+  },
+  "ig": {
+   "name": "Invictus Gaming",
+   "short": "iG",
+   "region": "CN"
+  },
+  "mvph": {
+   "name": "MVP HOT6ix",
+   "short": "MVP.H6",
+   "region": "KR"
+  }
+ },
+ "rounds": [
+  {
+   "id": "ub-r1",
+   "name": "Upper Bracket Round 1",
+   "bracket": "upper",
+   "order": 1,
+   "bestOf": 3
+  },
+  {
+   "id": "ub-r2",
+   "name": "Upper Bracket Round 2",
+   "bracket": "upper",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "ub-f",
+   "name": "Upper Bracket Final",
+   "bracket": "upper",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r1",
+   "name": "Lower Bracket Round 1",
+   "bracket": "lower",
+   "order": 1,
+   "bestOf": 1
+  },
+  {
+   "id": "lb-r2",
+   "name": "Lower Bracket Round 2",
+   "bracket": "lower",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r3",
+   "name": "Lower Bracket Round 3",
+   "bracket": "lower",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r4",
+   "name": "Lower Bracket Round 4",
+   "bracket": "lower",
+   "order": 4,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r5",
+   "name": "Lower Bracket Round 5",
+   "bracket": "lower",
+   "order": 5,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-f",
+   "name": "Lower Bracket Final",
+   "bracket": "lower",
+   "order": 6,
+   "bestOf": 3
+  },
+  {
+   "id": "gf",
+   "name": "Grand Final",
+   "bracket": "final",
+   "order": 7,
+   "bestOf": 5
+  }
+ ],
+ "series": [
+  {
+   "id": "ub-r1-a",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "lgd",
+   "team2": "empire",
+   "start": "2015-08-03T11:30-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1684227514,
+     "winner": 1,
+     "length": "52:50",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "VUW9emA4Kao",
+       "official": true,
+       "offset": 6734,
+       "end": 11397
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1684334726,
+     "winner": 2,
+     "length": "47:37",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "VUW9emA4Kao",
+       "official": true,
+       "offset": 11402,
+       "end": 15446
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 1684419960,
+     "winner": 1,
+     "length": "48:40",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "VUW9emA4Kao",
+       "official": true,
+       "offset": 15451,
+       "end": 21045
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-b",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "cdec",
+   "team2": "c9",
+   "start": "2015-08-03T15:30-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1684521403,
+     "winner": 1,
+     "length": "30:01",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "VUW9emA4Kao",
+       "official": true,
+       "offset": 21050,
+       "end": 24437
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1684571786,
+     "winner": 1,
+     "length": "47:28",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "VUW9emA4Kao",
+       "official": true,
+       "offset": 24442,
+       "end": 28937
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-a",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "mvpp",
+   "team2": "newbee",
+   "start": "2015-08-03T18:55-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1684715899,
+     "winner": 1,
+     "length": "40:15",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "VUW9emA4Kao",
+       "official": true,
+       "offset": 28942,
+       "end": 33989
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-b",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "vg",
+   "team2": "navi",
+   "start": "2015-08-03T20:20-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1684809000,
+     "winner": 1,
+     "length": "55:31",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "VUW9emA4Kao",
+       "official": true,
+       "offset": 33994,
+       "end": 39242
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-c",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "vp",
+   "team2": "fnatic",
+   "start": "2015-08-03T21:50-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1684903975,
+     "winner": 1,
+     "length": "38:29",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "VUW9emA4Kao",
+       "official": true,
+       "offset": 39247,
+       "end": 44256
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-d",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "ig",
+   "team2": "mvph",
+   "start": "2015-08-03T23:00-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1685000902,
+     "winner": 1,
+     "length": "37:30",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "oQsrpPyIwn0",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-c",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "col",
+   "start": "2015-08-04T11:10-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1686604927,
+     "winner": 1,
+     "length": "42:02",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "xruD5mYoDEI",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1686838227,
+     "winner": 1,
+     "length": "41:23",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "57l4UsNn3-g",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-d",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "secret",
+   "team2": "ehome",
+   "start": "2015-08-04T14:55-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1686931489,
+     "winner": 2,
+     "length": "46:27",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "75IDMrTkwJc",
+       "official": true,
+       "offset": 15008,
+       "end": 19477
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1687000541,
+     "winner": 2,
+     "length": "37:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "75IDMrTkwJc",
+       "official": true,
+       "offset": 19482,
+       "end": 23763
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-a",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "empire",
+   "team2": "mvpp",
+   "start": "2015-08-04T17:25-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1687063262,
+     "winner": 2,
+     "length": "33:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "75IDMrTkwJc",
+       "official": true,
+       "offset": 23768,
+       "end": 27417
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1687118078,
+     "winner": 2,
+     "length": "41:35",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "75IDMrTkwJc",
+       "official": true,
+       "offset": 27422,
+       "end": 31879
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-b",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "c9",
+   "team2": "vg",
+   "start": "2015-08-04T19:35-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1687199442,
+     "winner": 2,
+     "length": "70:53",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "75IDMrTkwJc",
+       "official": true,
+       "offset": 31884,
+       "end": 37215
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1687304352,
+     "winner": 2,
+     "length": "29:03",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "75IDMrTkwJc",
+       "official": true,
+       "offset": 37220,
+       "end": 41663
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-c",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "col",
+   "team2": "vp",
+   "start": "2015-08-05T10:55-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-c",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1689080648,
+     "winner": 1,
+     "length": "50:13",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kEsdm2TfvRw",
+       "official": true,
+       "offset": 4124,
+       "end": 8699
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1689199207,
+     "winner": 2,
+     "length": "50:23",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kEsdm2TfvRw",
+       "official": true,
+       "offset": 8704,
+       "end": 14103
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 1689326808,
+     "winner": 2,
+     "length": "43:49",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kEsdm2TfvRw",
+       "official": true,
+       "offset": 14108,
+       "end": 18800
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-d",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "secret",
+   "team2": "ig",
+   "start": "2015-08-05T15:00-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-d",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1689417916,
+     "winner": 2,
+     "length": "56:56",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kEsdm2TfvRw",
+       "official": true,
+       "offset": 18805,
+       "end": 23549
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1689486729,
+     "winner": 1,
+     "length": "26:02",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kEsdm2TfvRw",
+       "official": true,
+       "offset": 23554,
+       "end": 26443
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 1689526977,
+     "winner": 1,
+     "length": "43:55",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kEsdm2TfvRw",
+       "official": true,
+       "offset": 26448,
+       "end": 30878
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-a",
+   "round": "ub-r2",
+   "bestOf": 3,
+   "team1": "lgd",
+   "team2": "cdec",
+   "start": "2015-08-05T18:20-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1689593268,
+     "winner": 2,
+     "length": "38:44",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kEsdm2TfvRw",
+       "official": true,
+       "offset": 30883,
+       "end": 34470
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1689659635,
+     "winner": 2,
+     "length": "32:20",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kEsdm2TfvRw",
+       "official": true,
+       "offset": 34475,
+       "end": 38639
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-b",
+   "round": "ub-r2",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "ehome",
+   "start": "2015-08-05T20:30-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1689744737,
+     "winner": 2,
+     "length": "32:22",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kEsdm2TfvRw",
+       "official": true,
+       "offset": 38644,
+       "end": 43286
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1689812780,
+     "winner": 1,
+     "length": "35:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "pfsLWJFtmEY",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 1689893744,
+     "winner": 1,
+     "length": "43:10",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "zewQXa9bcZA",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-a",
+   "round": "lb-r3",
+   "bestOf": 3,
+   "team1": "mvpp",
+   "team2": "vg",
+   "start": "2015-08-06T11:00-07:00",
+   "slots": [
+    {
+     "from": "lb-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1691612847,
+     "winner": 2,
+     "length": "40:18",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "WgclLEXX20c",
+       "official": true,
+       "offset": 4288,
+       "end": 7939
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1691714801,
+     "winner": 2,
+     "length": "33:53",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "WgclLEXX20c",
+       "official": true,
+       "offset": 7944,
+       "end": 12012
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-b",
+   "round": "lb-r3",
+   "bestOf": 3,
+   "team1": "vp",
+   "team2": "secret",
+   "start": "2015-08-06T13:10-07:00",
+   "slots": [
+    {
+     "from": "lb-r2-c",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1691817562,
+     "winner": 2,
+     "length": "29:17",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "WgclLEXX20c",
+       "official": true,
+       "offset": 12017,
+       "end": 15287
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1691887181,
+     "winner": 1,
+     "length": "39:36",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "WgclLEXX20c",
+       "official": true,
+       "offset": 15292,
+       "end": 18967
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 1691952611,
+     "winner": 1,
+     "length": "55:34",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "WgclLEXX20c",
+       "official": true,
+       "offset": 18972,
+       "end": 24201
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-a",
+   "round": "lb-r4",
+   "bestOf": 3,
+   "team1": "ehome",
+   "team2": "vg",
+   "start": "2015-08-06T16:35-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1692027822,
+     "winner": 2,
+     "length": "54:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "WgclLEXX20c",
+       "official": true,
+       "offset": 24206,
+       "end": 29175
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1692105377,
+     "winner": 2,
+     "length": "48:43",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "WgclLEXX20c",
+       "official": true,
+       "offset": 29180,
+       "end": 34803
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-b",
+   "round": "lb-r4",
+   "bestOf": 3,
+   "team1": "lgd",
+   "team2": "vp",
+   "start": "2015-08-07T10:50-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1694261668,
+     "winner": 1,
+     "length": "35:12",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hhSttje4Dx4",
+       "official": true,
+       "offset": 3750,
+       "end": 8395
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1694392262,
+     "winner": 1,
+     "length": "42:29",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hhSttje4Dx4",
+       "official": true,
+       "offset": 8400,
+       "end": 12779
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-f",
+   "round": "ub-f",
+   "bestOf": 3,
+   "team1": "cdec",
+   "team2": "eg",
+   "start": "2015-08-07T13:20-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1694506494,
+     "winner": 1,
+     "length": "47:17",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hhSttje4Dx4",
+       "official": true,
+       "offset": 12784,
+       "end": 17205
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1694607827,
+     "winner": 1,
+     "length": "20:45",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hhSttje4Dx4",
+       "official": true,
+       "offset": 17210,
+       "end": 20387
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r5",
+   "round": "lb-r5",
+   "bestOf": 3,
+   "team1": "vg",
+   "team2": "lgd",
+   "start": "2015-08-07T15:30-07:00",
+   "slots": [
+    {
+     "from": "lb-r4-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r4-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1694672562,
+     "winner": 1,
+     "length": "31:49",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hhSttje4Dx4",
+       "official": true,
+       "offset": 20392,
+       "end": 23847
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1694734460,
+     "winner": 2,
+     "length": "26:34",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hhSttje4Dx4",
+       "official": true,
+       "offset": 23852,
+       "end": 26806
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 1694785141,
+     "winner": 2,
+     "length": "44:30",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hhSttje4Dx4",
+       "official": true,
+       "offset": 26811,
+       "end": 32181
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-f",
+   "round": "lb-f",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "lgd",
+   "start": "2015-08-08T11:00-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r5",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1697230041,
+     "winner": 1,
+     "length": "58:53",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "GrnnPYTbv3c",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1697367568,
+     "winner": 1,
+     "length": "49:01",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "aFAmHkFyJYA",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gf",
+   "round": "gf",
+   "bestOf": 5,
+   "team1": "cdec",
+   "team2": "eg",
+   "start": "2015-08-08T15:05-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "winner"
+    },
+    {
+     "from": "lb-f",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 1697618202,
+     "winner": 2,
+     "length": "34:53",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "zQ519ygbeqQ",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 1697676707,
+     "winner": 1,
+     "length": "39:01",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ErkEgHhqM7w",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 1697737102,
+     "winner": 2,
+     "length": "59:54",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ZStlLsdH1dE",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "matchId": 1697818230,
+     "winner": 2,
+     "length": "39:08",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Yc4kjfyMicY",
+       "official": false,
+       "offset": 0,
+       "note": "No official upload of this game survives; this is a third-party copy."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -7,9 +7,10 @@
  "stage": "Main Event",
  "timezone": "America/Vancouver",
  "notes": "Main event only. From 2015 Valve stopped uploading games one by one: each source here is a slice of that day's full broadcast, starting at the game and ending where the next one begins, so a finished game is followed by its post-game desk until you move on.",
- "sourcesNote": "All sources are official day-long uploads on the 'dota2' YouTube channel, cut with the timestamps recorded on Liquipedia. English only: Russian day VODs exist but nobody has timestamped them.",
+ "sourcesNote": "English: official day-long uploads on the 'dota2' YouTube channel, cut with the timestamps recorded on Liquipedia. Russian: per-game uploads by RuHub, the studio that produced the official Russian broadcast, flagged official:false. The two are separate recordings, so a language switch mid-game is only approximately in place.",
  "languages": {
-  "en": "English"
+  "en": "English",
+  "ru": "Русский"
  },
  "teams": {
   "tl": {
@@ -189,6 +190,15 @@
        "official": true,
        "offset": 8330,
        "end": 12603
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "It34T6iXQa8",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -206,6 +216,15 @@
        "official": true,
        "offset": 12608,
        "end": 16281
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "-nugCTK4RQU",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -234,6 +253,15 @@
        "official": true,
        "offset": 16286,
        "end": 20780
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qPaKTDllMP0",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -251,6 +279,15 @@
        "official": true,
        "offset": 20785,
        "end": 25350
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "CEiCPH5zD-w",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -279,6 +316,15 @@
        "official": true,
        "offset": 25355,
        "end": 30850
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "GT3QfYErk14",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -307,6 +353,15 @@
        "official": true,
        "offset": 30855,
        "end": 36321
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "1r9XZcw9pPU",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -335,6 +390,15 @@
        "official": true,
        "offset": 36326,
        "end": 42394
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "VWuJ5cXF-Gg",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -361,7 +425,17 @@
        "provider": "youtube",
        "id": "SouKFV__pCk",
        "official": true,
-       "offset": 42399
+       "offset": 42399,
+       "end": 47842
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qhrZB88vSvA",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -390,6 +464,15 @@
        "official": true,
        "offset": 2574,
        "end": 7539
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "NbHqEma0Q4c",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -407,6 +490,15 @@
        "official": true,
        "offset": 7544,
        "end": 12225
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "NS1KsyVabRA",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -435,6 +527,15 @@
        "official": true,
        "offset": 12230,
        "end": 16775
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kcqy6lXXUjo",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -452,6 +553,15 @@
        "official": true,
        "offset": 16780,
        "end": 23308
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "6waFHpPLFBk",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -489,6 +599,15 @@
        "official": true,
        "offset": 23313,
        "end": 27383
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "rMQGurddcgc",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -506,6 +625,15 @@
        "official": true,
        "offset": 27388,
        "end": 32042
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "7hSw1ch2d40",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -543,6 +671,15 @@
        "official": true,
        "offset": 32047,
        "end": 36850
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "rpWIxoMPuJU",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -558,7 +695,17 @@
        "provider": "youtube",
        "id": "fbs5ZZU2etY",
        "official": true,
-       "offset": 36855
+       "offset": 36855,
+       "end": 41691
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "CT-l_f165zY",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -596,6 +743,15 @@
        "official": true,
        "offset": 2203,
        "end": 5925
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "IY5MdX2fLXM",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -613,6 +769,15 @@
        "official": true,
        "offset": 5930,
        "end": 11206
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "iaRVPOoadSE",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -650,6 +815,15 @@
        "official": true,
        "offset": 11211,
        "end": 16632
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "G_IuItMvH4M",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -667,6 +841,15 @@
        "official": true,
        "offset": 16637,
        "end": 20240
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ZmSNfICXY-c",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -684,6 +867,15 @@
        "official": true,
        "offset": 20245,
        "end": 29401
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fjyM_mDF7i4",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -721,6 +913,15 @@
        "official": true,
        "offset": 29406,
        "end": 33118
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "rvTQU918iyE",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -738,6 +939,15 @@
        "official": true,
        "offset": 33123,
        "end": 37042
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "AZJWV81fNqA",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -775,6 +985,15 @@
        "official": true,
        "offset": 37047,
        "end": 40612
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "_XGcGJr2tuE",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -792,6 +1011,15 @@
        "official": true,
        "offset": 40617,
        "end": 44943
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "r4GwRMFLNvs",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -807,7 +1035,17 @@
        "provider": "youtube",
        "id": "2yNaefz9qIM",
        "official": true,
-       "offset": 44948
+       "offset": 44948,
+       "end": 50855
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "PVfFmh6iga4",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -845,6 +1083,15 @@
        "official": true,
        "offset": 6054,
        "end": 9614
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "-L5KxNTh4mM",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -862,6 +1109,15 @@
        "official": true,
        "offset": 9619,
        "end": 13760
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Oweq51t-Yhs",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -879,6 +1135,15 @@
        "official": true,
        "offset": 13765,
        "end": 17961
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "q_Nde8Ppq3M",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -916,6 +1181,15 @@
        "official": true,
        "offset": 17966,
        "end": 21975
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "CKX4d5c5MvM",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -933,6 +1207,15 @@
        "official": true,
        "offset": 21980,
        "end": 31766
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Tb6ACk1Ek1I",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -970,6 +1253,15 @@
        "official": true,
        "offset": 31771,
        "end": 35693
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fHLf1XfIHV4",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -985,7 +1277,17 @@
        "provider": "youtube",
        "id": "q_k_mrZTLoU",
        "official": true,
-       "offset": 35698
+       "offset": 35698,
+       "end": 41199
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "mc7kolh-DtU",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -1023,6 +1325,15 @@
        "official": true,
        "offset": 6323,
        "end": 11207
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "pYyFljKBVq8",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -1040,6 +1351,15 @@
        "official": true,
        "offset": 11212,
        "end": 17201
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "mSix4lnxH44",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -1077,6 +1397,15 @@
        "official": true,
        "offset": 17206,
        "end": 21885
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "vqKaa2mIuOg",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -1094,6 +1423,15 @@
        "official": true,
        "offset": 21890,
        "end": 25723
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "xlBLAkwkPGo",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -1111,6 +1449,15 @@
        "official": true,
        "offset": 25728,
        "end": 31263
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Hl1Ky2BUInM",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -1148,6 +1495,15 @@
        "official": true,
        "offset": 31268,
        "end": 37175
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "WLWj6AiESv4",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -1163,7 +1519,17 @@
        "provider": "youtube",
        "id": "K8bALSTyUN8",
        "official": true,
-       "offset": 37180
+       "offset": 37180,
+       "end": 41961
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "0zgeDxu_qy0",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -1201,6 +1567,15 @@
        "official": true,
        "offset": 6318,
        "end": 10717
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "a6tvru3vKjk",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -1218,6 +1593,15 @@
        "official": true,
        "offset": 10722,
        "end": 18523
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "NS2Lh5fFK1M",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }
@@ -1255,6 +1639,15 @@
        "official": true,
        "offset": 18528,
        "end": 22610
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "swCMR8XgKkU",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -1272,6 +1665,15 @@
        "official": true,
        "offset": 22615,
        "end": 26691
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Oyaumb3dLNQ",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -1289,6 +1691,15 @@
        "official": true,
        "offset": 26696,
        "end": 30960
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "9Vuq2SvQmCA",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -1306,6 +1717,15 @@
        "official": true,
        "offset": 30965,
        "end": 36953
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Vd34evu8B5c",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     },
@@ -1321,7 +1741,17 @@
        "provider": "youtube",
        "id": "cEM6725JmM4",
        "official": true,
-       "offset": 36958
+       "offset": 36958,
+       "end": 41846
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ELbswrl4yVU",
+       "official": false,
+       "offset": 0,
+       "note": "Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
       }
      ]
     }

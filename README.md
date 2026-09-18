@@ -68,7 +68,9 @@ days instead, so a game is a slice `[offset, end)` of one: the player runs on sl
 (position, duration, scrubbing and resume all start from 0 at the game), refuses to seek
 outside it, and pauses itself at `end`. `end` is the next game's `offset` in the same
 video — ending early would cut off a finish, while running long only shows the post-game
-desk, which being live cannot know anything that had not happened yet. Two sources of one
+desk, which being live cannot know anything that had not happened yet. The last slice in a
+video has no next game to stop at, so it ends at game length plus 45 minutes rather than
+running on into whatever the broadcast showed afterwards. Two sources of one
 game stay in sync across a language switch because both are measured from their own `offset`.
 
 `advantage` is a head start written into the format: TI1's upper-bracket winner began the
@@ -101,7 +103,10 @@ Two things always need a human pass over the generated file: **team names and re
 LGD's page says South America, which is useless for 2012; take regions from that event's
 own rosters) and **the series ids**, which come out as `ub-r1-r2m1` and are worth tidying
 to `ub-r1-a`. `find_alt_vods.py` only writes a match it is sure of and prints the rest to
-`alt_vods_review.json`; the official channel's titles are inconsistent enough (Na'Vi spelled
+`alt_vods_review.json`. Beware `{{Map|winner=skip}}`: it is the unplayed decider of a 2–0,
+not a game nobody uploaded — the scraper drops it now, but it once made TI5 look 11 games
+short. And a `vodgame` link proves nothing until it is opened: TI4's all 404, and from 2015
+they point into day-long videos. As for the matcher: the official channel's titles are inconsistent enough (Na'Vi spelled
 with three different quote characters, swapped team order, and in Bo1 rounds "Game 2" meaning
 the round's *second match*) that the leftovers need eyes, not a looser matcher.
 
@@ -116,15 +121,20 @@ into `archive/` (git-ignored, not served). Keep those to yourself.
 | TI2 (2012) | Main event | 22 | 41 | 41 official | 41 official | Group stage (PAX Prime, Aug 26–29) was streamed but never uploaded per game. Grand Final game 1 exists twice in Russian; the unused copy is noted in `sourcesNote`. |
 | TI3 (2013) | Main event | 22 | 45 | 45 official | 44 official + 1 re-upload (GF game 3) | Group stage streams were never uploaded per game. |
 | TI4 (2014) | Main event (final 8) | 10 | 28 | 28 partner (IGN Arena) | 28 partner (StarLadder) | Valve's own uploads were taken down, so every source is `official: false`. |
-| TI6 (2016) | Main event | 22 | 47 | 46 slices of 6 official day VODs | — | One game has no YouTube timestamp. Russian day VODs exist, untimestamped. |
-| TI7 (2017) | Main event | 22 | 47 | 45 slices of 6 official day VODs | — | Two games have no YouTube timestamp. |
-| TI8 (2018) | Main event | 22 | 47 | 47 slices of 6 official day VODs | — | Complete. |
+| TI5 (2015) | Main event | 22 | 48 | 37 slices of official day VODs + 11 third-party (Dota2.TV) | — | The official channel never uploaded the final day; the grand final, the lower-bracket final and a few untimestamped games are per-game third-party copies. |
+| TI6 (2016) | Main event | 22 | 47 | 46 slices of 6 official day VODs | 47 RuHub (per game) | One game has no English timestamp and exists in Russian only. |
+| TI7 (2017) | Main event | 22 | 47 | 45 slices of 6 official day VODs | 47 RuHub (per game) | Two games exist in Russian only. |
+| TI8 (2018) | Main event | 22 | 47 | 47 slices of 6 official day VODs | 47 RuHub (per game) | Complete in both languages. |
+
+RuHub produced the official Russian broadcast from 2016, and uploaded it game by game where
+Valve uploaded whole days; those are `official: false`. English slices and Russian uploads
+are different recordings, so a language switch mid-game is only approximately in place, and
+each such source carries a note saying so.
 
 ### Not here, and why
 
 | Event | Reason |
 |---|---|
-| TI5 (2015) | The official channel has day VODs for days 1–5 only. There is no upload of the grand-final day at all — Liquipedia links Twitch VODs that no longer exist — and 18 of 59 games have no usable source. An archive that ends in four "no VOD" screens where the final should be is worse than none. |
 | TI9 (2019), TI10 (2021) | Day-long official VODs exist, but Liquipedia moved per-game data out of the page text, so there are no timestamps to slice them with. |
 | TI11 (2022) onward | Valve went back to per-game uploads, in four languages. Feasible, but it needs a scraper for Liquipedia's database rather than its wikitext. |
 
