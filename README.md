@@ -85,6 +85,7 @@ into `archive/` (git-ignored, not served). Keep those to yourself.
 
 | Event | Stage | Series | Games | EN | RU | Notes |
 |---|---|---|---|---|---|---|
+| TI2 (2012) | Main event | 22 | 41 | 41 official | 41 official | Group stage (PAX Prime, Aug 26–29) was streamed but never uploaded per game. Grand Final game 1 exists twice in Russian; the unused copy is noted in `sourcesNote`. |
 | TI3 (2013) | Main event | 22 | 45 | 45 official | 44 official + 1 re-upload (GF game 3) | Group stage streams were never uploaded per game. |
 
 ## License
