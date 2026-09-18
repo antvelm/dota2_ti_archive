@@ -72,7 +72,11 @@
     const push = (s, g) => { if (!seriesSkipped(ev, s) || gameDone(ev, s, g)) items.push({ s, g }); };
     if (store.settings.order === 'chrono') {
       ev.series.forEach(s => s.games.forEach(g => push(s, g)));
-      items.sort((a, b) => a.g.matchId - b.g.matchId);
+      // Match ids are real start order. The 2011 event predates them, so fall back to the
+      // series' scheduled start and then the game number.
+      items.sort((a, b) => (a.g.matchId != null && b.g.matchId != null)
+        ? a.g.matchId - b.g.matchId
+        : (new Date(a.s.start) - new Date(b.s.start)) || (a.g.n - b.g.n));
     } else {
       seriesOrdered(ev).forEach(s => s.games.forEach(g => push(s, g)));
     }
@@ -317,6 +321,24 @@
     if (prog.done) prog.pos = 0; // rewatching a finished game starts from the top
     setCrumbs({ text: 'Events', href: '#/' }, { text: ev.short, href: `#/e/${ev.id}` }, { text: `${team(ev, s.team1).short} vs ${team(ev, s.team2).short}` });
 
+    // Not every game has a VOD — the 2015 main event has gaps. Say so plainly instead of
+    // handing the player an undefined video id.
+    if (!g.sources.length) {
+      const after = nextAfter(ev, s, g);
+      app.replaceChildren(h('div', { class: 'card' },
+        h('h3', {}, `${team(ev, s.team1).name} vs ${team(ev, s.team2).name} \u2014 game ${g.n}`),
+        h('div', { class: 'note' }, `${r.name} \u00b7 best of ${s.bestOf} \u00b7 ${ev.short}`),
+        h('p', {}, 'No VOD of this game was ever uploaded, so there is nothing to play here. '
+          + 'Marking it watched keeps the series moving without telling you anything about it.'),
+        h('div', { class: 'btn-row' },
+          h('button', { class: 'btn primary', onclick: () => {
+            prog.done = true; save();
+            location.hash = after ? `#/e/${ev.id}/s/${after.s.id}/g/${after.g.n}` : `#/e/${ev.id}`;
+          } }, after ? 'Mark watched and continue' : 'Mark watched'),
+          h('a', { class: 'btn', href: `#/e/${ev.id}` }, 'Back to the bracket'))));
+      return;
+    }
+
     const langs = Object.keys(ev.languages);
     const srcFor = (lang) => g.sources.find(x => x.lang === lang && x.kind === 'main');
     let lang = srcFor(store.settings.lang) ? store.settings.lang : (g.sources.find(x => x.kind === 'main')?.lang || 'en');
@@ -353,7 +375,7 @@
     const gameList = h('div', { class: 'games' }, s.games.filter(x => x.n <= g.n || gameDone(ev, s, x) || !store.settings.blind).map(x => h('a', { class: 'g' + (x.n === g.n ? ' on' : '') + (gameDone(ev, s, x) ? ' done' : ''), href: `#/e/${ev.id}/s/${s.id}/g/${x.n}` }, h('span', { class: 'dot' }), `Game ${x.n}`, gameDone(ev, s, x) && h('span', { class: 'ghost-note' }, 'watched'))));
     if (store.settings.blind && !seriesDone(ev, s)) gameList.append(h('div', { class: 'note' }, 'Further games appear as you finish them — how many there are is part of the story.'));
     const srcNote = () => src?.note ? h('div', { class: 'note warn' }, src.note) : null;
-    const sideSources = h('div', { class: 'card' }, h('h3', {}, 'This game'), h('div', { class: 'note' }, `${r.name} · best of ${s.bestOf} · ${ev.short}`), h('div', { class: 'note' }, `Match ID ${g.matchId}`), h('div', { class: 'note', id: 'src-note' }, srcNote()));
+    const sideSources = h('div', { class: 'card' }, h('h3', {}, 'This game'), h('div', { class: 'note' }, `${r.name} · best of ${s.bestOf} · ${ev.short}`), g.matchId ? h('div', { class: 'note' }, `Match ID ${g.matchId}`) : null, h('div', { class: 'note', id: 'src-note' }, srcNote()));
     const side = h('div', { class: 'side' }, h('div', { class: 'card' }, h('h3', {}, 'Series'), h('div', { style: 'font-weight:600;margin-bottom:10px' }, badge(ev, s.team1), ' ', team(ev, s.team1).name, h('span', { class: 'muted' }, ' vs '), badge(ev, s.team2), ' ', team(ev, s.team2).name), gameList), sideSources,
       h('div', { class: 'card' }, h('h3', {}, 'Keys'), h('div', { class: 'note' }, h('kbd', {}, 'space'), ' play/pause · ', h('kbd', {}, '←'), ' ', h('kbd', {}, '→'), ' ±10 s · ', h('kbd', {}, 'J'), ' ', h('kbd', {}, 'L'), ' ±60 s · ', h('kbd', {}, 'F'), ' fullscreen · ', h('kbd', {}, 'M'), ' mute · ', h('kbd', {}, 'N'), ' next game · ', h('kbd', {}, 'R'), ' switch language')));
 
