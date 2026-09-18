@@ -77,8 +77,12 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 .bracket .col-title small { display: block; text-transform: none; letter-spacing: 0; color: #5f6473; }
 .series-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; min-width: 0; font-size: 13px; text-align: left; width: 100%; transition: border-color .15s; }
 .series-card:hover { border-color: #444a5c; }
-.series-card.locked { opacity: .5; cursor: default; }
-.series-card.locked:hover { border-color: var(--line); }
+.series-card.locked { opacity: .5; }
+.series-card.locked:hover { opacity: .75; border-color: #444a5c; }
+/* skipped: jumped over on purpose, still one click away from being watched */
+.series-card.skipped { border-style: dashed; opacity: .72; }
+.series-card.skipped:hover { opacity: 1; }
+.series-card .state .s { color: var(--red-2); }
 .series-card.done { border-color: rgba(60,207,122,.35); }
 .series-card.current { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(242,193,78,.35); }
 .series-card .t { display: flex; justify-content: space-between; align-items: center; padding: 3px 2px; }

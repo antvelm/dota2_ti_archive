@@ -14,7 +14,11 @@
   try { const raw = localStorage.getItem(KEY); if (raw) store = Object.assign(defaults(), JSON.parse(raw)); } catch (e) { /* private mode etc. */ }
   store.settings = Object.assign(defaults().settings, store.settings || {});
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) { /* ignore */ } };
-  const evState = (id) => (store.events[id] ||= { games: {}, revealed: {} });
+  const evState = (id) => {
+    const st = (store.events[id] ||= { games: {}, revealed: {}, skipped: {} });
+    st.games ||= {}; st.revealed ||= {}; st.skipped ||= {};   // progress saved before skipping existed
+    return st;
+  };
   const gkey = (s, g) => `${s.id}:${g.n}`;
 
   // ---------- data ----------
@@ -44,8 +48,15 @@
   const gameDone = (ev, s, g) => !!evState(ev.id).games[gkey(s, g)]?.done;
   const seriesDone = (ev, s) => s.games.every(g => gameDone(ev, s, g));
   const seriesStarted = (ev, s) => s.games.some(g => evState(ev.id).games[gkey(s, g)]);
-  const seriesRevealed = (ev, s) => seriesDone(ev, s) || !!evState(ev.id).revealed[s.id] || !store.settings.blind;
-  const seriesUnlocked = (ev, s) => s.slots.every(sl => seriesDone(ev, ev.seriesById[sl.from]) || evState(ev.id).revealed[sl.from]) || !store.settings.blind;
+  const seriesSkipped = (ev, s) => !!evState(ev.id).skipped[s.id];
+  const seriesRevealed = (ev, s) => seriesDone(ev, s) || !!evState(ev.id).revealed[s.id] || seriesSkipped(ev, s) || !store.settings.blind;
+  const seriesResolved = (ev, s) => seriesDone(ev, s) || !!evState(ev.id).revealed[s.id] || seriesSkipped(ev, s);
+  const seriesUnlocked = (ev, s) => s.slots.every(sl => seriesResolved(ev, ev.seriesById[sl.from])) || !store.settings.blind;
+  // Every series feeding into s, transitively — what you have to resolve to reach it.
+  const feeders = (ev, s, acc = new Set()) => {
+    for (const sl of s.slots) { const f = ev.seriesById[sl.from]; if (f && !acc.has(f.id)) { acc.add(f.id); feeders(ev, f, acc); } }
+    return acc;
+  };
   // Which team occupies a slot — only revealed when the feeding series is resolved for this viewer.
   const slotTeam = (ev, s, i) => {
     const sl = s.slots[i];
@@ -57,11 +68,13 @@
   const seriesOrdered = (ev) => [...ev.series].sort((a, b) => new Date(a.start) - new Date(b.start));
   function playlist(ev) {
     const items = [];
+    // A skipped series is out of the queue, except for games already watched inside it.
+    const push = (s, g) => { if (!seriesSkipped(ev, s) || gameDone(ev, s, g)) items.push({ s, g }); };
     if (store.settings.order === 'chrono') {
-      ev.series.forEach(s => s.games.forEach(g => items.push({ s, g })));
+      ev.series.forEach(s => s.games.forEach(g => push(s, g)));
       items.sort((a, b) => a.g.matchId - b.g.matchId);
     } else {
-      seriesOrdered(ev).forEach(s => s.games.forEach(g => items.push({ s, g })));
+      seriesOrdered(ev).forEach(s => s.games.forEach(g => push(s, g)));
     }
     return items;
   }
@@ -159,21 +172,41 @@
         h('div', { class: 'btn-row' },
           h('button', { class: 'btn small', onclick: exportProgress }, 'Export'),
           h('label', { class: 'btn small' }, 'Import', h('input', { type: 'file', accept: 'application/json', style: 'display:none', onchange: importProgress })),
-          h('button', { class: 'btn small', onclick: () => { if (confirm(`Reset all progress for ${ev.short}?`)) { store.events[ev.id] = { games: {}, revealed: {} }; save(); route(); } } }, 'Reset'))));
+          h('button', { class: 'btn small', onclick: () => { if (confirm(`Reset all progress for ${ev.short}?`)) { store.events[ev.id] = { games: {}, revealed: {}, skipped: {} }; save(); route(); } } }, 'Reset'))));
 
     app.replaceChildren(
       h('h1', {}, ev.name), h('p', { class: 'sub' }, `${ev.location} · ${ev.dates} · ${ev.stage}`),
       cont,
       h('h2', {}, 'Bracket'),
       h('div', { class: 'bracket-wrap' }, bracket),
-      h('div', { class: 'legend' }, h('span', {}, h('i', { style: 'border-color:rgba(60,207,122,.5)' }), 'watched'), h('span', {}, h('i', { style: 'border-color:var(--gold)' }), 'up next'), h('span', {}, h('i', { style: 'opacity:.5' }), 'locked until the feeding series are watched'), h('span', {}, 'Click a watched series to rewatch or reveal its score.')),
+      h('div', { class: 'legend' }, h('span', {}, h('i', { style: 'border-color:rgba(60,207,122,.5)' }), 'watched'), h('span', {}, h('i', { style: 'border-color:var(--gold)' }), 'up next'), h('span', {}, h('i', { style: 'opacity:.5' }), 'locked until the feeding series are watched'), h('span', {}, 'Click a watched series to rewatch or reveal its score.'), h('span', {}, 'Click a locked series to skip ahead to it.')),
       h('h2', {}, 'Settings'), settings,
       ev.notes && h('p', { class: 'note', style: 'margin-top:18px' }, ev.notes));
     updateBlindPill();
   }
 
+  // Jump the queue to `s` by marking everything feeding into it as skipped. Their results
+  // become visible in the bracket — that is the trade — but they stay watchable afterwards.
+  function offerSkipTo(ev, s) {
+    const pending = [...feeders(ev, s)].map(id => ev.seriesById[id]).filter(f => !seriesResolved(ev, f));
+    if (!pending.length) return;
+    const rounds = [...new Set(pending.map(f => roundOf(ev, f).name))].join(', ');
+    const msg = `Skip ahead to ${roundOf(ev, s).name}?\n\n`
+      + `${pending.length} earlier series (${rounds}) `
+      + `will be marked skipped, and ${pending.length === 1 ? 'its result' : 'their results'} will show in the bracket.\n\n`
+      + `Nothing is deleted — click a skipped series any time to watch it after all.`;
+    if (!confirm(msg)) return;
+    const st = evState(ev.id);
+    pending.forEach(f => { st.skipped[f.id] = true; });
+    save();
+    toast(`Skipped ${pending.length} series`);
+    const g = s.games.find(x => !gameDone(ev, s, x)) || s.games[0];
+    location.hash = `#/e/${ev.id}/s/${s.id}/g/${g.n}`;   // the dialog promised to take them there
+  }
+
   function seriesCard(ev, s, next) {
     const done = seriesDone(ev, s), unlocked = seriesUnlocked(ev, s), revealed = seriesRevealed(ev, s);
+    const skipped = seriesSkipped(ev, s) && !done;
     const isNext = next && next.s.id === s.id;
     const [w1, w2] = wins(s); const winner = seriesWinner(s);
     const t1 = slotTeam(ev, s, 0), t2 = slotTeam(ev, s, 1);
@@ -181,13 +214,19 @@
       ? h('div', { class: 't' + (revealed ? (isWin ? ' win' : ' lose') : '') }, h('span', { class: 'n' }, badge(ev, tid), team(ev, tid).short), revealed && h('span', { class: 'sc' }, score))
       : h('div', { class: 't' }, h('span', { class: 'n tbd' }, 'TBD'));
     const firstUnwatched = s.games.find(g => !gameDone(ev, s, g)) || s.games[0];
-    const card = h('button', { class: 'series-card' + (unlocked ? '' : ' locked') + (done ? ' done' : '') + (isNext ? ' current' : ''), title: unlocked ? '' : 'Locked: watch the series that feed into this one first',
-      onclick: () => { if (!unlocked) return; location.hash = `#/e/${ev.id}/s/${s.id}/g/${firstUnwatched.n}`; } },
+    const card = h('button', { class: 'series-card' + (unlocked ? '' : ' locked') + (skipped ? ' skipped' : '') + (done ? ' done' : '') + (isNext ? ' current' : ''),
+      title: unlocked ? (skipped ? 'Skipped — click to watch it after all' : '') : 'Locked. Click to skip ahead to it, revealing the series that feed into it.',
+      onclick: () => {
+        if (!unlocked) { offerSkipTo(ev, s); return; }
+        if (skipped) { delete evState(ev.id).skipped[s.id]; save(); toast('Back in the queue'); }
+        location.hash = `#/e/${ev.id}/s/${s.id}/g/${firstUnwatched.n}`;
+      } },
       row(t1, w1, winner === s.team1), row(t2, w2, winner === s.team2));
     const stateLine = h('div', { class: 'state' });
     if (done) stateLine.append(h('span', { class: 'w' }, '✓ watched'));
     else if (seriesStarted(ev, s)) stateLine.append(h('span', { class: 'p' }, 'in progress'));
     else if (isNext) stateLine.append(h('span', { class: 'p' }, 'up next'));
+    else if (skipped) stateLine.append(h('span', { class: 's' }, 'skipped'));
     else stateLine.append(h('span', {}, unlocked ? 'not watched' : 'locked'));
     stateLine.append(h('span', {}, `bo${s.bestOf}`));
     card.append(stateLine);
