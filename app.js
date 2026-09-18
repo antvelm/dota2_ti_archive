@@ -42,7 +42,9 @@
 
   // ---------- derived ----------
   const team = (ev, id) => ev.teams[id] || { name: id, short: id };
-  const wins = (s) => s.games.reduce((a, g) => (a[g.winner - 1]++, a), [0, 0]);
+  // `advantage` is a head start written into the format itself: TI1's upper-bracket winner
+  // began the grand final 1-0 up, and that game was never played.
+  const wins = (s) => s.games.reduce((a, g) => (a[g.winner - 1]++, a), [...(s.advantage || [0, 0])]);
   const seriesWinner = (s) => { const [a, b] = wins(s); return a > b ? s.team1 : s.team2; };
   const seriesLoser = (s) => { const [a, b] = wins(s); return a > b ? s.team2 : s.team1; };
   const gameDone = (ev, s, g) => !!evState(ev.id).games[gkey(s, g)]?.done;
@@ -375,7 +377,7 @@
     const gameList = h('div', { class: 'games' }, s.games.filter(x => x.n <= g.n || gameDone(ev, s, x) || !store.settings.blind).map(x => h('a', { class: 'g' + (x.n === g.n ? ' on' : '') + (gameDone(ev, s, x) ? ' done' : ''), href: `#/e/${ev.id}/s/${s.id}/g/${x.n}` }, h('span', { class: 'dot' }), `Game ${x.n}`, gameDone(ev, s, x) && h('span', { class: 'ghost-note' }, 'watched'))));
     if (store.settings.blind && !seriesDone(ev, s)) gameList.append(h('div', { class: 'note' }, 'Further games appear as you finish them — how many there are is part of the story.'));
     const srcNote = () => src?.note ? h('div', { class: 'note warn' }, src.note) : null;
-    const sideSources = h('div', { class: 'card' }, h('h3', {}, 'This game'), h('div', { class: 'note' }, `${r.name} · best of ${s.bestOf} · ${ev.short}`), g.matchId ? h('div', { class: 'note' }, `Match ID ${g.matchId}`) : null, h('div', { class: 'note', id: 'src-note' }, srcNote()));
+    const sideSources = h('div', { class: 'card' }, h('h3', {}, 'This game'), h('div', { class: 'note' }, `${r.name} · best of ${s.bestOf} · ${ev.short}`), g.matchId ? h('div', { class: 'note' }, `Match ID ${g.matchId}`) : null, s.advantage && (s.advantage[0] || s.advantage[1]) ? h('div', { class: 'note' }, `${team(ev, s.advantage[0] ? s.team1 : s.team2).short} start ${Math.max(...s.advantage)}\u20130 up as upper-bracket winners \u2014 that game was never played.`) : null, h('div', { class: 'note', id: 'src-note' }, srcNote()));
     const side = h('div', { class: 'side' }, h('div', { class: 'card' }, h('h3', {}, 'Series'), h('div', { style: 'font-weight:600;margin-bottom:10px' }, badge(ev, s.team1), ' ', team(ev, s.team1).name, h('span', { class: 'muted' }, ' vs '), badge(ev, s.team2), ' ', team(ev, s.team2).name), gameList), sideSources,
       h('div', { class: 'card' }, h('h3', {}, 'Keys'), h('div', { class: 'note' }, h('kbd', {}, 'space'), ' play/pause · ', h('kbd', {}, '←'), ' ', h('kbd', {}, '→'), ' ±10 s · ', h('kbd', {}, 'J'), ' ', h('kbd', {}, 'L'), ' ±60 s · ', h('kbd', {}, 'F'), ' fullscreen · ', h('kbd', {}, 'M'), ' mute · ', h('kbd', {}, 'N'), ' next game · ', h('kbd', {}, 'R'), ' switch language')));
 
@@ -393,15 +395,21 @@
     let seeking = false, ended = false, lastSave = 0, muted = false;
     const me = { player: null, timer: null, onKey: null };
     current = me;
-    const dur = () => { try { return me.player?.getDuration() || 0; } catch (e) { return 0; } };
+    // A source can be a slice of a longer video: from 2015 the official uploads are whole
+    // broadcast days, and a game is [offset, end) inside one. Everything below runs on slice
+    // time, where 0 is the start of this game, so the position, the duration, the scrubber
+    // and the resume point never expose the day around it, and seeking cannot leave it.
+    const base = () => src.offset || 0;
+    const dur = () => { try { const stop = src.end || me.player?.getDuration() || 0; return stop ? Math.max(0, stop - base()) : 0; } catch (e) { return 0; } };
+    const now = () => { try { return Math.max(0, (me.player?.getCurrentTime() || 0) - base()); } catch (e) { return 0; } };
     const paint = (t, d) => { const p = d ? Math.min(1, t / d) : 0; fill.style.width = (p * 100) + '%'; knob.style.left = (p * 100) + '%'; if (!seeking) range.value = Math.round(p * 1000); };
-    const setPaused = (p) => { player.classList.toggle('paused', p); playBtn.innerHTML = p ? svgPlay : svgPause; coverBtn.innerHTML = p ? svgPlay : svgPause; coverBtn.classList.toggle('pause', !p); if (p && !ended) { cover.classList.remove('hidden'); cover.classList.add('paused'); } else cover.classList.add('hidden'); };
+    const setPaused = (p) => { player.classList.toggle('paused', p); playBtn.innerHTML = p ? svgPlay : svgPause; coverBtn.innerHTML = p ? svgPlay : svgPause; coverBtn.classList.toggle('pause', !p); if (p && !ended) { cover.classList.remove('hidden'); cover.classList.add('paused'); } else if (!p) cover.classList.add('hidden'); };
     const togglePlay = () => { if (!me.player) return; if (ended) { seekTo(0); ended = false; } const st = me.player.getPlayerState(); if (st === 1) me.player.pauseVideo(); else me.player.playVideo(); };
-    const seekTo = (t) => { me.player?.seekTo(Math.max(0, t), true); prog.pos = t; };
-    const rel = (d) => { const t = (me.player?.getCurrentTime() || 0) + d; seekTo(t); curEl.textContent = fmt(t); };
+    const seekTo = (t) => { const d = dur(); t = Math.max(0, d ? Math.min(t, d - 1) : t); me.player?.seekTo(base() + t, true); prog.pos = t; };
+    const rel = (d) => { const t = Math.max(0, now() + d); seekTo(t); curEl.textContent = fmt(Math.min(t, dur() || t)); };
     const toggleMute = () => { if (!me.player) return; muted = !muted; muted ? me.player.mute() : me.player.unMute(); muteBtn.innerHTML = muted ? svgMute : svgVol; };
     const toggleFS = () => { if (document.fullscreenElement) document.exitFullscreen(); else player.requestFullscreen?.(); };
-    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const t = me.player?.getCurrentTime() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); const startAt = Math.max(0, t - (src.offset || 0) + (ns.offset || 0)); src = ns; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById({ videoId: ns.id, startSeconds: startAt }); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(`${ev.languages[l]} commentary`); };
+    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const t = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; const startAt = base() + t; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: ns.id, startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(`${ev.languages[l]} commentary`); };
     const markDone = () => { prog.done = true; save(); };
     const goNext = (ask) => {
       const nx = nextAfter(ev, s, g);
@@ -411,7 +419,7 @@
       if (nx.s.id !== s.id) { pageInterstitial(ev, s, nx); return; }
       location.hash = `#/e/${ev.id}/s/${nx.s.id}/g/${nx.g.n}`;
     };
-    const onEnd = () => { ended = true; markDone(); setPaused(true); cover.classList.remove('paused'); coverBtn.style.display = 'none'; coverBig.textContent = 'Game finished'; const nx = nextAfter(ev, s, g); coverSub.replaceChildren(h('div', { class: 'btn-row', style: 'justify-content:center;margin-top:12px' }, nx ? h('button', { class: 'btn primary', onclick: () => goNext(false) }, 'Continue ▶') : h('a', { class: 'btn primary', href: `#/e/${ev.id}` }, 'Back to bracket'), h('button', { class: 'btn', onclick: () => { ended = false; coverBtn.style.display = ''; coverBig.textContent = `${team(ev, s.team1).name} vs ${team(ev, s.team2).name}`; coverSub.textContent = `${r.name} · Game ${g.n}`; seekTo(0); me.player.playVideo(); } }, 'Rewatch'))); if (store.settings.autoNext && nx) setTimeout(() => { if (ended && current === me) goNext(false); }, 4000); };
+    const onEnd = () => { ended = true; markDone(); setPaused(true); cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = 'Game finished'; const nx = nextAfter(ev, s, g); coverSub.replaceChildren(h('div', { class: 'btn-row', style: 'justify-content:center;margin-top:12px' }, nx ? h('button', { class: 'btn primary', onclick: () => goNext(false) }, 'Continue ▶') : h('a', { class: 'btn primary', href: `#/e/${ev.id}` }, 'Back to bracket'), h('button', { class: 'btn', onclick: () => { ended = false; coverBtn.style.display = ''; coverBig.textContent = `${team(ev, s.team1).name} vs ${team(ev, s.team2).name}`; coverSub.textContent = `${r.name} · Game ${g.n}`; seekTo(0); me.player.playVideo(); } }, 'Rewatch'))); if (store.settings.autoNext && nx) setTimeout(() => { if (ended && current === me) goNext(false); }, 4000); };
 
     me.onKey = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
@@ -429,7 +437,7 @@
     if (current !== me) return; // navigated away while loading
     me.player = new YT.Player(yt, {
       videoId: src.id, width: '100%', height: '100%',
-      playerVars: { controls: 0, rel: 0, iv_load_policy: 3, modestbranding: 1, playsinline: 1, disablekb: 1, fs: 0, origin: location.origin, start: Math.floor(prog.pos > 30 ? prog.pos : 0) },
+      playerVars: Object.assign({ controls: 0, rel: 0, iv_load_policy: 3, modestbranding: 1, playsinline: 1, disablekb: 1, fs: 0, origin: location.origin, start: Math.floor(base() + (prog.pos > 30 ? prog.pos : 0)) }, src.end ? { end: Math.floor(src.end) } : {}),
       events: {
         onReady: (e) => { e.target.setVolume(store.settings.volume); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); },
         onStateChange: (e) => { const S = YT.PlayerState; if (e.data === S.PLAYING) { ended = false; setPaused(false); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); } else if (e.data === S.PAUSED) setPaused(true); else if (e.data === S.ENDED) onEnd(); },
@@ -438,14 +446,16 @@
     });
     me.timer = setInterval(() => {
       if (!me.player || !me.player.getCurrentTime) return;
-      const t = me.player.getCurrentTime(), d = dur();
+      const t = now(), d = dur();
       if (me.player.getPlayerState() !== 1) return;
+      // YouTube can resume from its own remembered position; never let it sit before the slice
+      if (base() && me.player.getCurrentTime() < base() - 2) { me.player.seekTo(base(), true); return; }
       if (!seeking) curEl.textContent = fmt(t);
       paint(t, d);
       prog.pos = t;
       if (Date.now() - lastSave > 5000) { lastSave = Date.now(); save(); }
       // treat the last 2 s as the end: YouTube sometimes never fires ENDED on old uploads
-      if (d && d - t < 2 && !ended) onEnd();
+      if (d && d - t < 2 && !ended) { onEnd(); if (src.end) me.player.pauseVideo(); }   // a slice ends mid-video, so stop it ourselves
     }, 250);
   }
 
