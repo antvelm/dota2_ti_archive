@@ -1,0 +1,1789 @@
+{
+ "id": "ti12",
+ "name": "The International 2023",
+ "short": "TI12",
+ "location": "Seattle Convention Center / Climate Pledge Arena, Seattle",
+ "dates": "October 20–29, 2023",
+ "stage": "Main Event",
+ "timezone": "America/Los_Angeles",
+ "notes": "Main event only. Every game is its own upload.",
+ "sourcesNote": "Both languages are per-game uploads on Valve's own 'dota2' YouTube channel: the English link is the one recorded on Liquipedia, the Russian one is the same game's upload from the same channel, matched on its title and checked against the game's length. Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out.",
+ "languages": {
+  "en": "English",
+  "ru": "Русский"
+ },
+ "teams": {
+  "tspirit": {
+   "name": "Team Spirit",
+   "short": "TSpirit",
+   "region": "RU"
+  },
+  "gg": {
+   "name": "Gaimin Gladiators",
+   "short": "GG",
+   "region": "EU"
+  },
+  "lgd": {
+   "name": "LGD Gaming",
+   "short": "LGD",
+   "region": "CN"
+  },
+  "liquid": {
+   "name": "Team Liquid",
+   "short": "Liquid",
+   "region": "EU"
+  },
+  "vp": {
+   "name": "Virtus.pro",
+   "short": "VP",
+   "region": "RU"
+  },
+  "talon": {
+   "name": "Talon Esports",
+   "short": "Talon",
+   "region": "TH"
+  },
+  "ar": {
+   "name": "Azure Ray",
+   "short": "AR",
+   "region": "CN"
+  },
+  "9p": {
+   "name": "9Pandas",
+   "short": "9P",
+   "region": "RU"
+  },
+  "nouns": {
+   "name": "nouns",
+   "short": "nouns",
+   "region": "US"
+  },
+  "tsm": {
+   "name": "TSM",
+   "short": "TSM",
+   "region": "NA"
+  },
+  "sr": {
+   "name": "Shopify Rebellion",
+   "short": "SR",
+   "region": "EU"
+  },
+  "eg": {
+   "name": "Evil Geniuses",
+   "short": "EG",
+   "region": "US"
+  },
+  "bb": {
+   "name": "BetBoom Team",
+   "short": "BB",
+   "region": "RU"
+  },
+  "kstars": {
+   "name": "Keyd Stars",
+   "short": "KStars",
+   "region": "BR"
+  },
+  "entity": {
+   "name": "Entity",
+   "short": "Entity",
+   "region": "RU"
+  },
+  "tundra": {
+   "name": "Tundra Esports",
+   "short": "Tundra",
+   "region": "EU"
+  }
+ },
+ "rounds": [
+  {
+   "id": "ub-r1",
+   "name": "Upper Bracket Quarterfinals",
+   "bracket": "upper",
+   "order": 1,
+   "bestOf": 3
+  },
+  {
+   "id": "ub-r2",
+   "name": "Upper Bracket Semifinals",
+   "bracket": "upper",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "ub-f",
+   "name": "Upper Bracket Final",
+   "bracket": "upper",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r1",
+   "name": "Lower Bracket Round 1",
+   "bracket": "lower",
+   "order": 1,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r2",
+   "name": "Lower Bracket Round 2",
+   "bracket": "lower",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r3",
+   "name": "Lower Bracket Round 3",
+   "bracket": "lower",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r4",
+   "name": "Lower Bracket Quarterfinals",
+   "bracket": "lower",
+   "order": 4,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r5",
+   "name": "Lower Bracket Semifinals",
+   "bracket": "lower",
+   "order": 5,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-f",
+   "name": "Lower Bracket Final",
+   "bracket": "lower",
+   "order": 6,
+   "bestOf": 3
+  },
+  {
+   "id": "gf",
+   "name": "Grand Final",
+   "bracket": "final",
+   "order": 7,
+   "bestOf": 5
+  }
+ ],
+ "series": [
+  {
+   "id": "ub-r1-a",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "tspirit",
+   "team2": "vp",
+   "start": "2023-10-20T10:00-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7391149823,
+     "winner": 2,
+     "length": "33:25",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "kCqyOes7f7w",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ra6lx8aqqnI",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7391247517,
+     "winner": 1,
+     "length": "59:31",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "mlICXfm2sEs",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "z3DgQ96b0LA",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 7391367511,
+     "winner": 1,
+     "length": "46:51",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "To9ChTig20M",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "oxX0KYdev_U",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-b",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "liquid",
+   "team2": "talon",
+   "start": "2023-10-20T14:20-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7391463411,
+     "winner": 1,
+     "length": "40:18",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "3NsAzgIwEGI",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "7sWjDqcBD0o",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7391525205,
+     "winner": 1,
+     "length": "43:27",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "UrDp7sTVKGo",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "5a_VQaC4Cr0",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-c",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "lgd",
+   "team2": "9p",
+   "start": "2023-10-20T17:15-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7391585748,
+     "winner": 1,
+     "length": "64:41",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "g5CkmDFvGac",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "4-53l3ILkbQ",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7391636050,
+     "winner": 1,
+     "length": "35:48",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "cngrD9aIrW0",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "xTESJeeNuMw",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-d",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "nouns",
+   "team2": "ar",
+   "start": "2023-10-20T20:00-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7391681832,
+     "winner": 2,
+     "length": "30:55",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "3V9C7E0FVdc",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "IIJ3GwXSYFc",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7391726311,
+     "winner": 2,
+     "length": "47:48",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "GLuhIrC2UAo",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "09h1KrDZwAo",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-a",
+   "round": "lb-r1",
+   "bestOf": 3,
+   "team1": "sr",
+   "team2": "tsm",
+   "start": "2023-10-21T10:00-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7392908789,
+     "winner": 2,
+     "length": "47:53",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "6qYAIleqJrY",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "LzjOO2B_qB4",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7393035065,
+     "winner": 2,
+     "length": "27:05",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Qz3CUdtF0-E",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Ho_2wEFg2vk",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-b",
+   "round": "lb-r1",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "gg",
+   "start": "2023-10-21T12:35-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7393133836,
+     "winner": 2,
+     "length": "69:29",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "1Ez6UYSszvY",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "mu6dVuJtRWs",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7393258586,
+     "winner": 2,
+     "length": "42:56",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ulNVGRf-l5M",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "PVwGzjWhKYA",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-a",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "nouns",
+   "team2": "tsm",
+   "start": "2023-10-21T15:45-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-d",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7393331922,
+     "winner": 1,
+     "length": "57:17",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "UFsbjshTFQ4",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "xJ8IcQ0ebVI",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7393394521,
+     "winner": 1,
+     "length": "68:47",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gClSovc-XrM",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "9wEiKrEjgxk",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-b",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "9p",
+   "team2": "gg",
+   "start": "2023-10-21T19:05-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7393464447,
+     "winner": 2,
+     "length": "19:39",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Pr8NupbkHyQ",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "cG8fBxS9MIY",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7393504676,
+     "winner": 2,
+     "length": "32:37",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qn4nFQhjylw",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "uZLCddd5Lj8",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-c",
+   "round": "lb-r1",
+   "bestOf": 3,
+   "team1": "kstars",
+   "team2": "bb",
+   "start": "2023-10-22T10:00-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7394832000,
+     "winner": 2,
+     "length": "34:23",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "pfdNwX1Or8s",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gmogUpvFvrQ",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7394936686,
+     "winner": 2,
+     "length": "37:19",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "11Lh7P1oPdU",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "5JtyWx7Fbs8",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-d",
+   "round": "lb-r1",
+   "bestOf": 3,
+   "team1": "tundra",
+   "team2": "entity",
+   "start": "2023-10-22T12:40-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7395048377,
+     "winner": 2,
+     "length": "48:23",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "NJasVDBs4u8",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fGxdKAXzXuk",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7395136494,
+     "winner": 2,
+     "length": "42:43",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "NIwf1s1tG6Q",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "azupx0ftwks",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-c",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "talon",
+   "team2": "bb",
+   "start": "2023-10-22T15:25-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-c",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7395201088,
+     "winner": 1,
+     "length": "69:45",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "3NcU7SWr-Uk",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "0C9La5eeqDc",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7395260041,
+     "winner": 2,
+     "length": "69:56",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Q0T9MtnQ4PY",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "QgAn3-jA82w",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 7395312177,
+     "winner": 2,
+     "length": "54:31",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "enNoZmDkFGA",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "EduuHMB9tLQ",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-d",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "vp",
+   "team2": "entity",
+   "start": "2023-10-22T20:25-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7395366323,
+     "winner": 1,
+     "length": "61:24",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "L8t6LfB1FcY",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "-VYk7lXXgK8",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7395420827,
+     "winner": 1,
+     "length": "29:39",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "evC1Rr9GtVw",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "7WSV3zP0EC0",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-a",
+   "round": "lb-r3",
+   "bestOf": 3,
+   "team1": "nouns",
+   "team2": "gg",
+   "start": "2023-10-27T10:25-07:00",
+   "slots": [
+    {
+     "from": "lb-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7402531427,
+     "winner": 2,
+     "length": "34:15",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "6TIBIpc7uUg",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "UmntY5Sp_q0",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7402626373,
+     "winner": 2,
+     "length": "25:09",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "vsqDOHfuAv0",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "h67C6eDjtVY",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-b",
+   "round": "lb-r3",
+   "bestOf": 3,
+   "team1": "bb",
+   "team2": "vp",
+   "start": "2023-10-27T12:45-07:00",
+   "slots": [
+    {
+     "from": "lb-r2-c",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7402717428,
+     "winner": 1,
+     "length": "44:58",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "sjH7M_VtuZg",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "FO7vwQWpxGw",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7402800418,
+     "winner": 1,
+     "length": "87:26",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "iJuFY3KkM6Q",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "OyG2zpLRtQQ",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-a",
+   "round": "ub-r2",
+   "bestOf": 3,
+   "team1": "tspirit",
+   "team2": "liquid",
+   "start": "2023-10-27T16:10-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7402900929,
+     "winner": 1,
+     "length": "40:29",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "McCJ41aVxEc",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "GN42XboJi5o",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7402943509,
+     "winner": 2,
+     "length": "54:04",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "dpcgcSv39yM",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "4jxcIoorVDQ",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 7402993316,
+     "winner": 1,
+     "length": "53:20",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "wRXArTUSGGM",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "nTI7iMd9l0Y",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-b",
+   "round": "ub-r2",
+   "bestOf": 3,
+   "team1": "lgd",
+   "team2": "ar",
+   "start": "2023-10-27T20:35-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7403057517,
+     "winner": 1,
+     "length": "47:24",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "wBSyrxOEBUo",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "uB03BCYijDs",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7403117150,
+     "winner": 1,
+     "length": "44:43",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hOiWgdAkzlo",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "YokSxXhyYe0",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-a",
+   "round": "lb-r4",
+   "bestOf": 3,
+   "team1": "liquid",
+   "team2": "gg",
+   "start": "2023-10-28T10:00-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7404249421,
+     "winner": 1,
+     "length": "43:17",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "mCrrBxkQcgU",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "TfYzzF6BzVA",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7404381764,
+     "winner": 2,
+     "length": "41:25",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "duSG7WqKWQI",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ioXft1lmAZE",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 7404488494,
+     "winner": 2,
+     "length": "27:29",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Dk_62Jmz_VQ",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "N39qtAgGNy4",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-b",
+   "round": "lb-r4",
+   "bestOf": 3,
+   "team1": "ar",
+   "team2": "bb",
+   "start": "2023-10-28T14:00-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7404577536,
+     "winner": 1,
+     "length": "58:41",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "vxfnN-ce768",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "go-x-XNt9bA",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7404668056,
+     "winner": 2,
+     "length": "32:01",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "uChBCR7tfXE",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "S0jL7Tq-zIo",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 7404713057,
+     "winner": 1,
+     "length": "42:49",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "V9k1vLSLpQU",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Zwkp2DyAjH8",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-f",
+   "round": "ub-f",
+   "bestOf": 3,
+   "team1": "tspirit",
+   "team2": "lgd",
+   "start": "2023-10-28T17:55-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7404763579,
+     "winner": 1,
+     "length": "76:32",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "1p2lWOKcnm0",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "uFXHf_tRy-c",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7404828649,
+     "winner": 1,
+     "length": "47:13",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "pbvxZwF8qM4",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ogCukqsLmOk",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r5",
+   "round": "lb-r5",
+   "bestOf": 3,
+   "team1": "gg",
+   "team2": "ar",
+   "start": "2023-10-28T21:15-07:00",
+   "slots": [
+    {
+     "from": "lb-r4-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r4-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7404889653,
+     "winner": 1,
+     "length": "22:07",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "vZl_mxyY0iA",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ccH0uEgyLbY",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7404938247,
+     "winner": 1,
+     "length": "23:43",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "HMtQNRzaFuk",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "p6OxL-SWJhE",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-f",
+   "round": "lb-f",
+   "bestOf": 3,
+   "team1": "lgd",
+   "team2": "gg",
+   "start": "2023-10-29T10:00-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r5",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7406129687,
+     "winner": 2,
+     "length": "50:31",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "igj0HOhNf4E",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "jmkpl0L0upQ",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7406249246,
+     "winner": 2,
+     "length": "40:00",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "piUJfnCCX_4",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "8JS7pqz9bzQ",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gf",
+   "round": "gf",
+   "bestOf": 5,
+   "team1": "tspirit",
+   "team2": "gg",
+   "start": "2023-10-29T13:45-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "winner"
+    },
+    {
+     "from": "lb-f",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 7406424070,
+     "winner": 1,
+     "length": "33:27",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "WvD0yCY3EmU",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "tH26zfHWw3k",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 7406482053,
+     "winner": 1,
+     "length": "42:59",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "HXfBOa0ww2w",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hc_1Kz_a8E4",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 7406531302,
+     "winner": 1,
+     "length": "42:05",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "-Fkh6fwsx6I",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "OMQ_t5o_AvM",
+       "official": true,
+       "offset": 0,
+       "note": "Russian and English are separate recordings of the same game, so a language switch mid-game lands a few seconds out."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

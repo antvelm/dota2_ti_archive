@@ -6,5 +6,12 @@
  {"id": "ti5", "name": "The International 2015", "short": "TI5", "year": 2015, "location": "Seattle", "file": "data/ti5.json", "status": "ready"},
  {"id": "ti6", "name": "The International 2016", "short": "TI6", "year": 2016, "location": "Seattle", "file": "data/ti6.json", "status": "ready"},
  {"id": "ti7", "name": "The International 2017", "short": "TI7", "year": 2017, "location": "Seattle", "file": "data/ti7.json", "status": "ready"},
- {"id": "ti8", "name": "The International 2018", "short": "TI8", "year": 2018, "location": "Vancouver", "file": "data/ti8.json", "status": "ready"}
+ {"id": "ti8", "name": "The International 2018", "short": "TI8", "year": 2018, "location": "Vancouver", "file": "data/ti8.json", "status": "ready"},
+ {"id": "ti9", "name": "The International 2019", "short": "TI9", "year": 2019, "location": "Shanghai", "file": "data/ti9.json", "status": "ready"},
+ {"id": "ti10", "name": "The International 2021", "short": "TI10", "year": 2021, "location": "Bucharest", "file": "data/ti10.json", "status": "ready"},
+ {"id": "ti11", "name": "The International 2022", "short": "TI11", "year": 2022, "location": "Singapore", "file": "data/ti11.json", "status": "ready"},
+ {"id": "ti12", "name": "The International 2023", "short": "TI12", "year": 2023, "location": "Seattle", "file": "data/ti12.json", "status": "ready"},
+ {"id": "ti13", "name": "The International 2024", "short": "TI13", "year": 2024, "location": "Copenhagen", "file": "data/ti13.json", "status": "ready"},
+ {"id": "ti14", "name": "The International 2025", "short": "TI14", "year": 2025, "location": "Hamburg", "file": "data/ti14.json", "status": "ready"},
+ {"id": "ti15", "name": "The International 2026", "short": "TI15", "year": 2026, "location": "Shanghai", "file": "data/ti15.json", "status": "ready"}
 ]

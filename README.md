@@ -81,8 +81,20 @@ belongs to one and a bloc (`EU`, `CIS`, `SEA`) when it does not.
 
 ### Adding an event
 
+Which scraper to use depends on the year. Up to 2018 the bracket is written out in the
+page's wikitext; from 2019 it lives in Liquipedia's database and only the rendered page has
+it, so `liquipedia_html_scrape.py` reads the HTML from a `ti_fetch2.py` dump instead. The
+output is the same either way, and step 2 onwards is identical:
+
 ```sh
-# 1. skeleton with English VODs from the Liquipedia bracket page
+# 1a. 2019 onward: skeleton from the rendered page in a source dump
+python3 tools/liquipedia_html_scrape.py source-drop/ti-source-2.zip \
+    --page "The International/2024/Main Event" \
+    --id ti13 --name "The International 2024" --short TI13 \
+    --location "Royal Arena, Copenhagen" --dates "September 8-15, 2024" \
+    --tz="+02:00" -o data/ti13.json
+
+# 1b. up to 2018: skeleton with English VODs from the Liquipedia bracket page
 python3 tools/liquipedia_scrape.py "The_International/2014/Main_Event" \
     --id ti4 --name "The International 2014" --short TI4 \
     --location "KeyArena, Seattle" --dates "July 18–21, 2014" -o data/ti4.json
@@ -125,31 +137,33 @@ into `archive/` (git-ignored, not served). Keep those to yourself.
 | TI6 (2016) | Main event | 22 | 47 | 46 slices of 6 official day VODs | 47 RuHub (per game) | One game has no English timestamp and exists in Russian only. |
 | TI7 (2017) | Main event | 22 | 47 | 45 slices of 6 official day VODs | 47 RuHub (per game) | Two games exist in Russian only. |
 | TI8 (2018) | Main event | 22 | 47 | 47 slices of 6 official day VODs | 47 RuHub (per game) | Complete in both languages. |
+| TI9 (2019) | Main event | 22 | 49 | 49 slices of 22 official per-series uploads | — | In 2019 a whole series was one video per language. The English one is timestamped on Liquipedia; nothing timestamps the Russian one, and the two uploads differ by up to twenty minutes in length, so there is no honest way to place a game inside it. |
+| TI10 (2021) | Main event | 22 | 50 | 50 official (3 as slices) | 47 official | Three games of the opening round have no separate Russian upload. |
+| TI11 (2022) | Main event | 22 | 48 | 48 official | 48 official | Complete in both languages. |
+| TI12 (2023) | Main event | 22 | 50 | 50 official | 50 official | Complete in both languages. The uploads are titled `TI 12 FINALS` in English and `TI12: ФИНАЛ` in Russian. |
+| TI13 (2024) | Main event | 22 | 51 | 51 official | 50 official | One lower-bracket game has no Russian upload. |
+| TI14 (2025) | Main event (final 8) | 14 | 36 | 36 official | 36 official | Complete in both languages. Liquipedia's link for one game is dead; a live upload of the same game is used instead. |
+| TI15 (2026) | Main event (final 8) | 14 | 39 | 39 official | 39 official | Complete in both languages. |
 
-RuHub produced the official Russian broadcast from 2016, and uploaded it game by game where
-Valve uploaded whole days; those are `official: false`. English slices and Russian uploads
-are different recordings, so a language switch mid-game is only approximately in place, and
-each such source carries a note saying so.
+RuHub produced the official Russian broadcast from 2015 to 2018, and uploaded it game by
+game where Valve uploaded whole days; those are `official: false`. From 2019 Valve published
+every game itself in English, Russian, Spanish and Chinese, so the Russian sources from TI10
+on are official uploads from the same `dota2` channel. Either way the two languages are
+separate recordings, so a language switch mid-game is only approximately in place, and each
+such source carries a note saying so.
 
-### Not here yet
+### Still missing
 
-Every remaining International has both an English and a Russian broadcast on Valve's own
-`dota2` channel, so all seven can be added; what differs is how the broadcast was cut up.
-Checked against the channel on 2026-09-18:
+Every International is now here. What is not:
 
-| Event | English | Russian | Shape |
-|---|---|---|---|
-| TI9 (2019) | `[EN] <A> vs <B> BO3 - ... Main Event` | `[RU]` twin of each | One upload per **series**, plus day VODs in both languages. Needs a per-game offset inside the series video, so this one is last. |
-| TI10 (2021) | `[EN] <A> - <B> ... Day 4 - Game 1` | `[RU]` twin of each | Per game, official, both languages. |
-| TI11 (2022) | `[EN] <A> vs <B> – Game 3 - ... Day 3` | `[RU]` twin of each | Per game, official, both languages (Spanish and Chinese too). |
-| TI12 (2023) | `<A> vs <B> – Game 1 - TI 12 FINALS` | `<A> vs <B> – Game 1 - TI12: ФИНАЛ` | Per game, but the titles drop the `[EN]`/`[RU]` tag and name the stage in Russian instead. |
-| TI13 (2024) | `<A> vs. <B> - Game 3 - ... - Finals` | `[RU] ... - Game 2 - ...` | Per game, official, both languages. |
-| TI14 (2025) | `<A> vs <B> - Game 2 - ... - Grand Final` | `[RU] ... - Игра 1 - ...` | Per game, official, both languages. |
-| TI15 (2026) | `[EN] <A> vs <B> - Game 1 - ... - Grand Final` | `[RU] ... - Игра 5 - ...` | Per game, official, both languages. |
-
-So the VODs are not the obstacle; the bracket metadata is. From about 2022 Liquipedia keeps
-matches in its database rather than in the page text, so `liquipedia_scrape.py`, which reads
-wikitext, has nothing to read. `tools/ti_fetch2.py` collects what is needed to settle that.
+* **Group stages.** No event has one — before 2015 they were never uploaded per game, and
+  since then they are a different (and much larger) job.
+* **TI9's Russian.** It exists, as one upload per series like the English, but nobody
+  timestamped it and the two uploads of a series differ by up to twenty minutes in length,
+  so a game's position in the Russian one cannot be worked out from the English one. It
+  would take somebody watching each of the 22 videos and writing down where the games start.
+* **Four games' Russian** — three in TI10's opening round, one in TI13's lower bracket.
+  Valve seems not to have uploaded them separately.
 
 ### Fetching from a clean IP
 
