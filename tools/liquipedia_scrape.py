@@ -24,7 +24,7 @@ Review the output by hand: team slugs → names, round names, anything odd.
 import argparse, json, re, sys, time, urllib.parse, urllib.request
 from datetime import datetime
 
-UA = "TIArchive/0.1 (https://github.com/antvelm/dota2_ti_archive)"
+UA = "TIArchive/0.1 (https://github.com/mana-potion-studios; contact: anton@manapotionstudios.com)"
 API = "https://liquipedia.net/dota2/api.php"
 
 def fetch_wikitext(page: str) -> str:
@@ -56,11 +56,15 @@ def parse_matches(wt: str):
     headers = {m.group(1): m.group(2).strip() for m in re.finditer(r"\|(R\d+M\d+)header=([^\n|]+)", wt)}
     blocks = re.split(r"\n(?=\|R\d+M\d+=\{\{Match)", wt)
     out = []
+    # A header is written once, on the first match of a bracket round, and applies to
+    # every match after it until the next header (TI2 labels only 10 of its 22 matches).
+    header = None
     for b in blocks:
         m = re.match(r"\|(R\d+M\d+)=\{\{Match", b)
         if not m:
             continue
         key = m.group(1)
+        header = headers.get(key, header)
         # maps first (so that match-level fields are parsed with maps stripped)
         maps = []
         for mm in re.finditer(r"\|map(\d+)=\{\{Map(.*?)\n\}\}", b, re.S):
@@ -83,7 +87,7 @@ def parse_matches(wt: str):
         vods = {int(v.group(1)): v.group(2) for v in re.finditer(r"\|vodgame(\d+)\s*=\s*(\S+)", b)}
         mids = {int(v.group(1)): int(v.group(2)) for v in re.finditer(r"\|matchid(\d+)\s*=\s*(\d+)", b)}
         date = (field("date") or "").split("{{")[0].strip()
-        out.append({"key": key, "header": headers.get(key), "bestof": field("bestof"), "team1": o1 and o1.group(1).strip().lower(),
+        out.append({"key": key, "header": header, "bestof": field("bestof"), "team1": o1 and o1.group(1).strip().lower(),
                     "team2": o2 and o2.group(1).strip().lower(), "date": date, "maps": maps, "vods": vods, "matchids": mids})
     return out
 

@@ -69,6 +69,15 @@ python3 tools/check_links.py data/ti4.json
 Liquipedia asks for a descriptive `User-Agent` and no more than one parse request
 every two seconds; the scraper follows that. Do not hammer it.
 
+Two things always need a human pass over the generated file: **team names and regions**
+(the scraper only knows the Liquipedia slug, and the team pages carry *today's* roster —
+LGD's page says South America, which is useless for 2012; take regions from that event's
+own rosters) and **the series ids**, which come out as `ub-r1-r2m1` and are worth tidying
+to `ub-r1-a`. `find_alt_vods.py` only writes a match it is sure of and prints the rest to
+`alt_vods_review.json`; the official channel's titles are inconsistent enough (Na'Vi spelled
+with three different quote characters, swapped team order, and in Bo1 rounds "Game 2" meaning
+the round's *second match*) that the leftovers need eyes, not a looser matcher.
+
 `tools/archive.sh` downloads private backup copies of every source with yt-dlp
 into `archive/` (git-ignored, not served). Keep those to yourself.
 
