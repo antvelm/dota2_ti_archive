@@ -1,0 +1,43 @@
+{{Bracket|Bracket/8U8L4DSL2DSL1D|id=dcM5vG9SCc
+|R2M1header=Upper Bracket R1 (Bo3)
+|R2M1={{Match
+|bestof=3
+|opponent1={{TeamOpponent|navi}}
+|opponent2={{TeamOpponent|orange}}
+|date=August 07, 2013 - 13:05 {{Abbr/PDT}}
+|finished=true
+|vodgame1=https://youtu.be/f6yFfVNYaDg
+|vodgame2=https://youtu.be/7fTWOsoRSk0
+|vodgame3=https://youtu.be/_iTa30PWRuM
+|matchid1=266642819
+|matchid2=266675550
+|matchid3=266691076
+|map1={{Map
+|team1side=radiant
+|t1h1=weaver|t1h2=naga siren
+|length=36m08s
+|winner=2
+}}
+|map2={{Map
+|length=24m54s
+|winner=1
+}}
+|map3={{Map
+|length=25m53s
+|winner=1
+}}
+}}
+|R2M5header=Lower Bracket R2 (Bo1)
+|R2M5={{Match
+|bestof=1
+|opponent1={{TeamOpponent|orange}}
+|opponent2={{TeamOpponent|dignitas}}
+|date=August 07, 2013 - 20:30 {{Abbr/PDT}}
+|vodgame1=https://youtu.be/eJMWVTWC4lU
+|matchid1=266832024
+|map1={{Map
+|length=38m52s
+|winner=1
+}}
+}}
+}}
