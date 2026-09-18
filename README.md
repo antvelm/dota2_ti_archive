@@ -121,7 +121,7 @@ into `archive/` (git-ignored, not served). Keep those to yourself.
 | TI2 (2012) | Main event | 22 | 41 | 41 official | 41 official | Group stage (PAX Prime, Aug 26–29) was streamed but never uploaded per game. Grand Final game 1 exists twice in Russian; the unused copy is noted in `sourcesNote`. |
 | TI3 (2013) | Main event | 22 | 45 | 45 official | 44 official + 1 re-upload (GF game 3) | Group stage streams were never uploaded per game. |
 | TI4 (2014) | Main event (final 8) | 10 | 28 | 28 partner (IGN Arena) | 28 partner (StarLadder) | Valve's own uploads were taken down, so every source is `official: false`. |
-| TI5 (2015) | Main event | 22 | 48 | 37 slices of official day VODs + 11 third-party (Dota2.TV) | — | The official channel never uploaded the final day; the grand final, the lower-bracket final and a few untimestamped games are per-game third-party copies. |
+| TI5 (2015) | Main event | 22 | 48 | 37 slices of official day VODs + 11 third-party (Dota2.TV) | 48 RuHub (per game) | The official channel never uploaded the final day; the grand final, the lower-bracket final and a few untimestamped games are per-game third-party copies. One Russian game exists only as two halves and plays the first. |
 | TI6 (2016) | Main event | 22 | 47 | 46 slices of 6 official day VODs | 47 RuHub (per game) | One game has no English timestamp and exists in Russian only. |
 | TI7 (2017) | Main event | 22 | 47 | 45 slices of 6 official day VODs | 47 RuHub (per game) | Two games exist in Russian only. |
 | TI8 (2018) | Main event | 22 | 47 | 47 slices of 6 official day VODs | 47 RuHub (per game) | Complete in both languages. |
