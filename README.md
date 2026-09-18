@@ -58,7 +58,7 @@ python3 tools/liquipedia_scrape.py "The_International/2014/Main_Event" \
     --id ti4 --name "The International 2014" --short TI4 \
     --location "KeyArena, Seattle" --dates "July 18–21, 2014" -o data/ti4.json
 # 2. fill team names / regions in data/ti4.json by hand
-# 3. Russian uploads from the same channel (needs yt-dlp)
+# 3. Russian uploads from the same channel (uses yt-dlp if installed, plain HTTP otherwise)
 python3 tools/find_alt_vods.py data/ti4.json --lang ru --word "Russian Commentary"
 # 4. register it
 #    add {"id":"ti4", ..., "file":"data/ti4.json", "status":"ready"} to data/events.json
