@@ -131,12 +131,46 @@ Valve uploaded whole days; those are `official: false`. English slices and Russi
 are different recordings, so a language switch mid-game is only approximately in place, and
 each such source carries a note saying so.
 
-### Not here, and why
+### Not here yet
 
-| Event | Reason |
-|---|---|
-| TI9 (2019), TI10 (2021) | Day-long official VODs exist, but Liquipedia moved per-game data out of the page text, so there are no timestamps to slice them with. |
-| TI11 (2022) onward | Valve went back to per-game uploads, in four languages. Feasible, but it needs a scraper for Liquipedia's database rather than its wikitext. |
+Every remaining International has both an English and a Russian broadcast on Valve's own
+`dota2` channel, so all seven can be added; what differs is how the broadcast was cut up.
+Checked against the channel on 2026-09-18:
+
+| Event | English | Russian | Shape |
+|---|---|---|---|
+| TI9 (2019) | `[EN] <A> vs <B> BO3 - ... Main Event` | `[RU]` twin of each | One upload per **series**, plus day VODs in both languages. Needs a per-game offset inside the series video, so this one is last. |
+| TI10 (2021) | `[EN] <A> - <B> ... Day 4 - Game 1` | `[RU]` twin of each | Per game, official, both languages. |
+| TI11 (2022) | `[EN] <A> vs <B> – Game 3 - ... Day 3` | `[RU]` twin of each | Per game, official, both languages (Spanish and Chinese too). |
+| TI12 (2023) | `<A> vs <B> – Game 1 - TI 12 FINALS` | `<A> vs <B> – Game 1 - TI12: ФИНАЛ` | Per game, but the titles drop the `[EN]`/`[RU]` tag and name the stage in Russian instead. |
+| TI13 (2024) | `<A> vs. <B> - Game 3 - ... - Finals` | `[RU] ... - Game 2 - ...` | Per game, official, both languages. |
+| TI14 (2025) | `<A> vs <B> - Game 2 - ... - Grand Final` | `[RU] ... - Игра 1 - ...` | Per game, official, both languages. |
+| TI15 (2026) | `[EN] <A> vs <B> - Game 1 - ... - Grand Final` | `[RU] ... - Игра 5 - ...` | Per game, official, both languages. |
+
+So the VODs are not the obstacle; the bracket metadata is. From about 2022 Liquipedia keeps
+matches in its database rather than in the page text, so `liquipedia_scrape.py`, which reads
+wikitext, has nothing to read. `tools/ti_fetch2.py` collects what is needed to settle that.
+
+### Fetching from a clean IP
+
+Liquipedia rate-limits by IP and an over-eager survey can get the server blocked for hours.
+When that happens, fetch from another machine and bring the result back through git:
+
+```sh
+git pull
+python3 tools/ti_fetch2.py     # or: .\tools\ti_fetch2.ps1   (writes a .zip instead)
+git add source-drop && git commit -m "Liquipedia source dump: TI9-TI15" && git push
+```
+
+One bulk `query` for every page at once, then one `parse` per page that exists, 3 s apart —
+please do not lower that. Each run takes both the wikitext and the rendered HTML, because
+the 2022+ brackets only exist once rendered. `tools/ti_fetch.py` / `.ps1` is the same thing
+for TI1 and TI4–TI8 and is kept for reference.
+
+Setting `LIQUIPEDIA_API_KEY` (free, from <https://api.liquipedia.net>) makes the script also
+pull the `match2` database rows, which carry the Valve match id, winner, length and *every*
+VOD link per game — Russian included — instead of leaving them to be scraped back out of
+HTML. It is optional, and it is the better path for 2022 onward.
 
 ## License
 
