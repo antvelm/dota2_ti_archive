@@ -184,6 +184,10 @@ def main():
             if (mp["length"] or "").strip().lower() == "default" and mp["winner"] in (1, 2):
                 advantage[mp["winner"] - 1] += 1
                 continue
+            # {{Map|winner=skip}} is the unplayed decider of a 2-0, kept so the table lines up.
+            # It is not a game: counting it made TI5 look like it had 11 games nobody uploaded.
+            if mp["winner"] not in (1, 2):
+                continue
             src = []
             link = m["vods"].get(n, "")
             vid = yt_id(link)
