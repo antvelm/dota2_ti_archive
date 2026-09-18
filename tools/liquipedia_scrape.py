@@ -51,6 +51,19 @@ def yt_id(url: str):
     m = YT_RE.search(url)
     return m.group(1) if m else None
 
+def yt_offset(url: str) -> int:
+    """Seconds into the video a link points at: ?t=1h52m14s, ?t=95m, ?t=5400.
+    From 2015 the official uploads are whole broadcast days and every game is a
+    timestamp into one of them, so this is where the game actually starts."""
+    m = re.search(r"[?&#](?:t|start)=([0-9hms]+)", url)
+    if not m:
+        return 0
+    v = m.group(1)
+    if v.isdigit():
+        return int(v)
+    p = re.fullmatch(r"(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s?)?", v)
+    return sum(int(x or 0) * k for x, k in zip(p.groups(), (3600, 60, 1))) if p else 0
+
 def parse_matches(wt: str):
     """Yield dicts for every |RxMy={{Match ...}} block, with its header if any."""
     headers = {m.group(1): m.group(2).strip() for m in re.finditer(r"\|(R\d+M\d+)header=([^\n|]+)", wt)}
@@ -125,8 +138,9 @@ def infer_slots(series):
                 slots.append(None)
                 continue
             p = prev[-1]
-            w1 = sum(1 for g in p["games"] if g["winner"] == 1)
-            w2 = len(p["games"]) - w1
+            adv = p.get("advantage", [0, 0])
+            w1 = adv[0] + sum(1 for g in p["games"] if g["winner"] == 1)
+            w2 = adv[1] + sum(1 for g in p["games"] if g["winner"] == 2)
             winner = p["team1"] if w1 > w2 else p["team2"]
             slots.append({"from": p["id"], "take": "winner" if winner == t else "loser"})
         s["slots"] = [x for x in slots if x] if all(slots) else ([x for x in slots if x])
@@ -162,17 +176,26 @@ def main():
             if t:
                 teams.setdefault(t, {"name": t, "short": t, "region": ""})
         games = []
+        advantage = [0, 0]
         for mp in sorted(m["maps"], key=lambda x: x["n"]):
             n = mp["n"]
+            # TI1 gave the upper-bracket winner a 1-0 start in the grand final, written as a
+            # map with length=Default. It was never played: it is a head start, not a game.
+            if (mp["length"] or "").strip().lower() == "default" and mp["winner"] in (1, 2):
+                advantage[mp["winner"] - 1] += 1
+                continue
             src = []
-            vid = yt_id(m["vods"].get(n, "")) if n in m["vods"] else None
+            link = m["vods"].get(n, "")
+            vid = yt_id(link)
             if vid:
-                src.append({"lang": "en", "kind": "main", "provider": "youtube", "id": vid, "official": None, "offset": 0})
-            elif n in m["vods"]:
-                src.append({"lang": "en", "kind": "main", "provider": "url", "url": m["vods"][n], "official": None, "offset": 0})
+                src.append({"lang": "en", "kind": "main", "provider": "youtube", "id": vid, "official": None, "offset": yt_offset(link)})
+            elif link.startswith("http"):   # editors park "<!--no vod found-->" in this field too
+                src.append({"lang": "en", "kind": "main", "provider": "url", "url": link, "official": None, "offset": 0})
             games.append({"n": n, "matchId": m["matchids"].get(n), "winner": mp["winner"], "length": mp["length"], "sources": src})
         series.append({"id": f"{rid}-{m['key'].lower()}", "round": rid, "bestOf": bo, "team1": m["team1"], "team2": m["team2"],
                        "start": parse_date(m["date"], a.tz), "slots": [], "games": games, "liquipediaKey": m["key"]})
+        if any(advantage):
+            series[-1]["advantage"] = advantage
     infer_slots(series)
     # order rounds: upper by number, lower by number, final last
     order = {"upper": 0, "lower": 0, "final": 0, "other": 0}

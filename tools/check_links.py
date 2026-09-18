@@ -10,7 +10,16 @@ import json, sys, time, urllib.request, urllib.error, urllib.parse, os
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 
+_seen = {}
+
 def status(vid):
+    """One request per distinct video - sliced events point dozens of games at the same upload."""
+    if vid not in _seen:
+        _seen[vid] = _status(vid)
+        time.sleep(0.2)
+    return _seen[vid]
+
+def _status(vid):
     url = "https://www.youtube.com/oembed?" + urllib.parse.urlencode({"url": f"https://youtu.be/{vid}", "format": "json"})
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "TIArchive-linkcheck/0.1"}), timeout=15) as r:
@@ -37,7 +46,6 @@ def main():
                     if st != "ok":
                         dead += 1
                     print(f"{flag}{s['id']:10} g{g['n']} {src['lang']}  {src['id']}  {st}  {author or ''}")
-                    time.sleep(0.2)
     print(f"\n{dead} dead source(s)")
     sys.exit(1 if dead else 0)
 
