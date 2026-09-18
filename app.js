@@ -101,6 +101,49 @@
   const setCrumbs = (...parts) => { crumbs.replaceChildren(...parts.flatMap((p, i) => [i ? h('span', {}, '›') : null, p.href ? h('a', { href: p.href }, p.text) : h('span', {}, p.text)]).filter(Boolean)); };
   let toastT;
   const toast = (msg) => { $('.toast')?.remove(); const t = h('div', { class: 'toast' }, msg); document.body.append(t); clearTimeout(toastT); toastT = setTimeout(() => t.remove(), 2600); };
+
+  // Yes/no question, in the page's own idiom rather than the browser's. Resolves true on
+  // confirm; false on cancel, Esc or a click on the backdrop. Keys are swallowed while it
+  // is open so the player's shortcuts cannot fire behind it.
+  function ask({ title, body, lines, confirmText = 'Confirm', cancelText = 'Cancel' }) {
+    return new Promise(resolve => {
+      const restoreTo = document.activeElement;
+      let settled = false;
+      const close = (v) => {
+        if (settled) return;
+        settled = true;
+        document.removeEventListener('keydown', onKey, true);
+        back.remove();
+        try { restoreTo?.focus?.(); } catch (e) { /* the node may be gone after a re-render */ }
+        resolve(v);
+      };
+      const no = h('button', { class: 'btn', onclick: () => close(false) }, cancelText);
+      const yes = h('button', { class: 'btn primary', onclick: () => close(true) }, confirmText);
+      const box = h('div', { class: 'modal', role: 'alertdialog', 'aria-modal': 'true', 'aria-labelledby': 'ask-title' },
+        h('h3', { id: 'ask-title' }, title),
+        body && h('p', {}, body),
+        lines && lines.length ? h('ul', { class: 'modal-list' }, lines.map(l => h('li', {}, h('span', {}, l.label), h('span', {}, l.value)))) : null,
+        h('div', { class: 'modal-actions' }, no, yes));
+      const back = h('div', { class: 'modal-back', onclick: (e) => { if (e.target === back) close(false); } }, box);
+      const onKey = (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;   // leave the browser's own shortcuts alone
+        if (e.key === 'Escape') close(false);
+        else if (e.key === 'Tab') {
+          const order = [no, yes];
+          const i = order.indexOf(document.activeElement);
+          order[(i + (e.shiftKey ? order.length - 1 : 1)) % order.length].focus();
+        } else if (e.key === 'Enter' || e.key === ' ') {
+          if (document.activeElement === no) close(false); else close(true);
+        }
+        // Every other key is swallowed too, so space/J/L/F cannot reach the player behind it.
+        e.preventDefault();
+        e.stopPropagation();
+      };
+      document.addEventListener('keydown', onKey, true);
+      document.body.append(back);
+      yes.focus();
+    });
+  }
   const badge = (ev, id) => { const t = team(ev, id); const hue = [...id].reduce((a, c) => a + c.charCodeAt(0) * 17, 0) % 360; return h('span', { class: 'badge', style: `background:hsl(${hue} 45% 38%)` }, t.short.slice(0, 2).toUpperCase()); };
   const updateBlindPill = () => { const p = $('#blind-indicator'); p.className = 'pill ' + (store.settings.blind ? 'pill-on' : 'pill-off'); p.textContent = store.settings.blind ? 'blind mode' : 'spoilers visible'; };
 
@@ -187,15 +230,22 @@
 
   // Jump the queue to `s` by marking everything feeding into it as skipped. Their results
   // become visible in the bracket — that is the trade — but they stay watchable afterwards.
-  function offerSkipTo(ev, s) {
+  async function offerSkipTo(ev, s) {
     const pending = [...feeders(ev, s)].map(id => ev.seriesById[id]).filter(f => !seriesResolved(ev, f));
     if (!pending.length) return;
-    const rounds = [...new Set(pending.map(f => roundOf(ev, f).name))].join(', ');
-    const msg = `Skip ahead to ${roundOf(ev, s).name}?\n\n`
-      + `${pending.length} earlier series (${rounds}) `
-      + `will be marked skipped, and ${pending.length === 1 ? 'its result' : 'their results'} will show in the bracket.\n\n`
-      + `Nothing is deleted — click a skipped series any time to watch it after all.`;
-    if (!confirm(msg)) return;
+    // Count them per round. Naming the teams here would spoil the very thing being asked about.
+    const byRound = new Map();
+    pending.forEach(f => { const n = roundOf(ev, f).name; byRound.set(n, (byRound.get(n) || 0) + 1); });
+    const ok = await ask({
+      title: `Skip ahead to the ${roundOf(ev, s).name}?`,
+      body: `That means giving up ${pending.length === 1 ? 'one series' : `${pending.length} series`} you have not watched. `
+        + `${pending.length === 1 ? 'Its result' : 'Their results'} will appear in the bracket, and `
+        + `${pending.length === 1 ? 'it drops' : 'they drop'} out of the queue so Continue follows you forward.`,
+      lines: [...byRound].map(([name, n]) => ({ label: name, value: n === 1 ? '1 series' : `${n} series` })),
+      cancelText: 'Keep watching in order',
+      confirmText: 'Skip ahead',
+    });
+    if (!ok) return;
     const st = evState(ev.id);
     pending.forEach(f => { st.skipped[f.id] = true; });
     save();
