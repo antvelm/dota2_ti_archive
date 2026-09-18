@@ -1,0 +1,1331 @@
+{
+ "id": "ti8",
+ "name": "The International 2018",
+ "short": "TI8",
+ "location": "Rogers Arena, Vancouver",
+ "dates": "August 20–25, 2018",
+ "stage": "Main Event",
+ "timezone": "America/Vancouver",
+ "notes": "Main event only. From 2015 Valve stopped uploading games one by one: each source here is a slice of that day's full broadcast, starting at the game and ending where the next one begins, so a finished game is followed by its post-game desk until you move on.",
+ "sourcesNote": "All sources are official day-long uploads on the 'dota2' YouTube channel, cut with the timestamps recorded on Liquipedia. English only: Russian day VODs exist but nobody has timestamped them.",
+ "languages": {
+  "en": "English"
+ },
+ "teams": {
+  "tl": {
+   "name": "Team Liquid",
+   "short": "Liquid",
+   "region": "EU"
+  },
+  "optic": {
+   "name": "OpTic Gaming",
+   "short": "OpTic",
+   "region": "US"
+  },
+  "vp": {
+   "name": "Virtus.pro",
+   "short": "VP",
+   "region": "RU"
+  },
+  "lgd": {
+   "name": "PSG.LGD",
+   "short": "PSG.LGD",
+   "region": "CN"
+  },
+  "vgj.s": {
+   "name": "VGJ.Storm",
+   "short": "VGJ.S",
+   "region": "US"
+  },
+  "og": {
+   "name": "OG",
+   "short": "OG",
+   "region": "EU"
+  },
+  "eg": {
+   "name": "Evil Geniuses",
+   "short": "EG",
+   "region": "US"
+  },
+  "secret": {
+   "name": "Team Secret",
+   "short": "Secret",
+   "region": "EU"
+  },
+  "fnatic": {
+   "name": "Fnatic",
+   "short": "Fnatic",
+   "region": "SEA"
+  },
+  "serenity": {
+   "name": "Team Serenity",
+   "short": "Serenity",
+   "region": "CN"
+  },
+  "tnc": {
+   "name": "TNC Predator",
+   "short": "TNC",
+   "region": "PH"
+  },
+  "mineski": {
+   "name": "Mineski",
+   "short": "Mineski",
+   "region": "SEA"
+  },
+  "newbee": {
+   "name": "Newbee",
+   "short": "Newbee",
+   "region": "CN"
+  },
+  "winstrike": {
+   "name": "Winstrike Team",
+   "short": "Winstrike",
+   "region": "CIS"
+  },
+  "vgj.t": {
+   "name": "VGJ.Thunder",
+   "short": "VGJ.T",
+   "region": "CN"
+  },
+  "vg": {
+   "name": "Vici Gaming",
+   "short": "VG",
+   "region": "CN"
+  }
+ },
+ "rounds": [
+  {
+   "id": "ub-r1",
+   "name": "Upper Bracket Round 1",
+   "bracket": "upper",
+   "order": 1,
+   "bestOf": 3
+  },
+  {
+   "id": "ub-r2",
+   "name": "Upper Bracket Round 2",
+   "bracket": "upper",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "ub-f",
+   "name": "Upper Bracket Final",
+   "bracket": "upper",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r1",
+   "name": "Lower Bracket Round 1",
+   "bracket": "lower",
+   "order": 1,
+   "bestOf": 1
+  },
+  {
+   "id": "lb-r2",
+   "name": "Lower Bracket Round 2",
+   "bracket": "lower",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r3",
+   "name": "Lower Bracket Round 3",
+   "bracket": "lower",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r4",
+   "name": "Lower Bracket Round 4",
+   "bracket": "lower",
+   "order": 4,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r5",
+   "name": "Lower Bracket Round 5",
+   "bracket": "lower",
+   "order": 5,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-f",
+   "name": "Lower Bracket Final",
+   "bracket": "lower",
+   "order": 6,
+   "bestOf": 3
+  },
+  {
+   "id": "gf",
+   "name": "Grand Final",
+   "bracket": "final",
+   "order": 7,
+   "bestOf": 5
+  }
+ ],
+ "series": [
+  {
+   "id": "ub-r1-a",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "tl",
+   "team2": "optic",
+   "start": "2018-08-20T11:05-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4070356125,
+     "winner": 1,
+     "length": "28:54",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "SouKFV__pCk",
+       "official": true,
+       "offset": 8330,
+       "end": 12603
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4070423361,
+     "winner": 1,
+     "length": "30:19",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "SouKFV__pCk",
+       "official": true,
+       "offset": 12608,
+       "end": 16281
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-b",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "vp",
+   "team2": "lgd",
+   "start": "2018-08-20T13:15-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4070500759,
+     "winner": 2,
+     "length": "39:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "SouKFV__pCk",
+       "official": true,
+       "offset": 16286,
+       "end": 20780
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4070556816,
+     "winner": 2,
+     "length": "35:21",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "SouKFV__pCk",
+       "official": true,
+       "offset": 20785,
+       "end": 25350
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-a",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "fnatic",
+   "team2": "serenity",
+   "start": "2018-08-20T15:40-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4070612749,
+     "winner": 2,
+     "length": "44:35",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "SouKFV__pCk",
+       "official": true,
+       "offset": 25355,
+       "end": 30850
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-b",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "tnc",
+   "team2": "mineski",
+   "start": "2018-08-20T17:10-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4070674710,
+     "winner": 2,
+     "length": "49:22",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "SouKFV__pCk",
+       "official": true,
+       "offset": 30855,
+       "end": 36321
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-c",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "newbee",
+   "team2": "winstrike",
+   "start": "2018-08-20T18:40-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4070746269,
+     "winner": 2,
+     "length": "55:22",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "SouKFV__pCk",
+       "official": true,
+       "offset": 36326,
+       "end": 42394
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-d",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "vgj.t",
+   "team2": "vg",
+   "start": "2018-08-20T20:20-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4070838238,
+     "winner": 2,
+     "length": "45:43",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "SouKFV__pCk",
+       "official": true,
+       "offset": 42399
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-c",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "vgj.s",
+   "team2": "og",
+   "start": "2018-08-21T10:40-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4072252473,
+     "winner": 2,
+     "length": "44:30",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fbs5ZZU2etY",
+       "official": true,
+       "offset": 2574,
+       "end": 7539
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4072354014,
+     "winner": 2,
+     "length": "35:49",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fbs5ZZU2etY",
+       "official": true,
+       "offset": 7544,
+       "end": 12225
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-d",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "secret",
+   "start": "2018-08-21T13:25-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4072441405,
+     "winner": 1,
+     "length": "42:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fbs5ZZU2etY",
+       "official": true,
+       "offset": 12230,
+       "end": 16775
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4072509593,
+     "winner": 1,
+     "length": "58:09",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fbs5ZZU2etY",
+       "official": true,
+       "offset": 16780,
+       "end": 23308
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-a",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "optic",
+   "team2": "serenity",
+   "start": "2018-08-21T16:25-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4072586507,
+     "winner": 1,
+     "length": "38:24",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fbs5ZZU2etY",
+       "official": true,
+       "offset": 23313,
+       "end": 27383
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4072635180,
+     "winner": 1,
+     "length": "38:48",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fbs5ZZU2etY",
+       "official": true,
+       "offset": 27388,
+       "end": 32042
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-b",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "vp",
+   "team2": "mineski",
+   "start": "2018-08-21T18:55-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4072699199,
+     "winner": 1,
+     "length": "51:37",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fbs5ZZU2etY",
+       "official": true,
+       "offset": 32047,
+       "end": 36850
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4072772695,
+     "winner": 1,
+     "length": "35:36",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fbs5ZZU2etY",
+       "official": true,
+       "offset": 36855
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-c",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "vgj.s",
+   "team2": "winstrike",
+   "start": "2018-08-22T10:35-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-c",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4074178274,
+     "winner": 1,
+     "length": "33:05",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 2203,
+       "end": 5925
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4074255285,
+     "winner": 1,
+     "length": "27:40",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 5930,
+       "end": 11206
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-d",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "secret",
+   "team2": "vg",
+   "start": "2018-08-22T13:05-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-d",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4074356696,
+     "winner": 2,
+     "length": "58:52",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 11211,
+       "end": 16632
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4074440208,
+     "winner": 1,
+     "length": "32:15",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 16637,
+       "end": 20240
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 4074486307,
+     "winner": 1,
+     "length": "33:41",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 20245,
+       "end": 29401
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-a",
+   "round": "ub-r2",
+   "bestOf": 3,
+   "team1": "tl",
+   "team2": "lgd",
+   "start": "2018-08-22T18:10-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4074591870,
+     "winner": 2,
+     "length": "32:52",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 29406,
+       "end": 33118
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4074639753,
+     "winner": 2,
+     "length": "31:47",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 33123,
+       "end": 37042
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-b",
+   "round": "ub-r2",
+   "bestOf": 3,
+   "team1": "og",
+   "team2": "eg",
+   "start": "2018-08-22T20:15-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4074694505,
+     "winner": 1,
+     "length": "32:36",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 37047,
+       "end": 40612
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4074748928,
+     "winner": 2,
+     "length": "43:32",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 40617,
+       "end": 44943
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 4074821374,
+     "winner": 1,
+     "length": "53:27",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "2yNaefz9qIM",
+       "official": true,
+       "offset": 44948
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-a",
+   "round": "lb-r3",
+   "bestOf": 3,
+   "team1": "optic",
+   "team2": "vp",
+   "start": "2018-08-23T10:40-07:00",
+   "slots": [
+    {
+     "from": "lb-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4076043995,
+     "winner": 1,
+     "length": "31:12",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "q_k_mrZTLoU",
+       "official": true,
+       "offset": 6054,
+       "end": 9614
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4076114893,
+     "winner": 2,
+     "length": "42:46",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "q_k_mrZTLoU",
+       "official": true,
+       "offset": 9619,
+       "end": 13760
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 4076188379,
+     "winner": 2,
+     "length": "25:53",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "q_k_mrZTLoU",
+       "official": true,
+       "offset": 13765,
+       "end": 17961
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-b",
+   "round": "lb-r3",
+   "bestOf": 3,
+   "team1": "vgj.s",
+   "team2": "secret",
+   "start": "2018-08-23T14:00-07:00",
+   "slots": [
+    {
+     "from": "lb-r2-c",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4076257095,
+     "winner": 2,
+     "length": "32:58",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "q_k_mrZTLoU",
+       "official": true,
+       "offset": 17966,
+       "end": 21975
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4076314248,
+     "winner": 2,
+     "length": "55:20",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "q_k_mrZTLoU",
+       "official": true,
+       "offset": 21980,
+       "end": 31766
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-a",
+   "round": "lb-r4",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "vp",
+   "start": "2018-08-23T17:50-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4076431752,
+     "winner": 1,
+     "length": "35:20",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "q_k_mrZTLoU",
+       "official": true,
+       "offset": 31771,
+       "end": 35693
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4076485641,
+     "winner": 1,
+     "length": "46:41",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "q_k_mrZTLoU",
+       "official": true,
+       "offset": 35698
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-b",
+   "round": "lb-r4",
+   "bestOf": 3,
+   "team1": "tl",
+   "team2": "secret",
+   "start": "2018-08-24T10:45-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4078079157,
+     "winner": 1,
+     "length": "51:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "K8bALSTyUN8",
+       "official": true,
+       "offset": 6323,
+       "end": 11207
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4078180258,
+     "winner": 1,
+     "length": "42:15",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "K8bALSTyUN8",
+       "official": true,
+       "offset": 11212,
+       "end": 17201
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-f",
+   "round": "ub-f",
+   "bestOf": 3,
+   "team1": "lgd",
+   "team2": "og",
+   "start": "2018-08-24T13:45-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4078291886,
+     "winner": 2,
+     "length": "48:55",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "K8bALSTyUN8",
+       "official": true,
+       "offset": 17206,
+       "end": 21885
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4078363316,
+     "winner": 1,
+     "length": "37:02",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "K8bALSTyUN8",
+       "official": true,
+       "offset": 21890,
+       "end": 25723
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 4078412913,
+     "winner": 2,
+     "length": "58:09",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "K8bALSTyUN8",
+       "official": true,
+       "offset": 25728,
+       "end": 31263
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r5",
+   "round": "lb-r5",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "tl",
+   "start": "2018-08-24T17:40-07:00",
+   "slots": [
+    {
+     "from": "lb-r4-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r4-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4078478649,
+     "winner": 1,
+     "length": "64:17",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "K8bALSTyUN8",
+       "official": true,
+       "offset": 31268,
+       "end": 37175
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4078566725,
+     "winner": 1,
+     "length": "34:41",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "K8bALSTyUN8",
+       "official": true,
+       "offset": 37180
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-f",
+   "round": "lb-f",
+   "bestOf": 3,
+   "team1": "lgd",
+   "team2": "eg",
+   "start": "2018-08-25T10:45-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r5",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4080316101,
+     "winner": 1,
+     "length": "43:25",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "cEM6725JmM4",
+       "official": true,
+       "offset": 6318,
+       "end": 10717
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4080420268,
+     "winner": 1,
+     "length": "32:24",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "cEM6725JmM4",
+       "official": true,
+       "offset": 10722,
+       "end": 18523
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gf",
+   "round": "gf",
+   "bestOf": 5,
+   "team1": "og",
+   "team2": "lgd",
+   "start": "2018-08-25T14:05-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "winner"
+    },
+    {
+     "from": "lb-f",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 4080601137,
+     "winner": 1,
+     "length": "34:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "cEM6725JmM4",
+       "official": true,
+       "offset": 18528,
+       "end": 22610
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 4080666526,
+     "winner": 2,
+     "length": "38:05",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "cEM6725JmM4",
+       "official": true,
+       "offset": 22615,
+       "end": 26691
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 4080723031,
+     "winner": 2,
+     "length": "34:26",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "cEM6725JmM4",
+       "official": true,
+       "offset": 26696,
+       "end": 30960
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "matchId": 4080778303,
+     "winner": 1,
+     "length": "65:21",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "cEM6725JmM4",
+       "official": true,
+       "offset": 30965,
+       "end": 36953
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "matchId": 4080856812,
+     "winner": 1,
+     "length": "36:28",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "cEM6725JmM4",
+       "official": true,
+       "offset": 36958
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

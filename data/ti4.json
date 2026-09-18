@@ -1,0 +1,946 @@
+{
+ "id": "ti4",
+ "name": "The International 2014",
+ "short": "TI4",
+ "location": "KeyArena, Seattle",
+ "dates": "July 18–21, 2014",
+ "stage": "Main Event",
+ "timezone": "America/Los_Angeles",
+ "notes": "Main event at KeyArena only: the final eight teams. The earlier playoff phases were played off-stage and are not included.",
+ "sourcesNote": "Valve's own per-game uploads of TI4 have been removed from YouTube, so every source here is a partner channel's copy, flagged official:false. English is IGN Arena, the event's broadcast partner. Russian is StarLadder Dota 2, whose studio produced the official Russian broadcast. The Russian upload of the last grand-final game runs on into the trophy ceremony.",
+ "languages": {
+  "en": "English",
+  "ru": "Русский"
+ },
+ "teams": {
+  "vg": {
+   "name": "Vici Gaming",
+   "short": "VG",
+   "region": "CN"
+  },
+  "newbee": {
+   "name": "Newbee",
+   "short": "Newbee",
+   "region": "CN"
+  },
+  "eg": {
+   "name": "Evil Geniuses",
+   "short": "EG",
+   "region": "US"
+  },
+  "dk": {
+   "name": "Team DK",
+   "short": "DK",
+   "region": "CN"
+  },
+  "c9": {
+   "name": "Cloud9",
+   "short": "C9",
+   "region": "US"
+  },
+  "navi": {
+   "name": "Natus Vincere",
+   "short": "Na'Vi",
+   "region": "UA"
+  },
+  "ig": {
+   "name": "Invictus Gaming",
+   "short": "iG",
+   "region": "CN"
+  },
+  "lgd": {
+   "name": "LGD Gaming",
+   "short": "LGD",
+   "region": "CN"
+  }
+ },
+ "rounds": [
+  {
+   "id": "ub-r1",
+   "name": "Upper Bracket Round 1",
+   "bracket": "upper",
+   "order": 1,
+   "bestOf": 3
+  },
+  {
+   "id": "ub-f",
+   "name": "Upper Bracket Final",
+   "bracket": "upper",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r1",
+   "name": "Lower Bracket Round 1",
+   "bracket": "lower",
+   "order": 1,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r2",
+   "name": "Lower Bracket Round 2",
+   "bracket": "lower",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r3",
+   "name": "Lower Bracket Round 3",
+   "bracket": "lower",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-f",
+   "name": "Lower Bracket Final",
+   "bracket": "lower",
+   "order": 4,
+   "bestOf": 3
+  },
+  {
+   "id": "gf",
+   "name": "Grand Final",
+   "bracket": "final",
+   "order": 5,
+   "bestOf": 5
+  }
+ ],
+ "series": [
+  {
+   "id": "ub-r1-a",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "vg",
+   "team2": "newbee",
+   "start": "2014-07-18T10:15-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 783330532,
+     "winner": 2,
+     "length": "14:22",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "oYugJHew-Hc",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "fmaUJNLIvRQ",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 783390334,
+     "winner": 1,
+     "length": "32:22",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "UKXqE7DiLjg",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "CXGZrDdd6uo",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 783470838,
+     "winner": 2,
+     "length": "36:13",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "vPRZG0bcv5M",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Ov-fE9vUP6M",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-b",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "dk",
+   "start": "2014-07-18T13:05-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 783571610,
+     "winner": 1,
+     "length": "56:10",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "vg0Vt5cMuLs",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "XhElyzwyBrg",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 783676866,
+     "winner": 1,
+     "length": "35:49",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "0idS8pxJ3II",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "TiFAd1tUU6U",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-f",
+   "round": "ub-f",
+   "bestOf": 3,
+   "team1": "newbee",
+   "team2": "eg",
+   "start": "2014-07-18T16:00-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 783746701,
+     "winner": 1,
+     "length": "51:01",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "3jzNQP7e25c",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "3Nu-DOBsbrA",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 783801256,
+     "winner": 1,
+     "length": "35:57",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "LiNJL9V-D4U",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "7wMYWn2Drzo",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-a",
+   "round": "lb-r1",
+   "bestOf": 3,
+   "team1": "c9",
+   "team2": "navi",
+   "start": "2014-07-19T10:10-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 785298771,
+     "winner": 1,
+     "length": "33:55",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "h7w9_9HjAXM",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "7IMSYOmi9A8",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 785389859,
+     "winner": 2,
+     "length": "21:25",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "92zSZgOLzZc",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ulQjdsWL3Js",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 785453168,
+     "winner": 1,
+     "length": "31:44",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "wQQXn_F-yRM",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "nfhj6EoWihA",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-b",
+   "round": "lb-r1",
+   "bestOf": 3,
+   "team1": "ig",
+   "team2": "lgd",
+   "start": "2014-07-19T13:25-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 785558384,
+     "winner": 2,
+     "length": "32:26",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "sOngNFJwQII",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "QJIo33Y4N38",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 785643441,
+     "winner": 1,
+     "length": "33:04",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "A2QWkWIkRtE",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qWeOPPWUd30",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 785712957,
+     "winner": 2,
+     "length": "45:05",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "DVolprLWRtg",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "lp9DsIp4gGE",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-a",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "vg",
+   "team2": "c9",
+   "start": "2014-07-19T16:45-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 785785899,
+     "winner": 1,
+     "length": "40:52",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "lmHZjbu-50c",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ORlm_ylhE3A",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 787345302,
+     "winner": 2,
+     "length": "46:45",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "0D15nYFtQkE",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "jIoh7wHtqto",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 787453665,
+     "winner": 1,
+     "length": "34:20",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Z9BdI7ww77c",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "jR5kYa3ip64",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-b",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "dk",
+   "team2": "lgd",
+   "start": "2014-07-19T18:05-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 785842796,
+     "winner": 2,
+     "length": "66:39",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "7C45bkK0iEc",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "I1DA5i3aRYU",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 787554090,
+     "winner": 1,
+     "length": "27:55",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "e3KYi5vyLx0",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "22BLFaksMpM",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 787639738,
+     "winner": 1,
+     "length": "41:52",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "eFCUUeJyox0",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "S6iNdvxeMZ8",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3",
+   "round": "lb-r3",
+   "bestOf": 3,
+   "team1": "vg",
+   "team2": "dk",
+   "start": "2014-07-20T13:55-07:00",
+   "slots": [
+    {
+     "from": "lb-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 787737213,
+     "winner": 1,
+     "length": "39:26",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "RAT2exkPPyU",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "9jZ7oOUKkI8",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 787804519,
+     "winner": 1,
+     "length": "44:11",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "M4niZVKDgII",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Ffb9x7GENpk",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-f",
+   "round": "lb-f",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "vg",
+   "start": "2014-07-20T16:05-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 787871901,
+     "winner": 2,
+     "length": "16:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "YrFJTqeHBqM",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "bOCN0xyRyKw",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 787900748,
+     "winner": 1,
+     "length": "45:48",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "octmeBMlTC4",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "R9aalfhegqU",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 787943161,
+     "winner": 2,
+     "length": "15:51",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "MBFNIkBuZsY",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "6xgLRYDx1vU",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gf",
+   "round": "gf",
+   "bestOf": 5,
+   "team1": "newbee",
+   "team2": "vg",
+   "start": "2014-07-21T10:50-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "winner"
+    },
+    {
+     "from": "lb-f",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 789453600,
+     "winner": 2,
+     "length": "24:50",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "IpflbDrTmrU",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "H8acxTSC_KY",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 789518247,
+     "winner": 1,
+     "length": "26:11",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "vwJ6D1TKXvo",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "UxESAHfXFIk",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 789590883,
+     "winner": 1,
+     "length": "17:34",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "YbcHk7s8GtM",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "EMmkGxY2Hmo",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "matchId": 789645621,
+     "winner": 1,
+     "length": "15:08",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "jceWJLtC4XA",
+       "official": false,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "eqlKVHWzJrQ",
+       "official": false,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

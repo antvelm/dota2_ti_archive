@@ -1,0 +1,1166 @@
+{
+ "id": "ti1",
+ "name": "The International 2011",
+ "short": "TI1",
+ "location": "Koelnmesse, Cologne",
+ "dates": "August 18–21, 2011",
+ "stage": "Main Event",
+ "timezone": "Europe/Berlin",
+ "notes": "The first International, played at Gamescom. Main event only. There are no Valve match ids for 2011, so strict chronological order falls back to the schedule. Every series before the bracket finals was a single game, and Na'Vi began the grand final 1–0 up as upper-bracket winners.",
+ "sourcesNote": "All VODs are official uploads on the 'dota2' YouTube channel. Lower Bracket Round 3 (MYM vs MiTH) was never uploaded in any language. Four games have no Russian upload: Nevo vs MUFC, iG vs MYM, EHOME vs M5, and game 1 of the lower-bracket final.",
+ "languages": {
+  "en": "English",
+  "ru": "Русский"
+ },
+ "teams": {
+  "ehome": {
+   "name": "EHOME",
+   "short": "EHOME",
+   "region": "CN"
+  },
+  "tyloo": {
+   "name": "TyLoo",
+   "short": "TyLoo",
+   "region": "CN"
+  },
+  "mym": {
+   "name": "Meet Your Makers",
+   "short": "MYM",
+   "region": "DK"
+  },
+  "scythe": {
+   "name": "Scythe Gaming",
+   "short": "Scythe",
+   "region": "SG"
+  },
+  "ok.nirvana.int": {
+   "name": "OK.Nirvana.Int",
+   "short": "Nirvana.int",
+   "region": "CN"
+  },
+  "ig": {
+   "name": "Invictus Gaming",
+   "short": "iG",
+   "region": "CN"
+  },
+  "navi": {
+   "name": "Natus Vincere",
+   "short": "Na'Vi",
+   "region": "UA"
+  },
+  "m5": {
+   "name": "Moscow Five",
+   "short": "M5",
+   "region": "RU"
+  },
+  "sgc": {
+   "name": "Storm Games Clan",
+   "short": "SGC",
+   "region": "EU"
+  },
+  "virus": {
+   "name": "Virus Gaming",
+   "short": "Virus",
+   "region": "FR"
+  },
+  "mith": {
+   "name": "MiTH.Trust",
+   "short": "MiTH",
+   "region": "TH"
+  },
+  "ggnet": {
+   "name": "GosuGamers",
+   "short": "GGnet",
+   "region": "DE"
+  },
+  "ok.nirvana.cn": {
+   "name": "OK.Nirvana.CN",
+   "short": "Nirvana.cn",
+   "region": "CN"
+  },
+  "mineski": {
+   "name": "Mineski",
+   "short": "Mineski",
+   "region": "PH"
+  },
+  "nevo": {
+   "name": "Next Evolution",
+   "short": "Nevo",
+   "region": "DK"
+  },
+  "mufc": {
+   "name": "MUFC",
+   "short": "MUFC",
+   "region": "MY"
+  }
+ },
+ "rounds": [
+  {
+   "id": "ub-r1",
+   "name": "Upper Bracket Round 1",
+   "bracket": "upper",
+   "order": 1,
+   "bestOf": 1
+  },
+  {
+   "id": "ub-r2",
+   "name": "Upper Bracket Round 2",
+   "bracket": "upper",
+   "order": 2,
+   "bestOf": 1
+  },
+  {
+   "id": "ub-f",
+   "name": "Upper Bracket Final",
+   "bracket": "upper",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r1",
+   "name": "Lower Bracket Round 1",
+   "bracket": "lower",
+   "order": 1,
+   "bestOf": 1
+  },
+  {
+   "id": "lb-r2",
+   "name": "Lower Bracket Round 2",
+   "bracket": "lower",
+   "order": 2,
+   "bestOf": 1
+  },
+  {
+   "id": "lb-r3",
+   "name": "Lower Bracket Round 3",
+   "bracket": "lower",
+   "order": 3,
+   "bestOf": 1
+  },
+  {
+   "id": "lb-r4",
+   "name": "Lower Bracket Round 4",
+   "bracket": "lower",
+   "order": 4,
+   "bestOf": 1
+  },
+  {
+   "id": "lb-r5",
+   "name": "Lower Bracket Round 5",
+   "bracket": "lower",
+   "order": 5,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-f",
+   "name": "Lower Bracket Final",
+   "bracket": "lower",
+   "order": 6,
+   "bestOf": 3
+  },
+  {
+   "id": "gf",
+   "name": "Grand Final",
+   "bracket": "final",
+   "order": 7,
+   "bestOf": 5
+  }
+ ],
+ "series": [
+  {
+   "id": "ub-r1-a",
+   "round": "ub-r1",
+   "bestOf": 1,
+   "team1": "ehome",
+   "team2": "tyloo",
+   "start": "2011-08-18T10:00+02:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": "63:43",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "tJ4mQvpdtSg",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "9vEdOekRCl4",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-a",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "sgc",
+   "team2": "virus",
+   "start": "2011-08-18T11:15+02:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "48:07",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "K8SJV8oNQaY",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "lEwFj01CWoo",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-c",
+   "round": "ub-r1",
+   "bestOf": 1,
+   "team1": "ok.nirvana.int",
+   "team2": "ig",
+   "start": "2011-08-18T12:30+02:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "60:02",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "n-bNDzjsOTs",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "iGJiDqPjqmg",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-d",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "nevo",
+   "team2": "mufc",
+   "start": "2011-08-18T14:00+02:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "38:25",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "j1GcBw-qEWc",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-b",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "mith",
+   "team2": "ggnet",
+   "start": "2011-08-18T15:15+02:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": "35:22",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "brUSFANXEkA",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "tJEVtE8nrao",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-d",
+   "round": "ub-r1",
+   "bestOf": 1,
+   "team1": "navi",
+   "team2": "m5",
+   "start": "2011-08-18T16:30+02:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": "35:14",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "nNr6InN3l4Q",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "LfqfwvQvz8o",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-c",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "ok.nirvana.cn",
+   "team2": "mineski",
+   "start": "2011-08-18T17:45+02:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "68:09",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "hd6DGCwT46w",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "LcnUxOhj9FA",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-b",
+   "round": "ub-r1",
+   "bestOf": 1,
+   "team1": "mym",
+   "team2": "scythe",
+   "start": "2011-08-18T19:00+02:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "62:35",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Cl0T-gDqSbw",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "BU1fmNtKSCE",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-a",
+   "round": "lb-r2",
+   "bestOf": 1,
+   "team1": "mym",
+   "team2": "virus",
+   "start": "2011-08-19T10:00+02:00",
+   "slots": [
+    {
+     "from": "ub-r1-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": "58:14",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qDf5g2-_AZo",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "zN4UZU8vghw",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-b",
+   "round": "lb-r2",
+   "bestOf": 1,
+   "team1": "tyloo",
+   "team2": "mith",
+   "start": "2011-08-19T11:15+02:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "53:18",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "u4arkNwxEuM",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "dwQGLsfCaiM",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-c",
+   "round": "lb-r2",
+   "bestOf": 1,
+   "team1": "m5",
+   "team2": "mineski",
+   "start": "2011-08-19T12:30+02:00",
+   "slots": [
+    {
+     "from": "ub-r1-d",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-c",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": "32:55",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "SJRXXFIbQM0",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "u6A__IdX4dE",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-d",
+   "round": "lb-r2",
+   "bestOf": 1,
+   "team1": "ok.nirvana.int",
+   "team2": "mufc",
+   "start": "2011-08-19T14:00+02:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": "62:41",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "_SOfhXi8pCk",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "tlhQtOPt8VE",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-a",
+   "round": "ub-r2",
+   "bestOf": 1,
+   "team1": "ehome",
+   "team2": "scythe",
+   "start": "2011-08-19T15:15+02:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "36:54",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "8vusZFXNByc",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "8ERBvb6jGVU",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-b",
+   "round": "ub-r2",
+   "bestOf": 1,
+   "team1": "ig",
+   "team2": "navi",
+   "start": "2011-08-19T16:30+02:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "48:24",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "A2AEc3YhG14",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "4n2CjbcTV8k",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-a",
+   "round": "lb-r3",
+   "bestOf": 1,
+   "team1": "mym",
+   "team2": "mith",
+   "start": "2011-08-19T17:45+02:00",
+   "slots": [
+    {
+     "from": "lb-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": null,
+     "sources": []
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-b",
+   "round": "lb-r3",
+   "bestOf": 1,
+   "team1": "m5",
+   "team2": "ok.nirvana.int",
+   "start": "2011-08-20T10:00+02:00",
+   "slots": [
+    {
+     "from": "lb-r2-c",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": "50:08",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "G_idekroKCU",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "IaC1ZX4pcXc",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-a",
+   "round": "lb-r4",
+   "bestOf": 1,
+   "team1": "ig",
+   "team2": "mym",
+   "start": "2011-08-20T11:15+02:00",
+   "slots": [
+    {
+     "from": "ub-r2-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "39:40",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "IgyNdcWmRTE",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-b",
+   "round": "lb-r4",
+   "bestOf": 1,
+   "team1": "ehome",
+   "team2": "m5",
+   "start": "2011-08-20T13:00+02:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": "67:24",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "Ixoc-7RVM-g",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-f",
+   "round": "ub-f",
+   "bestOf": 3,
+   "team1": "scythe",
+   "team2": "navi",
+   "start": "2011-08-20T14:00+02:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "23:46",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "IMJ7W4nfQNs",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "eyxTE0ebOY8",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": null,
+     "winner": 2,
+     "length": "52:55",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "QDNW3vidQtc",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "3CgQuk2LRAI",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r5",
+   "round": "lb-r5",
+   "bestOf": 3,
+   "team1": "mym",
+   "team2": "ehome",
+   "start": "2011-08-20T17:30+02:00",
+   "slots": [
+    {
+     "from": "lb-r4-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r4-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 2,
+     "length": "50:50",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "h9jBADQRvJk",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "-BY74YmPHN8",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": null,
+     "winner": 2,
+     "length": "46:16",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "0wjaeUuKYjk",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "0QVwrDtztjo",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-f",
+   "round": "lb-f",
+   "bestOf": 3,
+   "team1": "scythe",
+   "team2": "ehome",
+   "start": "2011-08-21T10:00+02:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r5",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": null,
+     "winner": 1,
+     "length": "40:41",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "3vIdJ8rbRlo",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": null,
+     "winner": 2,
+     "length": "34:16",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "5WLDYBcB9oA",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "KECKKTNlhDM",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": null,
+     "winner": 2,
+     "length": "37:25",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "QeFRnOa36AM",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "dMXOvdHDlyg",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gf",
+   "round": "gf",
+   "bestOf": 5,
+   "team1": "navi",
+   "team2": "ehome",
+   "start": "2011-08-21T13:00+02:00",
+   "advantage": [
+    1,
+    0
+   ],
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "winner"
+    },
+    {
+     "from": "lb-f",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 2,
+     "matchId": null,
+     "winner": 2,
+     "length": "55:01",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "RS3CytoLTb4",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "yBreRE2zlBM",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": null,
+     "winner": 1,
+     "length": "56:22",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "zGpm7PrQxTw",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "opzV0ppq6pw",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "matchId": null,
+     "winner": 1,
+     "length": "33:50",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "sspVvYwzytk",
+       "official": true,
+       "offset": 0
+      },
+      {
+       "lang": "ru",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "X7QwFtARr1M",
+       "official": true,
+       "offset": 0
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

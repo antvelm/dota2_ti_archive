@@ -53,15 +53,29 @@ One JSON file per event in `data/`, listed in `data/events.json`.
 event
  ├─ teams{slug → name, short, region}
  ├─ rounds[]   id, name, bracket (upper|lower|final), order (column), bestOf
- └─ series[]   id, round, team1, team2, start (ISO), bestOf,
+ └─ series[]   id, round, team1, team2, start (ISO), bestOf, advantage? ([1,0])
       ├─ slots[]  {from: <series id>, take: winner|loser}  — who feeds team1 / team2
-      └─ games[]  n, matchId (Valve), winner (1|2), length ("36:08"),
-           └─ sources[]  lang, kind (main|cam|panel), provider (youtube), id, official, offset (s), note
+      └─ games[]  n, matchId (Valve, null before 2012), winner (1|2), length ("36:08"),
+           └─ sources[]  lang, kind (main|cam|panel), provider (youtube), id, official, offset (s), end? (s), note
 ```
 
 `winner` per game is stored so that the site can resolve the bracket once you have
-watched a series; it is never displayed before that. `offset` lets two sources of
-the same game that start at different points stay in sync when you switch language.
+watched a series; it is never displayed before that.
+
+`offset` is where the game starts inside the video and `end` where its slice stops.
+Per-game uploads have `offset: 0` and no `end`. From 2015 Valve uploaded whole broadcast
+days instead, so a game is a slice `[offset, end)` of one: the player runs on slice time
+(position, duration, scrubbing and resume all start from 0 at the game), refuses to seek
+outside it, and pauses itself at `end`. `end` is the next game's `offset` in the same
+video — ending early would cut off a finish, while running long only shows the post-game
+desk, which being live cannot know anything that had not happened yet. Two sources of one
+game stay in sync across a language switch because both are measured from their own `offset`.
+
+`advantage` is a head start written into the format: TI1's upper-bracket winner began the
+grand final 1–0 up. That game was never played, so it is not a game here, but it counts
+toward the series score. A game with an empty `sources` list is one nobody uploaded; the
+site says so and lets you mark it watched. `region` is a country code when a roster clearly
+belongs to one and a bloc (`EU`, `CIS`, `SEA`) when it does not.
 
 ### Adding an event
 
@@ -98,8 +112,21 @@ into `archive/` (git-ignored, not served). Keep those to yourself.
 
 | Event | Stage | Series | Games | EN | RU | Notes |
 |---|---|---|---|---|---|---|
+| TI1 (2011) | Main event | 22 | 28 | 27 official | 23 official | No Valve match ids exist for 2011. One lower-bracket game was never uploaded in any language; four more have no Russian upload. |
 | TI2 (2012) | Main event | 22 | 41 | 41 official | 41 official | Group stage (PAX Prime, Aug 26–29) was streamed but never uploaded per game. Grand Final game 1 exists twice in Russian; the unused copy is noted in `sourcesNote`. |
 | TI3 (2013) | Main event | 22 | 45 | 45 official | 44 official + 1 re-upload (GF game 3) | Group stage streams were never uploaded per game. |
+| TI4 (2014) | Main event (final 8) | 10 | 28 | 28 partner (IGN Arena) | 28 partner (StarLadder) | Valve's own uploads were taken down, so every source is `official: false`. |
+| TI6 (2016) | Main event | 22 | 47 | 46 slices of 6 official day VODs | — | One game has no YouTube timestamp. Russian day VODs exist, untimestamped. |
+| TI7 (2017) | Main event | 22 | 47 | 45 slices of 6 official day VODs | — | Two games have no YouTube timestamp. |
+| TI8 (2018) | Main event | 22 | 47 | 47 slices of 6 official day VODs | — | Complete. |
+
+### Not here, and why
+
+| Event | Reason |
+|---|---|
+| TI5 (2015) | The official channel has day VODs for days 1–5 only. There is no upload of the grand-final day at all — Liquipedia links Twitch VODs that no longer exist — and 18 of 59 games have no usable source. An archive that ends in four "no VOD" screens where the final should be is worse than none. |
+| TI9 (2019), TI10 (2021) | Day-long official VODs exist, but Liquipedia moved per-game data out of the page text, so there are no timestamps to slice them with. |
+| TI11 (2022) onward | Valve went back to per-game uploads, in four languages. Feasible, but it needs a scraper for Liquipedia's database rather than its wikitext. |
 
 ## License
 

@@ -1,0 +1,1321 @@
+{
+ "id": "ti6",
+ "name": "The International 2016",
+ "short": "TI6",
+ "location": "KeyArena, Seattle",
+ "dates": "August 8–13, 2016",
+ "stage": "Main Event",
+ "timezone": "America/Los_Angeles",
+ "notes": "Main event only. From 2015 Valve stopped uploading games one by one: each source here is a slice of that day's full broadcast, starting at the game and ending where the next one begins, so a finished game is followed by its post-game desk until you move on.",
+ "sourcesNote": "All sources are official day-long uploads on the 'dota2' YouTube channel, cut with the timestamps recorded on Liquipedia. English only: Russian day VODs exist but nobody has timestamped them. 1 game has no timestamp into the YouTube upload - Liquipedia links a Twitch VOD instead, and those are long gone.",
+ "languages": {
+  "en": "English"
+ },
+ "teams": {
+  "og": {
+   "name": "OG",
+   "short": "OG",
+   "region": "EU"
+  },
+  "mvpp": {
+   "name": "MVP Phoenix",
+   "short": "MVP",
+   "region": "KR"
+  },
+  "dc": {
+   "name": "Digital Chaos",
+   "short": "DC",
+   "region": "US"
+  },
+  "wings": {
+   "name": "Wings Gaming",
+   "short": "Wings",
+   "region": "CN"
+  },
+  "ehome": {
+   "name": "EHOME",
+   "short": "EHOME",
+   "region": "CN"
+  },
+  "alliance": {
+   "name": "Alliance",
+   "short": "Alliance",
+   "region": "SE"
+  },
+  "eg": {
+   "name": "Evil Geniuses",
+   "short": "EG",
+   "region": "US"
+  },
+  "newbee": {
+   "name": "Newbee",
+   "short": "Newbee",
+   "region": "CN"
+  },
+  "tnc": {
+   "name": "TNC Pro Team",
+   "short": "TNC",
+   "region": "PH"
+  },
+  "vgr": {
+   "name": "Vici Gaming Reborn",
+   "short": "VG.R",
+   "region": "CN"
+  },
+  "secret": {
+   "name": "Team Secret",
+   "short": "Secret",
+   "region": "EU"
+  },
+  "lgd": {
+   "name": "LGD Gaming",
+   "short": "LGD",
+   "region": "CN"
+  },
+  "fnatic": {
+   "name": "Fnatic",
+   "short": "Fnatic",
+   "region": "MY"
+  },
+  "escape": {
+   "name": "Escape Gaming",
+   "short": "Escape",
+   "region": "EU"
+  },
+  "navi": {
+   "name": "Natus Vincere",
+   "short": "Na'Vi",
+   "region": "UA"
+  },
+  "tl": {
+   "name": "Team Liquid",
+   "short": "Liquid",
+   "region": "EU"
+  }
+ },
+ "rounds": [
+  {
+   "id": "ub-r1",
+   "name": "Upper Bracket Round 1",
+   "bracket": "upper",
+   "order": 1,
+   "bestOf": 3
+  },
+  {
+   "id": "ub-r2",
+   "name": "Upper Bracket Round 2",
+   "bracket": "upper",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "ub-f",
+   "name": "Upper Bracket Final",
+   "bracket": "upper",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r1",
+   "name": "Lower Bracket Round 1",
+   "bracket": "lower",
+   "order": 1,
+   "bestOf": 1
+  },
+  {
+   "id": "lb-r2",
+   "name": "Lower Bracket Round 2",
+   "bracket": "lower",
+   "order": 2,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r3",
+   "name": "Lower Bracket Round 3",
+   "bracket": "lower",
+   "order": 3,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r4",
+   "name": "Lower Bracket Round 4",
+   "bracket": "lower",
+   "order": 4,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-r5",
+   "name": "Lower Bracket Round 5",
+   "bracket": "lower",
+   "order": 5,
+   "bestOf": 3
+  },
+  {
+   "id": "lb-f",
+   "name": "Lower Bracket Final",
+   "bracket": "lower",
+   "order": 6,
+   "bestOf": 3
+  },
+  {
+   "id": "gf",
+   "name": "Grand Final",
+   "bracket": "final",
+   "order": 7,
+   "bestOf": 5
+  }
+ ],
+ "series": [
+  {
+   "id": "ub-r1-a",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "og",
+   "team2": "mvpp",
+   "start": "2016-08-08T11:00-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2557955371,
+     "winner": 2,
+     "length": "39:06",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qudosh9t6vA",
+       "official": true,
+       "offset": 4884,
+       "end": 8763
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2558033556,
+     "winner": 1,
+     "length": "43:21",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qudosh9t6vA",
+       "official": true,
+       "offset": 8768,
+       "end": 12935
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 2558113366,
+     "winner": 2,
+     "length": "30:47",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qudosh9t6vA",
+       "official": true,
+       "offset": 12940,
+       "end": 16898
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-b",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "dc",
+   "team2": "wings",
+   "start": "2016-08-08T14:20-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2558190331,
+     "winner": 2,
+     "length": "43:07",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qudosh9t6vA",
+       "official": true,
+       "offset": 16903,
+       "end": 21123
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2558255566,
+     "winner": 1,
+     "length": "27:33",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qudosh9t6vA",
+       "official": true,
+       "offset": 21128,
+       "end": 23881
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 2558290213,
+     "winner": 2,
+     "length": "25:32",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qudosh9t6vA",
+       "official": true,
+       "offset": 23886,
+       "end": 27548
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-a",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "tnc",
+   "team2": "vgr",
+   "start": "2016-08-08T17:15-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2558332885,
+     "winner": 1,
+     "length": "36:36",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qudosh9t6vA",
+       "official": true,
+       "offset": 27553,
+       "end": 31778
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-b",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "secret",
+   "team2": "lgd",
+   "start": "2016-08-08T18:25-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2558387942,
+     "winner": 2,
+     "length": "69:44",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qudosh9t6vA",
+       "official": true,
+       "offset": 31783,
+       "end": 37708
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-c",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "fnatic",
+   "team2": "escape",
+   "start": "2016-08-08T20:05-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2558473213,
+     "winner": 1,
+     "length": "26:00",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "qudosh9t6vA",
+       "official": true,
+       "offset": 37713
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r1-d",
+   "round": "lb-r1",
+   "bestOf": 1,
+   "team1": "navi",
+   "team2": "tl",
+   "start": "2016-08-08T21:10-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2558534849,
+     "winner": 2,
+     "length": "35:55",
+     "sources": []
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-c",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "ehome",
+   "team2": "alliance",
+   "start": "2016-08-09T10:40-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2559987699,
+     "winner": 1,
+     "length": "36:20",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gvVi02HDhZs",
+       "official": true,
+       "offset": 3657,
+       "end": 7148
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2560069057,
+     "winner": 1,
+     "length": "36:53",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gvVi02HDhZs",
+       "official": true,
+       "offset": 7153,
+       "end": 11364
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r1-d",
+   "round": "ub-r1",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "newbee",
+   "start": "2016-08-09T12:50-07:00",
+   "slots": [],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2560158271,
+     "winner": 1,
+     "length": "31:04",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gvVi02HDhZs",
+       "official": true,
+       "offset": 11369,
+       "end": 14470
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2560226228,
+     "winner": 1,
+     "length": "70:42",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gvVi02HDhZs",
+       "official": true,
+       "offset": 14475,
+       "end": 21085
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-a",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "og",
+   "team2": "tnc",
+   "start": "2016-08-09T15:35-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2560320998,
+     "winner": 2,
+     "length": "54:17",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gvVi02HDhZs",
+       "official": true,
+       "offset": 21090,
+       "end": 25743
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2560377671,
+     "winner": 2,
+     "length": "59:23",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gvVi02HDhZs",
+       "official": true,
+       "offset": 25748,
+       "end": 31372
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-b",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "dc",
+   "team2": "lgd",
+   "start": "2016-08-09T18:25-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2560446360,
+     "winner": 1,
+     "length": "39:46",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gvVi02HDhZs",
+       "official": true,
+       "offset": 31377,
+       "end": 35046
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2560502724,
+     "winner": 1,
+     "length": "56:48",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "gvVi02HDhZs",
+       "official": true,
+       "offset": 35051
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-c",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "alliance",
+   "team2": "fnatic",
+   "start": "2016-08-10T10:40-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-c",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2562091541,
+     "winner": 2,
+     "length": "63:32",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ISwYb9qOTtk",
+       "official": true,
+       "offset": 3504,
+       "end": 8675
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2562207201,
+     "winner": 2,
+     "length": "39:48",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ISwYb9qOTtk",
+       "official": true,
+       "offset": 8680,
+       "end": 13097
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r2-d",
+   "round": "lb-r2",
+   "bestOf": 3,
+   "team1": "newbee",
+   "team2": "tl",
+   "start": "2016-08-10T13:20-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-d",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2562303634,
+     "winner": 1,
+     "length": "54:17",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ISwYb9qOTtk",
+       "official": true,
+       "offset": 13102,
+       "end": 17801
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2562388622,
+     "winner": 2,
+     "length": "17:19",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ISwYb9qOTtk",
+       "official": true,
+       "offset": 17806,
+       "end": 20340
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 2562425844,
+     "winner": 2,
+     "length": "36:00",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ISwYb9qOTtk",
+       "official": true,
+       "offset": 20345,
+       "end": 24753
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-a",
+   "round": "ub-r2",
+   "bestOf": 3,
+   "team1": "mvpp",
+   "team2": "wings",
+   "start": "2016-08-10T16:35-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2562482317,
+     "winner": 2,
+     "length": "32:59",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ISwYb9qOTtk",
+       "official": true,
+       "offset": 24758,
+       "end": 27797
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2562521800,
+     "winner": 2,
+     "length": "36:39",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ISwYb9qOTtk",
+       "official": true,
+       "offset": 27802,
+       "end": 32408
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-r2-b",
+   "round": "ub-r2",
+   "bestOf": 3,
+   "team1": "ehome",
+   "team2": "eg",
+   "start": "2016-08-10T18:45-07:00",
+   "slots": [
+    {
+     "from": "ub-r1-c",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r1-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2562582896,
+     "winner": 2,
+     "length": "75:35",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ISwYb9qOTtk",
+       "official": true,
+       "offset": 32413,
+       "end": 38470
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2562671370,
+     "winner": 2,
+     "length": "38:13",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "ISwYb9qOTtk",
+       "official": true,
+       "offset": 38475
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-a",
+   "round": "lb-r3",
+   "bestOf": 3,
+   "team1": "tnc",
+   "team2": "dc",
+   "start": "2016-08-11T10:55-07:00",
+   "slots": [
+    {
+     "from": "lb-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2564211031,
+     "winner": 1,
+     "length": "39:30",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "H08ZEAp5a2M",
+       "official": true,
+       "offset": 4502,
+       "end": 8662
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2564310434,
+     "winner": 2,
+     "length": "47:50",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "H08ZEAp5a2M",
+       "official": true,
+       "offset": 8667,
+       "end": 13334
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 2564408925,
+     "winner": 2,
+     "length": "28:14",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "H08ZEAp5a2M",
+       "official": true,
+       "offset": 13339,
+       "end": 17504
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r3-b",
+   "round": "lb-r3",
+   "bestOf": 3,
+   "team1": "fnatic",
+   "team2": "tl",
+   "start": "2016-08-11T14:35-07:00",
+   "slots": [
+    {
+     "from": "lb-r2-c",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r2-d",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2564485350,
+     "winner": 1,
+     "length": "40:10",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "H08ZEAp5a2M",
+       "official": true,
+       "offset": 17509,
+       "end": 21508
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2564547149,
+     "winner": 1,
+     "length": "54:52",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "H08ZEAp5a2M",
+       "official": true,
+       "offset": 21513,
+       "end": 27268
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-a",
+   "round": "lb-r4",
+   "bestOf": 3,
+   "team1": "ehome",
+   "team2": "dc",
+   "start": "2016-08-11T17:15-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-b",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-a",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2564619977,
+     "winner": 2,
+     "length": "31:52",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "H08ZEAp5a2M",
+       "official": true,
+       "offset": 27273,
+       "end": 30614
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2564666119,
+     "winner": 2,
+     "length": "37:50",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "H08ZEAp5a2M",
+       "official": true,
+       "offset": 30619
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r4-b",
+   "round": "lb-r4",
+   "bestOf": 3,
+   "team1": "mvpp",
+   "team2": "fnatic",
+   "start": "2016-08-12T10:55-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r3-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2566482748,
+     "winner": 2,
+     "length": "47:31",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "wByB4NJBP0s",
+       "official": true,
+       "offset": 4087,
+       "end": 8466
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2566594115,
+     "winner": 2,
+     "length": "54:06",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "wByB4NJBP0s",
+       "official": true,
+       "offset": 8471,
+       "end": 14262
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ub-f",
+   "round": "ub-f",
+   "bestOf": 3,
+   "team1": "wings",
+   "team2": "eg",
+   "start": "2016-08-12T13:45-07:00",
+   "slots": [
+    {
+     "from": "ub-r2-a",
+     "take": "winner"
+    },
+    {
+     "from": "ub-r2-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2566725198,
+     "winner": 1,
+     "length": "38:26",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "wByB4NJBP0s",
+       "official": true,
+       "offset": 14267,
+       "end": 18379
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2566800064,
+     "winner": 1,
+     "length": "23:46",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "wByB4NJBP0s",
+       "official": true,
+       "offset": 18384,
+       "end": 22499
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-r5",
+   "round": "lb-r5",
+   "bestOf": 3,
+   "team1": "dc",
+   "team2": "fnatic",
+   "start": "2016-08-12T16:05-07:00",
+   "slots": [
+    {
+     "from": "lb-r4-a",
+     "take": "winner"
+    },
+    {
+     "from": "lb-r4-b",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2566866066,
+     "winner": 1,
+     "length": "49:04",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "wByB4NJBP0s",
+       "official": true,
+       "offset": 22504,
+       "end": 27362
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2566934520,
+     "winner": 1,
+     "length": "47:52",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "wByB4NJBP0s",
+       "official": true,
+       "offset": 27367
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lb-f",
+   "round": "lb-f",
+   "bestOf": 3,
+   "team1": "eg",
+   "team2": "dc",
+   "start": "2016-08-13T10:55-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "loser"
+    },
+    {
+     "from": "lb-r5",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2569011425,
+     "winner": 2,
+     "length": "35:27",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "EzloD-t_Adk",
+       "official": true,
+       "offset": 4342,
+       "end": 8465
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2569119771,
+     "winner": 1,
+     "length": "45:03",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "EzloD-t_Adk",
+       "official": true,
+       "offset": 8470,
+       "end": 13244
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 2569227952,
+     "winner": 2,
+     "length": "48:55",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "EzloD-t_Adk",
+       "official": true,
+       "offset": 13249,
+       "end": 23177
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gf",
+   "round": "gf",
+   "bestOf": 5,
+   "team1": "wings",
+   "team2": "dc",
+   "start": "2016-08-13T16:10-07:00",
+   "slots": [
+    {
+     "from": "ub-f",
+     "take": "winner"
+    },
+    {
+     "from": "lb-f",
+     "take": "winner"
+    }
+   ],
+   "games": [
+    {
+     "n": 1,
+     "matchId": 2569415435,
+     "winner": 2,
+     "length": "33:38",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "EzloD-t_Adk",
+       "official": true,
+       "offset": 23182,
+       "end": 27142
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "matchId": 2569470828,
+     "winner": 1,
+     "length": "40:40",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "EzloD-t_Adk",
+       "official": true,
+       "offset": 27147,
+       "end": 31358
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "matchId": 2569531910,
+     "winner": 1,
+     "length": "45:29",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "EzloD-t_Adk",
+       "official": true,
+       "offset": 31363,
+       "end": 35862
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "matchId": 2569610900,
+     "winner": 1,
+     "length": "39:28",
+     "sources": [
+      {
+       "lang": "en",
+       "kind": "main",
+       "provider": "youtube",
+       "id": "EzloD-t_Adk",
+       "official": true,
+       "offset": 35867
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
