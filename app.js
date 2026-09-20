@@ -126,6 +126,7 @@
       'err.broke': 'Something broke', 'btn.backEvents': 'Back to events',
       'foot.embed': 'Videos are embedded from their original YouTube uploads. Nothing is re-hosted.',
       'foot.github': 'Source & contribute on GitHub', 'loading': 'Loading…',
+      'foot.legal': 'An unofficial fan archive, not affiliated with or endorsed by Valve Corporation. Dota 2 and The International are trademarks of Valve Corporation.',
       'ttl.settings': 'Settings',
     },
     ru: {
@@ -224,6 +225,7 @@
       'err.broke': 'Что-то сломалось', 'btn.backEvents': 'Назад к турнирам',
       'foot.embed': 'Видео встроены с оригинальных загрузок на YouTube. Ничего не перезалито.',
       'foot.github': 'Исходники и участие на GitHub', 'loading': 'Загрузка…',
+      'foot.legal': 'Неофициальный фанатский архив. Не связан с Valve Corporation и не одобрен ею. Dota 2 и The International — товарные знаки Valve Corporation.',
       'ttl.settings': 'Настройки',
     },
   };
@@ -459,6 +461,7 @@
     document.title = t('app.title');
     $('#foot-lead').textContent = t('foot.embed');
     $('#foot-gh').textContent = t('foot.github');
+    $('#foot-legal').textContent = t('foot.legal');
     $('#settings-btn').title = t('ttl.settings');
     $('.sr-only', $('#settings-btn')).textContent = t('ttl.settings');
     const load = $('#loading'); if (load) load.textContent = t('loading');

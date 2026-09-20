@@ -19,7 +19,11 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 TITLE = "TI Archive — rewatch The International without spoilers"
 DESC = ("A spoiler-free viewer for archived International VODs: the bracket, game count, "
         "video length and result all stay hidden until you have watched them.")
-URL = "https://antvelm.net/ti-archive"
+# The archive moved to its own domain on 2026-09-20; antvelm.net/ti-archive 301s here.
+URL = "https://tiarchive.com/"
+# The hub is a *different origin* now, so every link to it has to be absolute.
+HUB = "https://antvelm.net/artifacts"
+HUB_ORIGIN = "//".join(HUB.split("//")[:1] + [HUB.split("//", 1)[1].split("/", 1)[0]])
 FAVICON = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>"
            "<rect width='32' height='32' rx='7' fill='%230a0a0b'/><text x='16' y='23' "
            "font-family='monospace' font-size='19' font-weight='700' fill='%23a78bfa' "
@@ -31,6 +35,7 @@ HEAD = f"""<title>{TITLE}</title>
 <meta property="og:title" content="{TITLE}">
 <meta property="og:description" content="{DESC}">
 <meta property="og:url" content="{URL}">
+<link rel="canonical" href="{URL}">
 <link rel="icon" href="{FAVICON}">"""
 
 # Quiet link to the hub. Recedes at rest, full contrast on hover/focus; sits
@@ -59,23 +64,31 @@ BACK_CSS = """
 # case where the top-left link appears. Everyone else gets it as what it really is to them:
 # a quiet outbound link in the footer, next to the GitHub one, naming the site in plain words.
 # The footer form is what ships in the markup, so it is also the no-JS fallback.
-BACK_LINK = """<a class="af-back" href="/artifacts" id="af-back" hidden>\u2190 artifacts</a>
+BACK_LINK = f"""<a class="af-back" href="{HUB}" id="af-back" hidden>\u2190 artifacts</a>
 """
 
-MORE_LINK = """    <span class="sep" aria-hidden="true">\u00b7</span>
-    <span id="af-more"><a class="af-more-link" href="/artifacts">more tools at antvelm.net</a></span>
+MORE_LINK = f"""    <span class="sep" aria-hidden="true">\u00b7</span>
+    <span id="af-more"><a class="af-more-link" href="{HUB}">more tools at antvelm.net</a></span>
 """
 
 SWAP_JS = """<script>
 (function () {
+  // The hub is on another origin, so two things changed. location.origin is this
+  // domain and never matches it; and antvelm.net sends
+  // Referrer-Policy: strict-origin-when-cross-origin, which trims the referrer to
+  // a bare "https://antvelm.net/" — the "/artifacts" path is simply not visible
+  // from here. Arriving from that origin at all is the closest test still available,
+  // and it is a superset: a visitor coming from any antvelm.net page gets the
+  // top-left link. That is the intended reading of it anyway.
   var from = document.referrer || '';
-  if (from.indexOf(location.origin + '/artifacts') !== 0) return;   // not from the hub: leave the footer link
+  if (from.indexOf('__HUB_ORIGIN__') !== 0) return;   // not from the hub: leave the footer link
   document.getElementById('af-back').hidden = false;
   var more = document.getElementById('af-more');
   if (more) more.previousElementSibling.remove(), more.remove();    // drop it and its separator
 })();
 </script>
 """
+SWAP_JS = SWAP_JS.replace("__HUB_ORIGIN__", HUB_ORIGIN)
 
 FETCH_SRC = """  const cache = {};
   async function loadJSON(url) {
@@ -135,7 +148,10 @@ def build():
     html = sub(html, '<link rel="stylesheet" href="styles.css">',
                "<style>\n" + css.rstrip() + "\n" + BACK_CSS + "</style>", "stylesheet link")
     html = sub(html, "<body>\n", "<body>\n" + BACK_LINK, "<body> tag")
-    html = sub(html, "  </p>\n</footer>", MORE_LINK + "  </p>\n</footer>", "footer links row")
+    # Anchored on the end of the GitHub link rather than on the end of the footer,
+    # so the fine print below it can move without silently breaking this.
+    html = sub(html, "</span></a>\n  </p>", "</span></a>\n" + MORE_LINK + "  </p>",
+               "footer links row")
     # After the footer, so both nodes exist by the time it runs.
     html = sub(html, "</body>", SWAP_JS + "</body>", "</body> tag")
     html = sub(html, '<script src="app.js"></script>',
