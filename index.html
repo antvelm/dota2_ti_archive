@@ -5,23 +5,180 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>TI Archive — spoiler-free</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c8102e'/%3E%3Cpath d='M16 6l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z' fill='%23f2c14e'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cdefs%3E%0A%20%20%20%20%3C%21--%20Organic%20painterly%20texture%20filter%20--%3E%0A%20%20%20%20%3Cfilter%20id%3D%22ti-brush-texture%22%20x%3D%22-20%25%22%20y%3D%22-20%25%22%20width%3D%22140%25%22%20height%3D%22140%25%22%3E%0A%20%20%20%20%20%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.04%22%20numOctaves%3D%224%22%20result%3D%22noise%22%20%2F%3E%0A%20%20%20%20%20%20%3CfeDisplacementMap%20in%3D%22SourceGraphic%22%20in2%3D%22noise%22%20scale%3D%229%22%20xChannelSelector%3D%22R%22%20yChannelSelector%3D%22G%22%20result%3D%22displaced%22%20%2F%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20in%3D%22displaced%22%20stdDeviation%3D%221.2%22%20%2F%3E%0A%20%20%20%20%3C%2Ffilter%3E%0A%0A%20%20%20%20%3Cfilter%20id%3D%22ti-fire-churn%22%20x%3D%22-30%25%22%20y%3D%22-30%25%22%20width%3D%22160%25%22%20height%3D%22160%25%22%3E%0A%20%20%20%20%20%20%3CfeTurbulence%20type%3D%22turbulence%22%20baseFrequency%3D%220.05%22%20numOctaves%3D%223%22%20result%3D%22turb%22%20%2F%3E%0A%20%20%20%20%20%20%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%22%0A%20%20%20%20%20%20%20%201%200%200%200%200.8%0A%20%20%20%20%20%20%20%200%200.6%200%200%200.2%0A%20%20%20%20%20%20%20%200%200%200.1%200%200%0A%20%20%20%20%20%20%20%200%200%200%201%200%22%20in%3D%22turb%22%20result%3D%22coloredTurb%22%20%2F%3E%0A%20%20%20%20%20%20%3CfeComposite%20in%3D%22SourceGraphic%22%20in2%3D%22coloredTurb%22%20operator%3D%22in%22%20%2F%3E%0A%20%20%20%20%20%20%3CfeGaussianBlur%20stdDeviation%3D%223%22%20%2F%3E%0A%20%20%20%20%3C%2Ffilter%3E%0A%0A%20%20%20%20%3C%21--%20Hot%20core%20gradient%20--%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22ti-molten-core%22%20cx%3D%2250%25%22%20cy%3D%2247%25%22%20r%3D%2248%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23fff8d6%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2212%25%22%20stop-color%3D%22%23ffdc4a%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2228%25%22%20stop-color%3D%22%23ff8400%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2255%25%22%20stop-color%3D%22%23cc1f00%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2278%25%22%20stop-color%3D%22%23590500%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2295%25%22%20stop-color%3D%22%23140101%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23000000%22%20%2F%3E%0A%20%20%20%20%3C%2FradialGradient%3E%0A%0A%20%20%20%20%3C%21--%203%20distinct%20yellow%20hotspots%20in%20the%20maw%20center%20--%3E%0A%20%20%20%20%3CradialGradient%20id%3D%22ti-bulb-top%22%20cx%3D%2248%25%22%20cy%3D%2242%25%22%20r%3D%2245%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%221%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2235%25%22%20stop-color%3D%22%23ffe669%22%20stop-opacity%3D%220.9%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2275%25%22%20stop-color%3D%22%23ff6600%22%20stop-opacity%3D%220.3%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ff3300%22%20stop-opacity%3D%220%22%20%2F%3E%0A%20%20%20%20%3C%2FradialGradient%3E%0A%0A%20%20%20%20%3CradialGradient%20id%3D%22ti-bulb-bot-l%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.95%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2240%25%22%20stop-color%3D%22%23ffdf6d%22%20stop-opacity%3D%220.8%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23ea3600%22%20stop-opacity%3D%220%22%20%2F%3E%0A%20%20%20%20%3C%2FradialGradient%3E%0A%0A%20%20%20%20%3CradialGradient%20id%3D%22ti-bulb-bot-r%22%20cx%3D%2250%25%22%20cy%3D%2250%25%22%20r%3D%2250%25%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23ffffff%22%20stop-opacity%3D%220.95%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%2240%25%22%20stop-color%3D%22%23ffd55c%22%20stop-opacity%3D%220.8%22%20%2F%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23e03000%22%20stop-opacity%3D%220%22%20%2F%3E%0A%20%20%20%20%3C%2FradialGradient%3E%0A%0A%20%20%20%20%3C%21--%20Circular%20clip%20mask%20--%3E%0A%20%20%20%20%3CclipPath%20id%3D%22ti-disc-clip%22%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22128%22%20cy%3D%22128%22%20r%3D%22124%22%20%2F%3E%0A%20%20%20%20%3C%2FclipPath%3E%0A%20%20%3C%2Fdefs%3E%0A%0A%20%20%3C%21--%20Black%20boundary%20canvas%20--%3E%0A%20%20%3Crect%20width%3D%22256%22%20height%3D%22256%22%20fill%3D%22%23000000%22%20%2F%3E%0A%0A%20%20%3Cg%20clip-path%3D%22url%28%23ti-disc-clip%29%22%3E%0A%20%20%20%20%3C%21--%20Base%20fiery%20glow%20chamber%20--%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22128%22%20cy%3D%22128%22%20r%3D%22124%22%20fill%3D%22url%28%23ti-molten-core%29%22%20%2F%3E%0A%0A%20%20%20%20%3C%21--%20Organic%20smoke%2Ffire%20swirls%20--%3E%0A%20%20%20%20%3Cg%20filter%3D%22url%28%23ti-fire-churn%29%22%20opacity%3D%220.6%22%3E%0A%20%20%20%20%20%20%3Cellipse%20cx%3D%22128%22%20cy%3D%22115%22%20rx%3D%2265%22%20ry%3D%2250%22%20fill%3D%22%23ff9900%22%20%2F%3E%0A%20%20%20%20%20%20%3Cellipse%20cx%3D%22110%22%20cy%3D%22140%22%20rx%3D%2245%22%20ry%3D%2240%22%20fill%3D%22%23ff4400%22%20%2F%3E%0A%20%20%20%20%20%20%3Cellipse%20cx%3D%22150%22%20cy%3D%22135%22%20rx%3D%2240%22%20ry%3D%2235%22%20fill%3D%22%23ff2200%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22128%22%20cy%3D%22120%22%20r%3D%2230%22%20fill%3D%22%23fffb99%22%20%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%0A%20%20%20%20%3C%21--%20Triple%20Incandescent%20Cores%20--%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22124%22%20cy%3D%22108%22%20r%3D%2228%22%20fill%3D%22url%28%23ti-bulb-top%29%22%20%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22106%22%20cy%3D%22146%22%20r%3D%2218%22%20fill%3D%22url%28%23ti-bulb-bot-l%29%22%20%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22148%22%20cy%3D%22142%22%20r%3D%2217%22%20fill%3D%22url%28%23ti-bulb-bot-r%29%22%20%2F%3E%0A%0A%20%20%20%20%3C%21--%20CLAWS%20%2F%20FLESHY%20TALONS%20WITH%20DISPLACEMENT%20%28Brushstroke%20edge%20effect%29%20--%3E%0A%20%20%20%20%3Cg%20filter%3D%22url%28%23ti-brush-texture%29%22%3E%0A%0A%20%20%20%20%20%20%3C%21--%20Deep%20Background%20Claws%20%2F%20Shadows%20%28Upper%20rim%29%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2098%2C6%20L%20118%2C65%20L%20132%2C15%20Z%22%20fill%3D%22%232b0d0a%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20148%2C8%20L%20140%2C68%20L%20175%2C25%20Z%22%20fill%3D%22%23260807%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20235%2C65%20L%20180%2C95%20L%20210%2C120%20Z%22%20fill%3D%22%23240a08%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20245%2C150%20L%20195%2C145%20L%20220%2C185%20Z%22%20fill%3D%22%231e0705%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20165%2C245%20L%20152%2C190%20L%20180%2C215%20Z%22%20fill%3D%22%23220504%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2085%2C245%20L%20105%2C195%20L%2075%2C210%20Z%22%20fill%3D%22%23220706%22%20%2F%3E%0A%0A%20%20%20%20%20%20%3C%21--%20TOP-LEFT%20BIG%20HOOKED%20TALON%20--%3E%0A%20%20%20%20%20%20%3C%21--%20Main%20fleshy%2Frock%20body%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%208%2C40%20C%2040%2C32%2075%2C45%20112%2C82%20C%2090%2C88%2064%2C96%2046%2C118%20C%2030%2C132%2025%2C155%2024%2C175%20C%206%2C140%20-2%2C85%208%2C40%20Z%22%20fill%3D%22%232b201e%22%20%2F%3E%0A%20%20%20%20%20%20%3C%21--%20Greyish-bone%20matte%20top%20highlight%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2020%2C48%20C%2050%2C42%2080%2C56%20108%2C82%20C%2084%2C76%2056%2C86%2038%2C114%20C%2028%2C88%2022%2C66%2020%2C48%20Z%22%20fill%3D%22%237d6a66%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2032%2C58%20C%2056%2C54%2080%2C68%20102%2C82%20C%2082%2C78%2062%2C88%2048%2C110%20Z%22%20fill%3D%22%23a89591%22%20opacity%3D%220.6%22%20%2F%3E%0A%20%20%20%20%20%20%3C%21--%20Fiery%20back-lit%20underbelly%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2046%2C118%20C%2064%2C96%2090%2C88%20112%2C82%20C%2096%2C96%2078%2C112%2058%2C124%20Z%22%20fill%3D%22%23f0540a%22%20%2F%3E%0A%0A%20%20%20%20%20%20%3C%21--%20TOP%20RIGHT%20DESCENDING%20CLAW%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20195%2C12%20C%20178%2C45%20160%2C78%20142%2C102%20C%20165%2C88%20190%2C90%20226%2C82%20C%20215%2C50%20206%2C28%20195%2C12%20Z%22%20fill%3D%22%23302321%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20190%2C28%20C%20176%2C55%20162%2C80%20144%2C100%20C%20168%2C88%20188%2C88%20212%2C84%20Z%22%20fill%3D%22%23877571%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20142%2C102%20C%20165%2C92%20190%2C90%20216%2C92%20C%20185%2C108%20160%2C112%20142%2C102%20Z%22%20fill%3D%22%23f76805%22%20%2F%3E%0A%0A%20%20%20%20%20%20%3C%21--%20UPPER-RIGHT%20HORIZONTAL%20TALON%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20252%2C65%20C%20215%2C75%20185%2C92%20152%2C112%20C%20178%2C116%20210%2C110%20248%2C96%20Z%22%20fill%3D%22%23261b1a%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20245%2C72%20C%20215%2C82%20185%2C96%20154%2C112%20C%20178%2C104%20208%2C98%20240%2C90%20Z%22%20fill%3D%22%23705e5b%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20152%2C112%20C%20175%2C120%20205%2C122%20235%2C114%20C%20205%2C128%20175%2C126%20152%2C112%20Z%22%20fill%3D%22%23e84000%22%20%2F%3E%0A%0A%20%20%20%20%20%20%3C%21--%20MID-RIGHT%20CLAW%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20256%2C135%20C%20220%2C128%20185%2C135%20156%2C145%20C%20180%2C160%20210%2C168%20248%2C185%20Z%22%20fill%3D%22%232e211f%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20248%2C138%20C%20215%2C134%20185%2C138%20158%2C144%20C%20185%2C152%20215%2C156%20242%2C168%20Z%22%20fill%3D%22%237a6864%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20156%2C145%20C%20180%2C158%20205%2C166%20230%2C172%20C%20200%2C178%20178%2C168%20156%2C145%20Z%22%20fill%3D%22%23ff5a00%22%20%2F%3E%0A%0A%20%20%20%20%20%20%3C%21--%20BOTTOM-RIGHT%20HEAVY%20MANDIBLE%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20248%2C205%20C%20210%2C175%20178%2C168%20152%2C165%20C%20168%2C192%20178%2C222%20192%2C256%20C%20218%2C242%20238%2C225%20248%2C205%20Z%22%20fill%3D%22%23211514%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20152%2C165%20C%20178%2C172%20200%2C190%20220%2C216%20C%20200%2C216%20182%2C202%20162%2C185%20Z%22%20fill%3D%22%23695653%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20152%2C165%20C%20165%2C180%20174%2C205%20180%2C236%20C%20172%2C210%20164%2C190%20152%2C165%20Z%22%20fill%3D%22%23d93504%22%20%2F%3E%0A%0A%20%20%20%20%20%20%3C%21--%20BOTTOM%20SHARP%20SPIKE%20%2F%20TUSK%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20142%2C256%20C%20140%2C225%20142%2C202%20143%2C182%20C%20132%2C198%20126%2C218%20120%2C256%20Z%22%20fill%3D%22%231f1413%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20143%2C182%20C%20142%2C202%20140%2C225%20136%2C250%20C%20134%2C225%20138%2C202%20143%2C182%20Z%22%20fill%3D%22%23c73408%22%20%2F%3E%0A%0A%20%20%20%20%20%20%3C%21--%20BOTTOM-LEFT%20REVERSED%20TALON%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2095%2C256%20C%20105%2C208%20118%2C178%20126%2C150%20C%20110%2C166%2095%2C190%2074%2C212%20C%2082%2C230%2088%2C245%2095%2C256%20Z%22%20fill%3D%22%232c1f1e%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20126%2C150%20C%20116%2C174%20104%2C204%2088%2C228%20C%2098%2C200%20110%2C174%20126%2C150%20Z%22%20fill%3D%22%23806d69%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20126%2C150%20C%20114%2C166%2098%2C188%2078%2C208%20C%2096%2C182%20114%2C162%20126%2C150%20Z%22%20fill%3D%22%23ff5e00%22%20%2F%3E%0A%0A%20%20%20%20%20%20%3C%21--%20MID-LEFT%20BULBOUS%20CRUSHING%20CLAW%20--%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%202%2C148%20C%2036%2C128%2068%2C110%20108%2C115%20C%2080%2C104%2056%2C92%2024%2C88%20C%2012%2C106%205%2C126%202%2C148%20Z%22%20fill%3D%22%232b1f1e%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%2024%2C88%20C%2050%2C96%2078%2C104%20108%2C115%20C%2072%2C110%2046%2C104%2024%2C88%20Z%22%20fill%3D%22%238a7773%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M%20108%2C115%20C%2078%2C120%2048%2C136%2026%2C148%20C%2050%2C132%2078%2C122%20108%2C115%20Z%22%20fill%3D%22%23f55907%22%20%2F%3E%0A%0A%20%20%20%20%3C%2Fg%3E%0A%0A%20%20%20%20%3C%21--%20Molten%20Specks%20%2F%20Fire%20Embers%20around%20the%20maw%20--%3E%0A%20%20%20%20%3Cg%20fill%3D%22%23ffe57f%22%20opacity%3D%220.85%22%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22114%22%20cy%3D%2288%22%20r%3D%222.2%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22140%22%20cy%3D%2294%22%20r%3D%221.8%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22152%22%20cy%3D%22115%22%20r%3D%222%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22148%22%20cy%3D%22142%22%20r%3D%222.4%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22126%22%20cy%3D%22155%22%20r%3D%222.1%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22104%22%20cy%3D%22120%22%20r%3D%221.9%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22102%22%20cy%3D%22148%22%20r%3D%222.5%22%20%2F%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%22142%22%20cy%3D%22148%22%20r%3D%222.3%22%20%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%0A%20%20%20%20%3C%21--%20Outer%20Vignette%20to%20shade%20the%20outer%20edges%20into%20absolute%20black%20--%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22128%22%20cy%3D%22128%22%20r%3D%22124%22%20fill%3D%22none%22%20stroke%3D%22%23000000%22%20stroke-width%3D%2214%22%20opacity%3D%220.95%22%20%2F%3E%0A%20%20%3C%2Fg%3E%3C%2Fsvg%3E">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="#/"><span class="aegis"></span> TI Archive</a>
-  <nav id="crumbs"></nav>
+  <span class="brand"><svg class="aegis" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><defs>
+    <!-- Organic painterly texture filter -->
+    <filter id="ti-brush-texture" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+      <feGaussianBlur in="displaced" stdDeviation="1.2" />
+    </filter>
+
+    <filter id="ti-fire-churn" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="3" result="turb" />
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0.8
+        0 0.6 0 0 0.2
+        0 0 0.1 0 0
+        0 0 0 1 0" in="turb" result="coloredTurb" />
+      <feComposite in="SourceGraphic" in2="coloredTurb" operator="in" />
+      <feGaussianBlur stdDeviation="3" />
+    </filter>
+
+    <!-- Hot core gradient -->
+    <radialGradient id="ti-molten-core" cx="50%" cy="47%" r="48%">
+      <stop offset="0%" stop-color="#fff8d6" />
+      <stop offset="12%" stop-color="#ffdc4a" />
+      <stop offset="28%" stop-color="#ff8400" />
+      <stop offset="55%" stop-color="#cc1f00" />
+      <stop offset="78%" stop-color="#590500" />
+      <stop offset="95%" stop-color="#140101" />
+      <stop offset="100%" stop-color="#000000" />
+    </radialGradient>
+
+    <!-- 3 distinct yellow hotspots in the maw center -->
+    <radialGradient id="ti-bulb-top" cx="48%" cy="42%" r="45%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="35%" stop-color="#ffe669" stop-opacity="0.9" />
+      <stop offset="75%" stop-color="#ff6600" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#ff3300" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="ti-bulb-bot-l" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="40%" stop-color="#ffdf6d" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ea3600" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="ti-bulb-bot-r" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="40%" stop-color="#ffd55c" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#e03000" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Circular clip mask -->
+    <clipPath id="ti-disc-clip">
+      <circle cx="128" cy="128" r="124" />
+    </clipPath>
+  </defs>
+
+  <!-- Black boundary canvas -->
+  <rect width="256" height="256" fill="#000000" />
+
+  <g clip-path="url(#ti-disc-clip)">
+    <!-- Base fiery glow chamber -->
+    <circle cx="128" cy="128" r="124" fill="url(#ti-molten-core)" />
+
+    <!-- Organic smoke/fire swirls -->
+    <g filter="url(#ti-fire-churn)" opacity="0.6">
+      <ellipse cx="128" cy="115" rx="65" ry="50" fill="#ff9900" />
+      <ellipse cx="110" cy="140" rx="45" ry="40" fill="#ff4400" />
+      <ellipse cx="150" cy="135" rx="40" ry="35" fill="#ff2200" />
+      <circle cx="128" cy="120" r="30" fill="#fffb99" />
+    </g>
+
+    <!-- Triple Incandescent Cores -->
+    <circle cx="124" cy="108" r="28" fill="url(#ti-bulb-top)" />
+    <circle cx="106" cy="146" r="18" fill="url(#ti-bulb-bot-l)" />
+    <circle cx="148" cy="142" r="17" fill="url(#ti-bulb-bot-r)" />
+
+    <!-- CLAWS / FLESHY TALONS WITH DISPLACEMENT (Brushstroke edge effect) -->
+    <g filter="url(#ti-brush-texture)">
+
+      <!-- Deep Background Claws / Shadows (Upper rim) -->
+      <path d="M 98,6 L 118,65 L 132,15 Z" fill="#2b0d0a" />
+      <path d="M 148,8 L 140,68 L 175,25 Z" fill="#260807" />
+      <path d="M 235,65 L 180,95 L 210,120 Z" fill="#240a08" />
+      <path d="M 245,150 L 195,145 L 220,185 Z" fill="#1e0705" />
+      <path d="M 165,245 L 152,190 L 180,215 Z" fill="#220504" />
+      <path d="M 85,245 L 105,195 L 75,210 Z" fill="#220706" />
+
+      <!-- TOP-LEFT BIG HOOKED TALON -->
+      <!-- Main fleshy/rock body -->
+      <path d="M 8,40 C 40,32 75,45 112,82 C 90,88 64,96 46,118 C 30,132 25,155 24,175 C 6,140 -2,85 8,40 Z" fill="#2b201e" />
+      <!-- Greyish-bone matte top highlight -->
+      <path d="M 20,48 C 50,42 80,56 108,82 C 84,76 56,86 38,114 C 28,88 22,66 20,48 Z" fill="#7d6a66" />
+      <path d="M 32,58 C 56,54 80,68 102,82 C 82,78 62,88 48,110 Z" fill="#a89591" opacity="0.6" />
+      <!-- Fiery back-lit underbelly -->
+      <path d="M 46,118 C 64,96 90,88 112,82 C 96,96 78,112 58,124 Z" fill="#f0540a" />
+
+      <!-- TOP RIGHT DESCENDING CLAW -->
+      <path d="M 195,12 C 178,45 160,78 142,102 C 165,88 190,90 226,82 C 215,50 206,28 195,12 Z" fill="#302321" />
+      <path d="M 190,28 C 176,55 162,80 144,100 C 168,88 188,88 212,84 Z" fill="#877571" />
+      <path d="M 142,102 C 165,92 190,90 216,92 C 185,108 160,112 142,102 Z" fill="#f76805" />
+
+      <!-- UPPER-RIGHT HORIZONTAL TALON -->
+      <path d="M 252,65 C 215,75 185,92 152,112 C 178,116 210,110 248,96 Z" fill="#261b1a" />
+      <path d="M 245,72 C 215,82 185,96 154,112 C 178,104 208,98 240,90 Z" fill="#705e5b" />
+      <path d="M 152,112 C 175,120 205,122 235,114 C 205,128 175,126 152,112 Z" fill="#e84000" />
+
+      <!-- MID-RIGHT CLAW -->
+      <path d="M 256,135 C 220,128 185,135 156,145 C 180,160 210,168 248,185 Z" fill="#2e211f" />
+      <path d="M 248,138 C 215,134 185,138 158,144 C 185,152 215,156 242,168 Z" fill="#7a6864" />
+      <path d="M 156,145 C 180,158 205,166 230,172 C 200,178 178,168 156,145 Z" fill="#ff5a00" />
+
+      <!-- BOTTOM-RIGHT HEAVY MANDIBLE -->
+      <path d="M 248,205 C 210,175 178,168 152,165 C 168,192 178,222 192,256 C 218,242 238,225 248,205 Z" fill="#211514" />
+      <path d="M 152,165 C 178,172 200,190 220,216 C 200,216 182,202 162,185 Z" fill="#695653" />
+      <path d="M 152,165 C 165,180 174,205 180,236 C 172,210 164,190 152,165 Z" fill="#d93504" />
+
+      <!-- BOTTOM SHARP SPIKE / TUSK -->
+      <path d="M 142,256 C 140,225 142,202 143,182 C 132,198 126,218 120,256 Z" fill="#1f1413" />
+      <path d="M 143,182 C 142,202 140,225 136,250 C 134,225 138,202 143,182 Z" fill="#c73408" />
+
+      <!-- BOTTOM-LEFT REVERSED TALON -->
+      <path d="M 95,256 C 105,208 118,178 126,150 C 110,166 95,190 74,212 C 82,230 88,245 95,256 Z" fill="#2c1f1e" />
+      <path d="M 126,150 C 116,174 104,204 88,228 C 98,200 110,174 126,150 Z" fill="#806d69" />
+      <path d="M 126,150 C 114,166 98,188 78,208 C 96,182 114,162 126,150 Z" fill="#ff5e00" />
+
+      <!-- MID-LEFT BULBOUS CRUSHING CLAW -->
+      <path d="M 2,148 C 36,128 68,110 108,115 C 80,104 56,92 24,88 C 12,106 5,126 2,148 Z" fill="#2b1f1e" />
+      <path d="M 24,88 C 50,96 78,104 108,115 C 72,110 46,104 24,88 Z" fill="#8a7773" />
+      <path d="M 108,115 C 78,120 48,136 26,148 C 50,132 78,122 108,115 Z" fill="#f55907" />
+
+    </g>
+
+    <!-- Molten Specks / Fire Embers around the maw -->
+    <g fill="#ffe57f" opacity="0.85">
+      <circle cx="114" cy="88" r="2.2" />
+      <circle cx="140" cy="94" r="1.8" />
+      <circle cx="152" cy="115" r="2" />
+      <circle cx="148" cy="142" r="2.4" />
+      <circle cx="126" cy="155" r="2.1" />
+      <circle cx="104" cy="120" r="1.9" />
+      <circle cx="102" cy="148" r="2.5" />
+      <circle cx="142" cy="148" r="2.3" />
+    </g>
+
+    <!-- Outer Vignette to shade the outer edges into absolute black -->
+    <circle cx="128" cy="128" r="124" fill="none" stroke="#000000" stroke-width="14" opacity="0.95" />
+  </g></svg> TI Archive</span>
+  <nav id="crumbs" aria-label="Breadcrumb"></nav>
   <div class="top-right">
-    <span id="blind-indicator" class="pill pill-on" title="Spoiler-free mode is on">blind mode</span>
+    <button id="blind-toggle" class="chip chip-on" aria-pressed="true" title="Spoiler-free: results stay hidden until you watch them">
+      <svg class="i-on" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.1 12s3.7-6.8 9.9-6.8S21.9 12 21.9 12s-3.7 6.8-9.9 6.8S2.1 12 2.1 12Z"/><circle cx="12" cy="12" r="2.8"/><path d="M4.2 4.2 19.8 19.8"/></svg>
+      <svg class="i-off" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.1 12s3.7-6.8 9.9-6.8S21.9 12 21.9 12s-3.7 6.8-9.9 6.8S2.1 12 2.1 12Z"/><circle cx="12" cy="12" r="2.8"/></svg>
+      <span class="chip-label">Spoiler-free</span>
+    </button>
+    <button id="settings-btn" class="icon-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="settings-panel" title="Settings">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M19.1 14.4a1.5 1.5 0 0 0 .3 1.7l.1.1a1.8 1.8 0 1 1-2.6 2.6l-.1-.1a1.5 1.5 0 0 0-2.6 1.1v.3a1.8 1.8 0 1 1-3.6 0v-.2a1.5 1.5 0 0 0-2.7-1 1.8 1.8 0 1 1-2.6-2.6l.1-.1a1.5 1.5 0 0 0-1.1-2.6h-.3a1.8 1.8 0 1 1 0-3.6h.2a1.5 1.5 0 0 0 1-2.7l-.1-.1a1.8 1.8 0 1 1 2.6-2.6l.1.1a1.5 1.5 0 0 0 1.7.3h.1a1.5 1.5 0 0 0 .9-1.4v-.3a1.8 1.8 0 1 1 3.6 0v.2a1.5 1.5 0 0 0 2.6 1.1l.1-.1a1.8 1.8 0 1 1 2.6 2.6l-.1.1a1.5 1.5 0 0 0 1.1 2.6h.3a1.8 1.8 0 1 1 0 3.6h-.2a1.5 1.5 0 0 0-1.4.9Z"/></svg>
+      <span class="sr-only">Settings</span>
+    </button>
   </div>
+  <div id="settings-panel" class="settings-panel" role="dialog" aria-modal="false" aria-label="Settings" hidden></div>
 </header>
-<main id="app"><div class="loading">Loading…</div></main>
-<footer class="foot">Videos are embedded from their original YouTube uploads. Nothing is re-hosted.
-  <span class="sep">·</span>
-  <a class="gh" href="https://github.com/antvelm/dota2_ti_archive" target="_blank" rel="noopener noreferrer">
-    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38l-.01-1.49c-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>
-    Source &amp; contribute on GitHub</a>
+<main id="app"><div class="loading" id="loading">Loading…</div></main>
+<footer class="foot">
+  <p class="lead" id="foot-lead">Videos are embedded from their original YouTube uploads. Nothing is re-hosted.</p>
+  <p class="foot-links">
+    <a class="gh" href="https://github.com/antvelm/dota2_ti_archive" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38l-.01-1.49c-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>
+      <span id="foot-gh">Source &amp; contribute on GitHub</span></a>
+  </p>
 </footer>
 <script src="app.js"></script>
 </body>

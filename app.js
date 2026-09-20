@@ -5,9 +5,13 @@
 
   // ---------- storage ----------
   const KEY = 'ti-archive:v1';
+  // A Russian-speaking browser gets a Russian site on the first visit; the stored
+  // setting wins from then on.
+  const guessUI = () => (String(navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en');
   const defaults = () => ({
     v: 1,
-    settings: { lang: 'en', order: 'series', showDuration: false, blind: true, autoNext: true, volume: 100, quality: 'auto' },
+    // ui drives the interface; lang drives commentary and follows ui until langSet.
+    settings: { ui: guessUI(), lang: guessUI(), langSet: false, order: 'series', showDuration: false, blind: true, autoNext: true, volume: 100, quality: 'auto' },
     events: {},
   });
   let store = defaults();
@@ -20,6 +24,254 @@
     return st;
   };
   const gkey = (s, g) => `${s.id}:${g.n}`;
+
+  // ---------- language ----------
+  // The interface speaks English or Russian. Commentary follows the interface until the
+  // viewer picks a commentary language of their own; after that their choice is kept.
+  const UI_LANGS = { en: 'English', ru: 'Русский' };
+  const STR = {
+    en: {
+      'app.title': 'TI Archive — spoiler-free',
+      'crumb.all': 'All events',
+      'chip.on': 'Spoiler-free', 'chip.off': 'Spoilers shown',
+      'chip.onTitle': 'Spoiler-free: results stay hidden until you watch them',
+      'chip.offTitle': 'Spoilers are visible — click to hide results again',
+      'settings.title': 'Settings', 'settings.sub': 'These apply to every tournament.',
+      'set.ui': 'Interface language', 'set.ui.d': 'The language of this site. Commentary follows it until you pick a commentary language yourself.',
+      'set.blind': 'Blind mode', 'set.blind.d': 'Hide results, scores and bracket progression until you have watched them.',
+      'set.lang': 'Commentary language', 'set.lang.d': 'Default audio/stream language. You can switch during a game.',
+      'set.order': 'Playback order', 'set.order.d': 'By series plays each series to the end. Strict chronological follows real game start times, which interleaves concurrent series but can never leak a result.',
+      'order.series': 'By series', 'order.chrono': 'Strict chronological',
+      'set.duration': 'Show video duration', 'set.duration.d': 'A short video hints at a stomp, a long one at a close game. Off by default.',
+      'set.autonext': 'Auto-continue', 'set.autonext.d': 'Jump to the next game when one ends.',
+      'set.quality': 'Preferred quality', 'set.quality.d': 'Asked of YouTube on every video, but only asked: since 2019 embedded players choose their own quality and usually ignore this. To be sure, use “Choose quality” next to the player.',
+      'quality.auto': 'Auto',
+      'set.progressAll': 'Progress, all events', 'set.progressAll.d': 'Stored in this browser only. A single event is reset from its own page.',
+      'btn.export': 'Export', 'btn.import': 'Import',
+      'ask.blindOff.title': 'Turn off blind mode?',
+      'ask.blindOff.body': 'The full bracket, with every result, will be shown on every event.',
+      'ask.blindOff.yes': 'Show results', 'ask.blindOff.no': 'Keep hidden',
+      'events.h1': 'The International — archive',
+      'events.sub': 'Pick a tournament. Everything is hidden until you watch it.',
+      'events.soon': ' · coming soon',
+      'events.watched': '{done} of {total} series watched',
+      'ev.finished': 'Finished', 'ev.finishedAll': 'You have watched all of {short}.',
+      'ev.finishedHint': 'Turn off blind mode in the header to browse results freely, or reset progress to watch again.',
+      'ev.resume': 'Resume', 'ev.upnext': 'Up next', 'ev.start': 'Start here',
+      'ev.game': 'Game {n} · best of {bo}', 'ev.at': ' · at {t}',
+      'ev.progressLine': '{done} of {total} series watched · {stage} · {dates}',
+      'btn.resume': '▶ Resume', 'btn.watch': '▶ Watch',
+      'h2.bracket': 'Bracket', 'h2.progress': 'Progress',
+      'bestof': 'best of {n}', 'card.bo': 'bo{n}',
+      'legend.watched': 'watched', 'legend.upnext': 'up next',
+      'legend.locked': 'locked until the feeding series are watched',
+      'legend.hint1': 'Click a watched series to rewatch or reveal its score.',
+      'legend.hint2': 'Click a locked series to skip ahead to it.',
+      'ev.progressFor': 'Progress for {short}',
+      'ev.progressFor.d': 'Stored in this browser only. Export, import and the settings that apply to every event are under the gear in the header.',
+      'btn.reset': 'Reset',
+      'ask.reset.title': 'Reset progress for {short}?',
+      'ask.reset.body': 'Every game here goes back to unwatched. Other tournaments are untouched.',
+      'ask.reset.yes': 'Reset', 'ask.reset.no': 'Keep it',
+      'card.tbd': 'TBD', 'card.watched': '✓ watched', 'card.inprogress': 'in progress',
+      'card.upnext': 'up next', 'card.skipped': 'skipped', 'card.notwatched': 'not watched', 'card.locked': 'locked',
+      'card.titleSkipped': 'Skipped — click to watch it after all',
+      'card.titleLocked': 'Locked. Click to skip ahead to it, revealing the series that feed into it.',
+      'ask.skip.title': 'Skip ahead to the {round}?',
+      'ask.skip.body.one': 'That means giving up one series you have not watched. Its result will appear in the bracket, and it drops out of the queue so Continue follows you forward.',
+      'ask.skip.body.many': 'That means giving up {n} series you have not watched. Their results will appear in the bracket, and they drop out of the queue so Continue follows you forward.',
+      'ask.skip.yes': 'Skip ahead', 'ask.skip.no': 'Keep watching in order',
+      'toast.skipped': 'Skipped {n} series', 'toast.backInQueue': 'Back in the queue',
+      'toast.imported': 'Progress imported', 'toast.importFail': 'Could not import that file',
+      'series.count': '{n} series',
+      'watch.noVodTitle': '{a} vs {b} — game {n}',
+      'watch.meta': '{round} · best of {bo} · {short}',
+      'watch.noVodBody': 'No VOD of this game was ever uploaded, so there is nothing to play here. Marking it watched keeps the series moving without telling you anything about it.',
+      'btn.markContinue': 'Mark watched and continue', 'btn.mark': 'Mark watched',
+      'btn.backBracket': 'Back to the bracket',
+      'toast.locked': 'That series is still locked',
+      'cover.sub': '{round} · Game {n}', 'cover.resumes': ' · resumes at {t}',
+      'ttl.play': 'Play/pause (space)', 'ttl.mute': 'Mute (m)', 'ttl.next': 'Next game (n)', 'ttl.fs': 'Fullscreen (f)',
+      'seek.blindTitle': 'Progress hidden (blind mode) — drag to seek anyway',
+      'lang.noVod': 'No {lang} VOD for this game',
+      'games.game': 'Game {n}', 'games.watched': 'watched',
+      'games.note': 'Further games appear as you finish them — how many there are is part of the story.',
+      'side.thisGame': 'This game', 'side.matchId': 'Match ID {id}',
+      'side.advantage': '{team} start {n}–0 up as upper-bracket winners — that game was never played.',
+      'side.series': 'Series', 'side.quality': 'Video quality',
+      'quality.playingAt': 'Playing at ',
+      'quality.note': '. YouTube picks this from your connection and the size of the player, so fullscreen usually gets more.',
+      'btn.chooseQuality': 'Choose quality…', 'btn.hideYT': 'Hide YouTube controls',
+      'quality.hint': 'Use the gear in YouTube’s bar, then hide the controls again.',
+      'side.keys': 'Keys',
+      'keys.playpause': ' play/pause · ', 'keys.10': ' ±10 s · ', 'keys.60': ' ±60 s · ',
+      'keys.fs': ' fullscreen · ', 'keys.mute': ' mute · ', 'keys.next': ' next game · ', 'keys.lang': ' switch language',
+      'under.hint': 'The YouTube title bar, end screen and related videos are covered on purpose — they give away results.',
+      'btn.markWatchedContinue': 'Mark watched & continue', 'toast.marked': 'Marked as watched',
+      'ask.native.title': 'Show YouTube’s own controls?',
+      'ask.native.body': 'Quality can only be picked from YouTube’s gear menu, and this site normally hides YouTube’s controls because they give things away: the length of the video and preview pictures along its scrubber.',
+      'ask.native.sliced': ' Here it matters more — this video is a whole broadcast day, so that scrubber reaches every later game.',
+      'ask.native.tail': ' Pick a quality, then hide them again; YouTube usually keeps your choice for the videos that follow.',
+      'ask.native.yes': 'Show controls', 'ask.native.no': 'Keep them hidden',
+      'ask.skipRest.title': 'Skip the rest of this game?',
+      'ask.skipRest.body': 'It will be marked as watched.',
+      'ask.skipRest.yes': 'Skip', 'ask.skipRest.no': 'Keep watching',
+      'cover.finished': 'Game finished', 'btn.continue': 'Continue ▶',
+      'btn.backBracket2': 'Back to bracket', 'btn.rewatch': 'Rewatch',
+      'err.unavailable': 'This video is unavailable',
+      'err.ytError': 'YouTube error {code}. Try the other language, or run tools/check_links.py to find dead links.',
+      'toast.commentary': '{lang} commentary',
+      'inter.complete': 'Series complete', 'btn.showScore': 'Show score', 'inter.advances': ' advances',
+      'btn.next': 'Next: {round} — {a} vs {b} ▶', 'btn.bracket': 'Bracket',
+      'err.broke': 'Something broke', 'btn.backEvents': 'Back to events',
+      'foot.embed': 'Videos are embedded from their original YouTube uploads. Nothing is re-hosted.',
+      'foot.github': 'Source & contribute on GitHub', 'loading': 'Loading…',
+      'ttl.settings': 'Settings',
+    },
+    ru: {
+      'app.title': 'TI Archive — без спойлеров',
+      'crumb.all': 'Все турниры',
+      'chip.on': 'Без спойлеров', 'chip.off': 'Спойлеры видны',
+      'chip.onTitle': 'Без спойлеров: результаты скрыты, пока вы их не посмотрите',
+      'chip.offTitle': 'Спойлеры видны — нажмите, чтобы снова скрыть результаты',
+      'settings.title': 'Настройки', 'settings.sub': 'Действуют для всех турниров.',
+      'set.ui': 'Язык интерфейса', 'set.ui.d': 'Язык сайта. Язык комментария следует за ним, пока вы не выберете его сами.',
+      'set.blind': 'Режим без спойлеров', 'set.blind.d': 'Скрывать результаты, счёт и продвижение по сетке, пока вы их не посмотрите.',
+      'set.lang': 'Язык комментария', 'set.lang.d': 'Язык звука по умолчанию. Его можно переключить во время игры.',
+      'set.order': 'Порядок просмотра', 'set.order.d': 'По сериям — каждая серия проигрывается до конца. Строго хронологически — по реальному времени начала игр: параллельные серии чередуются, но результат не раскрывается.',
+      'order.series': 'По сериям', 'order.chrono': 'Строго хронологически',
+      'set.duration': 'Показывать длительность', 'set.duration.d': 'Короткое видео намекает на разгром, длинное — на близкую игру. По умолчанию выключено.',
+      'set.autonext': 'Автопереход', 'set.autonext.d': 'Переходить к следующей игре, когда закончится текущая.',
+      'set.quality': 'Предпочитаемое качество', 'set.quality.d': 'Запрашивается у YouTube для каждого видео, но только запрашивается: с 2019 года встроенный плеер сам выбирает качество и обычно это игнорирует. Наверняка — через «Выбрать качество» рядом с плеером.',
+      'quality.auto': 'Авто',
+      'set.progressAll': 'Прогресс, все турниры', 'set.progressAll.d': 'Хранится только в этом браузере. Отдельный турнир сбрасывается на его собственной странице.',
+      'btn.export': 'Экспорт', 'btn.import': 'Импорт',
+      'ask.blindOff.title': 'Выключить режим без спойлеров?',
+      'ask.blindOff.body': 'Полная сетка со всеми результатами будет показана для всех турниров.',
+      'ask.blindOff.yes': 'Показать результаты', 'ask.blindOff.no': 'Оставить скрытыми',
+      'events.h1': 'The International — архив',
+      'events.sub': 'Выберите турнир. Всё скрыто, пока вы не посмотрите.',
+      'events.soon': ' · скоро',
+      'events.watched': 'просмотрено серий: {done} из {total}',
+      'ev.finished': 'Пройдено', 'ev.finishedAll': 'Вы посмотрели весь {short}.',
+      'ev.finishedHint': 'Выключите режим без спойлеров в шапке, чтобы свободно смотреть результаты, или сбросьте прогресс и начните заново.',
+      'ev.resume': 'Продолжить', 'ev.upnext': 'Далее', 'ev.start': 'Начните отсюда',
+      'ev.game': 'Игра {n} · Bo{bo}', 'ev.at': ' · на {t}',
+      'ev.progressLine': 'просмотрено серий: {done} из {total} · {stage} · {dates}',
+      'btn.resume': '▶ Продолжить', 'btn.watch': '▶ Смотреть',
+      'h2.bracket': 'Сетка', 'h2.progress': 'Прогресс',
+      'bestof': 'Bo{n}', 'card.bo': 'bo{n}',
+      'legend.watched': 'просмотрено', 'legend.upnext': 'далее',
+      'legend.locked': 'закрыто, пока не просмотрены ведущие к ней серии',
+      'legend.hint1': 'Нажмите на просмотренную серию, чтобы пересмотреть её или увидеть счёт.',
+      'legend.hint2': 'Нажмите на закрытую серию, чтобы перейти сразу к ней.',
+      'ev.progressFor': 'Прогресс: {short}',
+      'ev.progressFor.d': 'Хранится только в этом браузере. Экспорт, импорт и настройки для всех турниров — под шестерёнкой в шапке.',
+      'btn.reset': 'Сбросить',
+      'ask.reset.title': 'Сбросить прогресс {short}?',
+      'ask.reset.body': 'Все игры здесь снова станут непросмотренными. Другие турниры не затронуты.',
+      'ask.reset.yes': 'Сбросить', 'ask.reset.no': 'Оставить',
+      'card.tbd': 'TBD', 'card.watched': '✓ просмотрено', 'card.inprogress': 'в процессе',
+      'card.upnext': 'далее', 'card.skipped': 'пропущено', 'card.notwatched': 'не просмотрено', 'card.locked': 'закрыто',
+      'card.titleSkipped': 'Пропущено — нажмите, чтобы всё-таки посмотреть',
+      'card.titleLocked': 'Закрыто. Нажмите, чтобы перейти сразу сюда, раскрыв ведущие к ней серии.',
+      'ask.skip.title': 'Перейти сразу к стадии «{round}»?',
+      'ask.skip.body.one': 'Придётся отказаться от одной непросмотренной серии. Её результат появится в сетке, и она выйдет из очереди, чтобы «Продолжить» вело вас дальше.',
+      'ask.skip.body.many': 'Придётся отказаться от непросмотренных серий: {n}. Их результаты появятся в сетке, и они выйдут из очереди, чтобы «Продолжить» вело вас дальше.',
+      'ask.skip.yes': 'Перейти сразу', 'ask.skip.no': 'Смотреть по порядку',
+      'toast.skipped': 'Пропущено серий: {n}', 'toast.backInQueue': 'Снова в очереди',
+      'toast.imported': 'Прогресс импортирован', 'toast.importFail': 'Не удалось импортировать этот файл',
+      'series.count': 'серий: {n}',
+      'watch.noVodTitle': '{a} vs {b} — игра {n}',
+      'watch.meta': '{round} · Bo{bo} · {short}',
+      'watch.noVodBody': 'Запись этой игры никогда не выкладывали, поэтому воспроизводить нечего. Отметка о просмотре продвинет серию, ничего о ней не рассказав.',
+      'btn.markContinue': 'Отметить и продолжить', 'btn.mark': 'Отметить просмотренной',
+      'btn.backBracket': 'Назад к сетке',
+      'toast.locked': 'Эта серия ещё закрыта',
+      'cover.sub': '{round} · Игра {n}', 'cover.resumes': ' · продолжится с {t}',
+      'ttl.play': 'Пуск/пауза (пробел)', 'ttl.mute': 'Звук (m)', 'ttl.next': 'Следующая игра (n)', 'ttl.fs': 'Полный экран (f)',
+      'seek.blindTitle': 'Прогресс скрыт (режим без спойлеров) — перематывать всё равно можно',
+      'lang.noVod': 'Нет записи ({lang}) для этой игры',
+      'games.game': 'Игра {n}', 'games.watched': 'просмотрено',
+      'games.note': 'Следующие игры появятся, когда вы закончите текущие — сколько их всего, тоже часть истории.',
+      'side.thisGame': 'Эта игра', 'side.matchId': 'ID матча {id}',
+      'side.advantage': '{team} начинают со счётом {n}–0 как победители верхней сетки — та игра не игралась.',
+      'side.series': 'Серия', 'side.quality': 'Качество видео',
+      'quality.playingAt': 'Сейчас ',
+      'quality.note': '. YouTube выбирает его по вашему соединению и размеру плеера, так что в полноэкранном режиме обычно выше.',
+      'btn.chooseQuality': 'Выбрать качество…', 'btn.hideYT': 'Скрыть элементы YouTube',
+      'quality.hint': 'Используйте шестерёнку на панели YouTube, затем снова скройте элементы.',
+      'side.keys': 'Клавиши',
+      'keys.playpause': ' пуск/пауза · ', 'keys.10': ' ±10 с · ', 'keys.60': ' ±60 с · ',
+      'keys.fs': ' полный экран · ', 'keys.mute': ' звук · ', 'keys.next': ' следующая игра · ', 'keys.lang': ' сменить язык',
+      'under.hint': 'Заголовок YouTube, финальный экран и похожие видео закрыты намеренно — они выдают результат.',
+      'btn.markWatchedContinue': 'Отметить и продолжить', 'toast.marked': 'Отмечено как просмотренное',
+      'ask.native.title': 'Показать элементы управления YouTube?',
+      'ask.native.body': 'Качество выбирается только через меню-шестерёнку YouTube, а сайт обычно скрывает его элементы: они выдают длительность видео и превью на полосе перемотки.',
+      'ask.native.sliced': ' Здесь это важнее — видео представляет собой целый день трансляции, и полоса перемотки дотягивается до всех последующих игр.',
+      'ask.native.tail': ' Выберите качество, затем снова скройте элементы; YouTube обычно запоминает выбор для следующих видео.',
+      'ask.native.yes': 'Показать', 'ask.native.no': 'Оставить скрытыми',
+      'ask.skipRest.title': 'Пропустить остаток игры?',
+      'ask.skipRest.body': 'Она будет отмечена как просмотренная.',
+      'ask.skipRest.yes': 'Пропустить', 'ask.skipRest.no': 'Смотреть дальше',
+      'cover.finished': 'Игра окончена', 'btn.continue': 'Продолжить ▶',
+      'btn.backBracket2': 'Назад к сетке', 'btn.rewatch': 'Пересмотреть',
+      'err.unavailable': 'Это видео недоступно',
+      'err.ytError': 'Ошибка YouTube {code}. Попробуйте другой язык или запустите tools/check_links.py, чтобы найти битые ссылки.',
+      'toast.commentary': 'Комментарий: {lang}',
+      'inter.complete': 'Серия завершена', 'btn.showScore': 'Показать счёт', 'inter.advances': ' проходит дальше',
+      'btn.next': 'Далее: {round} — {a} vs {b} ▶', 'btn.bracket': 'Сетка',
+      'err.broke': 'Что-то сломалось', 'btn.backEvents': 'Назад к турнирам',
+      'foot.embed': 'Видео встроены с оригинальных загрузок на YouTube. Ничего не перезалито.',
+      'foot.github': 'Исходники и участие на GitHub', 'loading': 'Загрузка…',
+      'ttl.settings': 'Настройки',
+    },
+  };
+
+  // Strings that live in the data files rather than here. Round names are a closed set of 14
+  // and the stage is always the same, so they are translated at the edge instead of being
+  // duplicated into every data file.
+  const ROUNDS_RU = {
+    'Upper Bracket Round 1': 'Верхняя сетка, раунд 1',
+    'Upper Bracket Round 2': 'Верхняя сетка, раунд 2',
+    'Upper Bracket Quarterfinals': 'Верхняя сетка, четвертьфинал',
+    'Upper Bracket Semifinals': 'Верхняя сетка, полуфинал',
+    'Upper Bracket Final': 'Финал верхней сетки',
+    'Lower Bracket Round 1': 'Нижняя сетка, раунд 1',
+    'Lower Bracket Round 2': 'Нижняя сетка, раунд 2',
+    'Lower Bracket Round 3': 'Нижняя сетка, раунд 3',
+    'Lower Bracket Round 4': 'Нижняя сетка, раунд 4',
+    'Lower Bracket Round 5': 'Нижняя сетка, раунд 5',
+    'Lower Bracket Quarterfinals': 'Нижняя сетка, четвертьфинал',
+    'Lower Bracket Semifinals': 'Нижняя сетка, полуфинал',
+    'Lower Bracket Final': 'Финал нижней сетки',
+    'Grand Final': 'Гранд-финал',
+  };
+  const STAGE_RU = { 'Main Event': 'Основной этап' };
+  const MONTH_RU = { January: 'января', February: 'февраля', March: 'марта', April: 'апреля',
+    May: 'мая', June: 'июня', July: 'июля', August: 'августа', September: 'сентября',
+    October: 'октября', November: 'ноября', December: 'декабря' };
+
+  const uiLang = () => (STR[store.settings.ui] ? store.settings.ui : 'en');
+  const t = (key, vars) => {
+    let s = STR[uiLang()][key];
+    if (s === undefined) s = STR.en[key];
+    if (s === undefined) return key;
+    return vars ? s.replace(/\{(\w+)\}/g, (m, k) => (vars[k] === undefined ? m : vars[k])) : s;
+  };
+  const roundName = (name) => (uiLang() === 'ru' && ROUNDS_RU[name]) || name;
+  const stageName = (name) => (uiLang() === 'ru' && STAGE_RU[name]) || name;
+  // "August 18–21, 2011" and "August 31 – September 2, 2012" are the only two shapes in the
+  // data. Anything else is passed through untouched rather than mangled.
+  const dateText = (s) => {
+    if (uiLang() !== 'ru' || !s) return s;
+    let m = s.match(/^([A-Za-z]+)\s+(\d+)\s*[–-]\s*(\d+),\s*(\d{4})$/);
+    if (m && MONTH_RU[m[1]]) return `${m[2]}–${m[3]} ${MONTH_RU[m[1]]} ${m[4]}`;
+    m = s.match(/^([A-Za-z]+)\s+(\d+)\s*[–-]\s*([A-Za-z]+)\s+(\d+),\s*(\d{4})$/);
+    if (m && MONTH_RU[m[1]] && MONTH_RU[m[3]]) return `${m[2]} ${MONTH_RU[m[1]]} – ${m[4]} ${MONTH_RU[m[3]]} ${m[5]}`;
+    return s;
+  };
+  const nSeries = (n) => t('series.count', { n });
 
   // ---------- data ----------
   const cache = {};
@@ -104,7 +356,17 @@
   };
   const app = $('#app');
   const crumbs = $('#crumbs');
-  const setCrumbs = (...parts) => { crumbs.replaceChildren(...parts.flatMap((p, i) => [i ? h('span', {}, '›') : null, p.href ? h('a', { href: p.href }, p.text) : h('span', {}, p.text)]).filter(Boolean)); };
+  // The wordmark is identity and nothing else — a rule divides it from the trail, which
+  // carries all the navigation and starts at "All events". The trail follows one rule
+  // throughout: every crumb but the last is a link and is muted, the last is where you are
+  // and is styled as a label rather than a link that goes nowhere.
+  const setCrumbs = (...parts) => {
+    crumbs.replaceChildren(...parts.flatMap((p, i) => [
+      i ? h('span', { class: 'crumb-sep', 'aria-hidden': 'true' }, '›') : null,
+      p.href && i < parts.length - 1
+        ? h('a', { class: 'crumb', href: p.href }, p.text)
+        : h('span', { class: 'crumb crumb-here', 'aria-current': 'page' }, p.text)]).filter(Boolean));
+  };
   let toastT;
   const toast = (msg) => { $('.toast')?.remove(); const t = h('div', { class: 'toast' }, msg); document.body.append(t); clearTimeout(toastT); toastT = setTimeout(() => t.remove(), 2600); };
 
@@ -151,15 +413,116 @@
     });
   }
   const badge = (ev, id) => { const t = team(ev, id); const hue = [...id].reduce((a, c) => a + c.charCodeAt(0) * 17, 0) % 360; return h('span', { class: 'badge', style: `background:hsl(${hue} 45% 38%)` }, t.short.slice(0, 2).toUpperCase()); };
-  const updateBlindPill = () => { const p = $('#blind-indicator'); p.className = 'pill ' + (store.settings.blind ? 'pill-on' : 'pill-off'); p.textContent = store.settings.blind ? 'blind mode' : 'spoilers visible'; };
+  // The header chip is the blind-mode control, not just a readout — it was the one thing in
+  // the header that looked interactive and was not. The switch in the settings panel drives
+  // the same state, so both are kept in step.
+  const askBlindOff = () => ask({
+    title: t('ask.blindOff.title'), body: t('ask.blindOff.body'),
+    confirmText: t('ask.blindOff.yes'), cancelText: t('ask.blindOff.no'),
+  });
+  const updateBlindPill = () => {
+    const b = $('#blind-toggle'), on = !!store.settings.blind;
+    b.className = 'chip ' + (on ? 'chip-on' : 'chip-off');
+    b.setAttribute('aria-pressed', String(on));
+    b.title = on ? t('chip.onTitle') : t('chip.offTitle');
+    $('.chip-label', b).textContent = on ? t('chip.on') : t('chip.off');
+  };
 
   // YouTube's names for its quality levels, best first.
   const QUALITIES = [['auto', 'Auto'], ['hd2160', '2160p'], ['hd1440', '1440p'], ['hd1080', '1080p'], ['hd720', '720p'], ['large', '480p'], ['medium', '360p'], ['small', '240p']];
-  const qualityLabel = (q) => (QUALITIES.find(x => x[0] === q) || [0, q === 'tiny' ? '144p' : (q || 'unknown')])[1];
+  const qualityLabel = (q) => { const f = QUALITIES.find(x => x[0] === q); return f ? (f[0] === 'auto' ? t('quality.auto') : f[1]) : (q === 'tiny' ? '144p' : (q || '?')); };
+  const qualityOpts = () => QUALITIES.map(([v, label]) => [v, v === 'auto' ? t('quality.auto') : label]);
+
+  // ---------- global settings ----------
+  // These live in store.settings and apply to every event, so they hang off the header
+  // rather than off one tournament's page. Per-event progress stays on the event page.
+  const setRow = (label, desc, control) => h('div', { class: 'setting' },
+    h('div', {}, h('div', {}, label), desc && h('div', { class: 'd' }, desc)), control);
+  const sw = (key, onChange) => h('button', {
+    class: 'switch' + (store.settings[key] ? ' on' : ''), role: 'switch',
+    'aria-checked': String(!!store.settings[key]),
+    onclick: async () => {
+      const v = !store.settings[key];
+      if (onChange && await onChange(v) === false) return;
+      store.settings[key] = v; save(); renderSettings(); updateBlindPill(); route();
+    } });
+  const sel = (key, opts, onChange) => {
+    const s = h('select', { onchange: (e) => { store.settings[key] = e.target.value; if (onChange) onChange(e.target.value); save(); renderSettings(); route(); } });
+    opts.forEach(([v, txt]) => s.append(h('option', { value: v, selected: store.settings[key] === v }, txt)));
+    return s;
+  };
+
+  // Text that is in index.html rather than in a render pass, so it has to be pushed out
+  // whenever the language changes.
+  function applyStaticText() {
+    document.documentElement.lang = uiLang();
+    document.title = t('app.title');
+    $('#foot-lead').textContent = t('foot.embed');
+    $('#foot-gh').textContent = t('foot.github');
+    $('#settings-btn').title = t('ttl.settings');
+    $('.sr-only', $('#settings-btn')).textContent = t('ttl.settings');
+    const load = $('#loading'); if (load) load.textContent = t('loading');
+  }
+  // Commentary follows the interface until the viewer picks a commentary language themselves.
+  const setUILang = (v) => { if (!store.settings.langSet) store.settings.lang = v; applyStaticText(); };
+
+  const panel = $('#settings-panel');
+  const settingsBtn = $('#settings-btn');
+  function renderSettings() {
+    panel.replaceChildren(
+      h('div', { class: 'settings-head' }, h('strong', {}, t('settings.title')),
+        h('span', { class: 'd' }, t('settings.sub'))),
+      h('div', { class: 'settings' },
+        // The two languages sit together: the first row's description refers to the second,
+        // which only reads as a rule when they are adjacent.
+        setRow(t('set.ui'), t('set.ui.d'), sel('ui', Object.entries(UI_LANGS), setUILang)),
+        setRow(t('set.lang'), t('set.lang.d'), sel('lang', Object.entries(UI_LANGS), () => { store.settings.langSet = true; })),
+        setRow(t('set.blind'), t('set.blind.d'), sw('blind', (v) => v ? true : askBlindOff())),
+        setRow(t('set.order'), t('set.order.d'),
+          sel('order', [['series', t('order.series')], ['chrono', t('order.chrono')]])),
+        setRow(t('set.duration'), t('set.duration.d'), sw('showDuration')),
+        setRow(t('set.autonext'), t('set.autonext.d'), sw('autoNext')),
+        setRow(t('set.quality'), t('set.quality.d'), sel('quality', qualityOpts())),
+        h('div', { class: 'setting' },
+          h('div', {}, h('div', {}, t('set.progressAll')),
+            h('div', { class: 'd' }, t('set.progressAll.d'))),
+          h('div', { class: 'btn-row' },
+            h('button', { class: 'btn small', onclick: exportProgress }, t('btn.export')),
+            h('label', { class: 'btn small' }, t('btn.import'),
+              h('input', { type: 'file', accept: 'application/json', style: 'display:none', onchange: importProgress }))))));
+  }
+
+  // Open/close. Closes on Escape, on a click outside, and on a second press of the button.
+  const closeSettings = () => {
+    if (panel.hidden) return;
+    panel.hidden = true;
+    settingsBtn.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('keydown', onPanelKey, true);
+    document.removeEventListener('mousedown', onPanelClick, true);
+  };
+  const onPanelKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); closeSettings(); settingsBtn.focus(); } };
+  const onPanelClick = (e) => { if (!panel.contains(e.target) && !settingsBtn.contains(e.target)) closeSettings(); };
+  $('#blind-toggle').onclick = async () => {
+    const v = !store.settings.blind;
+    if (!v && !await askBlindOff()) return;
+    store.settings.blind = v; save();
+    updateBlindPill();
+    if (!panel.hidden) renderSettings();
+    route();
+  };
+
+  settingsBtn.onclick = () => {
+    if (!panel.hidden) return closeSettings();
+    renderSettings();
+    panel.hidden = false;
+    settingsBtn.setAttribute('aria-expanded', 'true');
+    document.addEventListener('keydown', onPanelKey, true);
+    document.addEventListener('mousedown', onPanelClick, true);
+  };
 
   // ---------- pages ----------
   async function pageEvents() {
-    setCrumbs({ text: 'Events' });
+    setCrumbs({ text: t('crumb.all') });
     const list = await loadEvents();
     const cards = [];
     for (const m of list) {
@@ -168,16 +531,16 @@
       cards.push(h('a', { class: 'card event-card', href: m.status === 'ready' ? `#/e/${m.id}` : null },
         h('div', { class: 'short' }, m.short),
         h('div', { class: 'name' }, m.name),
-        h('div', { class: 'meta' }, `${m.location} · ${m.year}` + (m.status !== 'ready' ? ' · coming soon' : '')),
+        h('div', { class: 'meta' }, `${m.location} · ${m.year}` + (m.status !== 'ready' ? t('events.soon') : '')),
         prog && h('div', { class: 'prog' }, h('i', { style: `width:${prog.total ? prog.done / prog.total * 100 : 0}%` })),
-        prog && h('div', { class: 'meta' }, prog.done ? `${prog.done} of ${prog.total} series watched` : `${prog.total} series`)));
+        prog && h('div', { class: 'meta' }, prog.done ? t('events.watched', { done: prog.done, total: prog.total }) : nSeries(prog.total))));
     }
-    app.replaceChildren(h('h1', {}, 'The International — archive'), h('p', { class: 'sub' }, 'Pick a tournament. Everything is hidden until you watch it.'), h('div', { class: 'events' }, cards));
+    app.replaceChildren(h('h1', {}, t('events.h1')), h('p', { class: 'sub' }, t('events.sub')), h('div', { class: 'events' }, cards));
   }
 
   async function pageEvent(id) {
     const ev = await loadEvent(id);
-    setCrumbs({ text: 'Events', href: '#/' }, { text: ev.short });
+    setCrumbs({ text: t('crumb.all'), href: '#/' }, { text: ev.short });
     const st = evState(ev.id);
     const next = nextUnwatched(ev);
     const doneSeries = ev.series.filter(s => seriesDone(ev, s)).length;
@@ -186,16 +549,16 @@
     // continue card
     let cont;
     if (!next) {
-      cont = h('div', { class: 'card continue' }, h('div', {}, h('div', { class: 'label' }, 'Finished'), h('div', { class: 'matchup' }, `You have watched all of ${ev.short}.`), h('div', { class: 'progress-line' }, 'Turn off blind mode below to browse results freely, or reset progress to watch again.')));
+      cont = h('div', { class: 'card continue' }, h('div', {}, h('div', { class: 'label' }, t('ev.finished')), h('div', { class: 'matchup' }, t('ev.finishedAll', { short: ev.short })), h('div', { class: 'progress-line' }, t('ev.finishedHint'))));
     } else {
       const it = resumeItem || next; const r = roundOf(ev, it.s);
       cont = h('div', { class: 'card continue' },
         h('div', {},
-          h('div', { class: 'label' }, resumeItem ? 'Resume' : (doneSeries ? 'Up next' : 'Start here')),
-          h('div', { class: 'matchup' }, h('span', { class: 'round' }, r.name), h('span', { class: 'vs' }, '·'), badge(ev, it.s.team1), ' ', team(ev, it.s.team1).name, h('span', { class: 'vs' }, 'vs'), badge(ev, it.s.team2), ' ', team(ev, it.s.team2).name),
-          h('div', { class: 'muted' }, `Game ${it.g.n} · best of ${it.s.bestOf}` + (resumeItem ? ` · at ${fmt(st.games[gkey(it.s, it.g)].pos)}` : '')),
-          h('div', { class: 'progress-line' }, `${doneSeries} of ${ev.series.length} series watched · ${ev.stage} · ${ev.dates}`)),
-        h('a', { class: 'btn primary', href: `#/e/${ev.id}/s/${it.s.id}/g/${it.g.n}` }, resumeItem ? '▶ Resume' : '▶ Watch'));
+          h('div', { class: 'label' }, resumeItem ? t('ev.resume') : (doneSeries ? t('ev.upnext') : t('ev.start'))),
+          h('div', { class: 'matchup' }, h('span', { class: 'round' }, roundName(r.name)), h('span', { class: 'vs' }, '·'), badge(ev, it.s.team1), ' ', team(ev, it.s.team1).name, h('span', { class: 'vs' }, 'vs'), badge(ev, it.s.team2), ' ', team(ev, it.s.team2).name),
+          h('div', { class: 'muted' }, t('ev.game', { n: it.g.n, bo: it.s.bestOf }) + (resumeItem ? t('ev.at', { t: fmt(st.games[gkey(it.s, it.g)].pos) }) : '')),
+          h('div', { class: 'progress-line' }, t('ev.progressLine', { done: doneSeries, total: ev.series.length, stage: stageName(ev.stage), dates: dateText(ev.dates) }))),
+        h('a', { class: 'btn primary', href: `#/e/${ev.id}/s/${it.s.id}/g/${it.g.n}` }, resumeItem ? t('btn.resume') : t('btn.watch')));
     }
 
     // bracket
@@ -205,36 +568,35 @@
     const cell = (r, rowIdx) => {
       const list = ev.series.filter(s => s.round === r.id).sort((a, b) => a.id.localeCompare(b.id)); // bracket position, not start time
       const stack = h('div', { class: 'stack' }, list.map(s => seriesCard(ev, s, next)));
-      return h('div', { class: 'col', style: `grid-column:${r.order}; grid-row:${rowIdx}` }, h('div', { class: 'col-title' }, r.name, h('small', {}, `best of ${r.bestOf}`)), stack);
+      return h('div', { class: 'col', style: `grid-column:${r.order}; grid-row:${rowIdx}` }, h('div', { class: 'col-title' }, roundName(r.name), h('small', {}, t('bestof', { n: r.bestOf }))), stack);
     };
     rounds.filter(r => r.bracket === 'upper').forEach(r => bracket.append(cell(r, 1)));
     rounds.filter(r => r.bracket === 'lower').forEach(r => bracket.append(cell(r, 2)));
     rounds.filter(r => r.bracket === 'final').forEach(r => { const c = cell(r, 1); c.style.gridRow = '1 / span 2'; bracket.append(c); });
 
-    // settings
-    const setRow = (label, desc, control) => h('div', { class: 'setting' }, h('div', {}, h('div', {}, label), desc && h('div', { class: 'd' }, desc)), control);
-    const sw = (key, onChange) => { const el = h('button', { class: 'switch' + (store.settings[key] ? ' on' : ''), role: 'switch', 'aria-checked': String(!!store.settings[key]), onclick: () => { const v = !store.settings[key]; if (onChange && onChange(v) === false) return; store.settings[key] = v; save(); route(); } }); return el; };
-    const sel = (key, opts) => { const s = h('select', { onchange: (e) => { store.settings[key] = e.target.value; save(); route(); } }); opts.forEach(([v, t]) => s.append(h('option', { value: v, selected: store.settings[key] === v }, t))); return s; };
-    const settings = h('div', { class: 'settings' },
-      setRow('Blind mode', 'Hide results, scores and bracket progression until you have watched them.', sw('blind', (v) => v ? true : confirm('Turn off blind mode? The full bracket with all results will be shown.'))),
-      setRow('Commentary language', 'Default audio/stream language. You can switch during a game.', sel('lang', Object.entries(ev.languages))),
-      setRow('Playback order', 'By series plays each series to the end. Strict chronological follows real game start times, which interleaves concurrent series but can never leak a result.', sel('order', [['series', 'By series'], ['chrono', 'Strict chronological']])),
-      setRow('Show video duration', 'A short video hints at a stomp, a long one at a close game. Off by default.', sw('showDuration')),
-      setRow('Auto-continue', 'Jump to the next game when one ends.', sw('autoNext')),
-      setRow('Preferred quality', 'Asked of YouTube on every video, but only asked: since 2019 embedded players choose their own quality and usually ignore this. To be sure, use \u201cChoose quality\u201d next to the player.', sel('quality', QUALITIES)),
-      h('div', { class: 'setting' }, h('div', {}, h('div', {}, 'Progress'), h('div', { class: 'd' }, 'Stored in this browser only.')),
-        h('div', { class: 'btn-row' },
-          h('button', { class: 'btn small', onclick: exportProgress }, 'Export'),
-          h('label', { class: 'btn small' }, 'Import', h('input', { type: 'file', accept: 'application/json', style: 'display:none', onchange: importProgress })),
-          h('button', { class: 'btn small', onclick: () => { if (confirm(`Reset all progress for ${ev.short}?`)) { store.events[ev.id] = { games: {}, revealed: {}, skipped: {} }; save(); route(); } } }, 'Reset'))));
+    // Per-event only. Everything global lives in the header's settings panel.
+    const progress = h('div', { class: 'settings' },
+      h('div', { class: 'setting' },
+        h('div', {}, h('div', {}, t('ev.progressFor', { short: ev.short })),
+          h('div', { class: 'd' }, t('ev.progressFor.d'))),
+        h('button', {
+          class: 'btn small', onclick: async () => {
+            if (!await ask({
+              title: t('ask.reset.title', { short: ev.short }),
+              body: t('ask.reset.body'),
+              confirmText: t('ask.reset.yes'), cancelText: t('ask.reset.no'),
+            })) return;
+            store.events[ev.id] = { games: {}, revealed: {}, skipped: {} }; save(); route();
+          },
+        }, t('btn.reset'))));
 
     app.replaceChildren(
-      h('h1', {}, ev.name), h('p', { class: 'sub' }, `${ev.location} · ${ev.dates} · ${ev.stage}`),
+      h('h1', {}, ev.name), h('p', { class: 'sub' }, `${ev.location} · ${dateText(ev.dates)} · ${stageName(ev.stage)}`),
       cont,
-      h('h2', {}, 'Bracket'),
+      h('h2', {}, t('h2.bracket')),
       h('div', { class: 'bracket-wrap' }, bracket),
-      h('div', { class: 'legend' }, h('span', {}, h('i', { style: 'border-color:rgba(60,207,122,.5)' }), 'watched'), h('span', {}, h('i', { style: 'border-color:var(--gold)' }), 'up next'), h('span', {}, h('i', { style: 'opacity:.5' }), 'locked until the feeding series are watched'), h('span', {}, 'Click a watched series to rewatch or reveal its score.'), h('span', {}, 'Click a locked series to skip ahead to it.')),
-      h('h2', {}, 'Settings'), settings,
+      h('div', { class: 'legend' }, h('span', {}, h('i', { style: 'border-color:rgba(60,207,122,.5)' }), t('legend.watched')), h('span', {}, h('i', { style: 'border-color:var(--gold)' }), t('legend.upnext')), h('span', {}, h('i', { style: 'opacity:.5' }), t('legend.locked')), h('span', {}, t('legend.hint1')), h('span', {}, t('legend.hint2'))),
+      h('h2', {}, t('h2.progress')), progress,
       ev.notes && h('p', { class: 'note', style: 'margin-top:18px' }, ev.notes));
     updateBlindPill();
   }
@@ -246,21 +608,19 @@
     if (!pending.length) return;
     // Count them per round. Naming the teams here would spoil the very thing being asked about.
     const byRound = new Map();
-    pending.forEach(f => { const n = roundOf(ev, f).name; byRound.set(n, (byRound.get(n) || 0) + 1); });
+    pending.forEach(f => { const n = roundName(roundOf(ev, f).name); byRound.set(n, (byRound.get(n) || 0) + 1); });
     const ok = await ask({
-      title: `Skip ahead to the ${roundOf(ev, s).name}?`,
-      body: `That means giving up ${pending.length === 1 ? 'one series' : `${pending.length} series`} you have not watched. `
-        + `${pending.length === 1 ? 'Its result' : 'Their results'} will appear in the bracket, and `
-        + `${pending.length === 1 ? 'it drops' : 'they drop'} out of the queue so Continue follows you forward.`,
-      lines: [...byRound].map(([name, n]) => ({ label: name, value: n === 1 ? '1 series' : `${n} series` })),
-      cancelText: 'Keep watching in order',
-      confirmText: 'Skip ahead',
+      title: t('ask.skip.title', { round: roundName(roundOf(ev, s).name) }),
+      body: pending.length === 1 ? t('ask.skip.body.one') : t('ask.skip.body.many', { n: pending.length }),
+      lines: [...byRound].map(([name, n]) => ({ label: name, value: nSeries(n) })),
+      cancelText: t('ask.skip.no'),
+      confirmText: t('ask.skip.yes'),
     });
     if (!ok) return;
     const st = evState(ev.id);
     pending.forEach(f => { st.skipped[f.id] = true; });
     save();
-    toast(`Skipped ${pending.length} series`);
+    toast(t('toast.skipped', { n: pending.length }));
     const g = s.games.find(x => !gameDone(ev, s, x)) || s.games[0];
     location.hash = `#/e/${ev.id}/s/${s.id}/g/${g.n}`;   // the dialog promised to take them there
   }
@@ -273,23 +633,23 @@
     const t1 = slotTeam(ev, s, 0), t2 = slotTeam(ev, s, 1);
     const row = (tid, score, isWin) => tid
       ? h('div', { class: 't' + (revealed ? (isWin ? ' win' : ' lose') : '') }, h('span', { class: 'n' }, badge(ev, tid), team(ev, tid).short), revealed && h('span', { class: 'sc' }, score))
-      : h('div', { class: 't' }, h('span', { class: 'n tbd' }, 'TBD'));
+      : h('div', { class: 't' }, h('span', { class: 'n tbd' }, t('card.tbd')));
     const firstUnwatched = s.games.find(g => !gameDone(ev, s, g)) || s.games[0];
     const card = h('button', { class: 'series-card' + (unlocked ? '' : ' locked') + (skipped ? ' skipped' : '') + (done ? ' done' : '') + (isNext ? ' current' : ''),
-      title: unlocked ? (skipped ? 'Skipped — click to watch it after all' : '') : 'Locked. Click to skip ahead to it, revealing the series that feed into it.',
+      title: unlocked ? (skipped ? t('card.titleSkipped') : '') : t('card.titleLocked'),
       onclick: () => {
         if (!unlocked) { offerSkipTo(ev, s); return; }
-        if (skipped) { delete evState(ev.id).skipped[s.id]; save(); toast('Back in the queue'); }
+        if (skipped) { delete evState(ev.id).skipped[s.id]; save(); toast(t('toast.backInQueue')); }
         location.hash = `#/e/${ev.id}/s/${s.id}/g/${firstUnwatched.n}`;
       } },
       row(t1, w1, winner === s.team1), row(t2, w2, winner === s.team2));
     const stateLine = h('div', { class: 'state' });
-    if (done) stateLine.append(h('span', { class: 'w' }, '✓ watched'));
-    else if (seriesStarted(ev, s)) stateLine.append(h('span', { class: 'p' }, 'in progress'));
-    else if (isNext) stateLine.append(h('span', { class: 'p' }, 'up next'));
-    else if (skipped) stateLine.append(h('span', { class: 's' }, 'skipped'));
-    else stateLine.append(h('span', {}, unlocked ? 'not watched' : 'locked'));
-    stateLine.append(h('span', {}, `bo${s.bestOf}`));
+    if (done) stateLine.append(h('span', { class: 'w' }, t('card.watched')));
+    else if (seriesStarted(ev, s)) stateLine.append(h('span', { class: 'p' }, t('card.inprogress')));
+    else if (isNext) stateLine.append(h('span', { class: 'p' }, t('card.upnext')));
+    else if (skipped) stateLine.append(h('span', { class: 's' }, t('card.skipped')));
+    else stateLine.append(h('span', {}, unlocked ? t('card.notwatched') : t('card.locked')));
+    stateLine.append(h('span', {}, t('card.bo', { n: s.bestOf })));
     card.append(stateLine);
     return card;
   }
@@ -300,7 +660,7 @@
   }
   function importProgress(e) {
     const f = e.target.files[0]; if (!f) return;
-    f.text().then(t => { const j = JSON.parse(t); if (j.v !== 1) throw new Error('bad file'); store = Object.assign(defaults(), j); save(); toast('Progress imported'); route(); }).catch(() => toast('Could not import that file'));
+    f.text().then(t => { const j = JSON.parse(t); if (j.v !== 1) throw new Error('bad file'); store = Object.assign(defaults(), j); save(); toast(t('toast.imported')); route(); }).catch(() => toast(t('toast.importFail')));
   }
 
   // ---------- watch page ----------
@@ -321,28 +681,27 @@
     const ev = await loadEvent(id);
     const s = ev.seriesById[sid]; if (!s) return pageEvent(id);
     const g = s.games.find(x => x.n === Number(gn)); if (!g) return pageEvent(id);
-    if (!seriesUnlocked(ev, s)) { toast('That series is still locked'); location.hash = `#/e/${id}`; return; }
+    if (!seriesUnlocked(ev, s)) { toast(t('toast.locked')); location.hash = `#/e/${id}`; return; }
     const r = roundOf(ev, s);
     const st = evState(ev.id);
     const prog = st.games[gkey(s, g)] ||= { pos: 0, done: false };
     if (prog.done) prog.pos = 0; // rewatching a finished game starts from the top
-    setCrumbs({ text: 'Events', href: '#/' }, { text: ev.short, href: `#/e/${ev.id}` }, { text: `${team(ev, s.team1).short} vs ${team(ev, s.team2).short}` });
+    setCrumbs({ text: t('crumb.all'), href: '#/' }, { text: ev.short, href: `#/e/${ev.id}` }, { text: `${team(ev, s.team1).short} vs ${team(ev, s.team2).short}` });
 
     // Not every game has a VOD — the 2015 main event has gaps. Say so plainly instead of
     // handing the player an undefined video id.
     if (!g.sources.length) {
       const after = nextAfter(ev, s, g);
       app.replaceChildren(h('div', { class: 'card' },
-        h('h3', {}, `${team(ev, s.team1).name} vs ${team(ev, s.team2).name} \u2014 game ${g.n}`),
-        h('div', { class: 'note' }, `${r.name} \u00b7 best of ${s.bestOf} \u00b7 ${ev.short}`),
-        h('p', {}, 'No VOD of this game was ever uploaded, so there is nothing to play here. '
-          + 'Marking it watched keeps the series moving without telling you anything about it.'),
+        h('h3', {}, t('watch.noVodTitle', { a: team(ev, s.team1).name, b: team(ev, s.team2).name, n: g.n })),
+        h('div', { class: 'note' }, t('watch.meta', { round: roundName(r.name), bo: s.bestOf, short: ev.short })),
+        h('p', {}, t('watch.noVodBody')),
         h('div', { class: 'btn-row' },
           h('button', { class: 'btn primary', onclick: () => {
             prog.done = true; save();
             location.hash = after ? `#/e/${ev.id}/s/${after.s.id}/g/${after.g.n}` : `#/e/${ev.id}`;
-          } }, after ? 'Mark watched and continue' : 'Mark watched'),
-          h('a', { class: 'btn', href: `#/e/${ev.id}` }, 'Back to the bracket'))));
+          } }, after ? t('btn.markContinue') : t('btn.mark')),
+          h('a', { class: 'btn', href: `#/e/${ev.id}` }, t('btn.backBracket')))));
       return;
     }
 
@@ -363,39 +722,39 @@
     const shield = h('div', { class: 'shield', onclick: () => togglePlay() });
     const coverBtn = h('button', { class: 'playbtn', html: svgPlay, onclick: () => togglePlay() });
     const coverBig = h('div', { class: 'big' }, `${team(ev, s.team1).name} vs ${team(ev, s.team2).name}`);
-    const coverSub = h('div', { class: 'sub muted' }, `${r.name} · Game ${g.n}` + (prog.pos > 30 ? ` · resumes at ${fmt(prog.pos)}` : ''));
+    const coverSub = h('div', { class: 'sub muted' }, t('cover.sub', { round: roundName(r.name), n: g.n }) + (prog.pos > 30 ? t('cover.resumes', { t: fmt(prog.pos) }) : ''));
     const cover = h('div', { class: 'cover' }, h('div', {}, coverBtn, coverBig, coverSub));
-    const playBtn = h('button', { class: 'ic', html: svgPlay, title: 'Play/pause (space)', onclick: () => togglePlay() });
+    const playBtn = h('button', { class: 'ic', html: svgPlay, title: t('ttl.play'), onclick: () => togglePlay() });
     const curEl = h('span', { class: 'cur' }, fmt(prog.pos)); const durEl = h('span', { class: 'dur' }, ' / –:––');
     const timeEl = h('span', { class: 'time' }, curEl, durEl);
     const fill = h('div', { class: 'fill' }); const knob = h('div', { class: 'knob' });
     const range = h('input', { type: 'range', min: 0, max: 1000, value: 0, step: 1, oninput: (e) => { seeking = true; const d = dur(); if (d) { const t = e.target.value / 1000 * d; curEl.textContent = fmt(t); paint(t, d); } }, onchange: (e) => { const d = dur(); if (d) seekTo(e.target.value / 1000 * d); seeking = false; } });
-    const seek = h('div', { class: 'seek' + (store.settings.showDuration ? '' : ' blind'), title: store.settings.showDuration ? '' : 'Progress hidden (blind mode) — drag to seek anyway' }, h('div', { class: 'track' }), fill, knob, range);
-    const muteBtn = h('button', { class: 'ic', html: svgVol, title: 'Mute (m)', onclick: () => toggleMute() });
+    const seek = h('div', { class: 'seek' + (store.settings.showDuration ? '' : ' blind'), title: store.settings.showDuration ? '' : t('seek.blindTitle') }, h('div', { class: 'track' }), fill, knob, range);
+    const muteBtn = h('button', { class: 'ic', html: svgVol, title: t('ttl.mute'), onclick: () => toggleMute() });
     const vol = h('input', { type: 'range', class: 'vol', min: 0, max: 100, value: store.settings.volume, oninput: (e) => { current?.player?.setVolume(+e.target.value); if (+e.target.value > 0) current?.player?.unMute(); store.settings.volume = +e.target.value; save(); } });
-    const langBox = h('div', { class: 'langs' }, langs.map(l => h('button', { class: l === lang ? 'on' : '', disabled: !srcFor(l), title: srcFor(l) ? ev.languages[l] : `No ${ev.languages[l]} VOD for this game`, onclick: () => switchLang(l) }, l.toUpperCase())));
-    const nextBtn = h('button', { class: 'ic', html: svgNext, title: 'Next game (n)', onclick: () => goNext(true) });
-    const fsBtn = h('button', { class: 'ic', html: svgFull, title: 'Fullscreen (f)', onclick: () => toggleFS() });
+    const langBox = h('div', { class: 'langs' }, langs.map(l => h('button', { class: l === lang ? 'on' : '', disabled: !srcFor(l), title: srcFor(l) ? ev.languages[l] : t('lang.noVod', { lang: ev.languages[l] }), onclick: () => switchLang(l) }, l.toUpperCase())));
+    const nextBtn = h('button', { class: 'ic', html: svgNext, title: t('ttl.next'), onclick: () => goNext(true) });
+    const fsBtn = h('button', { class: 'ic', html: svgFull, title: t('ttl.fs'), onclick: () => toggleFS() });
     const controls = h('div', { class: 'controls' }, playBtn, timeEl, seek, langBox, muteBtn, vol, nextBtn, fsBtn);
     const player = h('div', { class: 'player paused', tabindex: 0 }, yt, shield, cover, controls);
 
-    const gameList = h('div', { class: 'games' }, s.games.filter(x => x.n <= g.n || gameDone(ev, s, x) || !store.settings.blind).map(x => h('a', { class: 'g' + (x.n === g.n ? ' on' : '') + (gameDone(ev, s, x) ? ' done' : ''), href: `#/e/${ev.id}/s/${s.id}/g/${x.n}` }, h('span', { class: 'dot' }), `Game ${x.n}`, gameDone(ev, s, x) && h('span', { class: 'ghost-note' }, 'watched'))));
-    if (store.settings.blind && !seriesDone(ev, s)) gameList.append(h('div', { class: 'note' }, 'Further games appear as you finish them — how many there are is part of the story.'));
+    const gameList = h('div', { class: 'games' }, s.games.filter(x => x.n <= g.n || gameDone(ev, s, x) || !store.settings.blind).map(x => h('a', { class: 'g' + (x.n === g.n ? ' on' : '') + (gameDone(ev, s, x) ? ' done' : ''), href: `#/e/${ev.id}/s/${s.id}/g/${x.n}` }, h('span', { class: 'dot' }), t('games.game', { n: x.n }), gameDone(ev, s, x) && h('span', { class: 'ghost-note' }, t('games.watched')))));
+    if (store.settings.blind && !seriesDone(ev, s)) gameList.append(h('div', { class: 'note' }, t('games.note')));
     const srcNote = () => src?.note ? h('div', { class: 'note warn' }, src.note) : null;
-    const sideSources = h('div', { class: 'card' }, h('h3', {}, 'This game'), h('div', { class: 'note' }, `${r.name} · best of ${s.bestOf} · ${ev.short}`), g.matchId ? h('div', { class: 'note' }, `Match ID ${g.matchId}`) : null, s.advantage && (s.advantage[0] || s.advantage[1]) ? h('div', { class: 'note' }, `${team(ev, s.advantage[0] ? s.team1 : s.team2).short} start ${Math.max(...s.advantage)}\u20130 up as upper-bracket winners \u2014 that game was never played.`) : null, h('div', { class: 'note', id: 'src-note' }, srcNote()));
+    const sideSources = h('div', { class: 'card' }, h('h3', {}, t('side.thisGame')), h('div', { class: 'note' }, t('watch.meta', { round: roundName(r.name), bo: s.bestOf, short: ev.short })), g.matchId ? h('div', { class: 'note' }, t('side.matchId', { id: g.matchId })) : null, s.advantage && (s.advantage[0] || s.advantage[1]) ? h('div', { class: 'note' }, t('side.advantage', { team: team(ev, s.advantage[0] ? s.team1 : s.team2).short, n: Math.max(...s.advantage) })) : null, h('div', { class: 'note', id: 'src-note' }, srcNote()));
     const qNow = h('span', {}, '\u2026'), qHint = h('div', { class: 'note' });
-    const qBtn = h('button', { class: 'btn small', style: 'margin-top:8px', onclick: () => toggleNative() }, 'Choose quality\u2026');
-    const qualityCard = h('div', { class: 'card' }, h('h3', {}, 'Video quality'), h('div', { class: 'note' }, 'Playing at ', qNow, '. YouTube picks this from your connection and the size of the player, so fullscreen usually gets more.'), qHint, qBtn);
-    const side = h('div', { class: 'side' }, h('div', { class: 'card' }, h('h3', {}, 'Series'), h('div', { style: 'font-weight:600;margin-bottom:10px' }, badge(ev, s.team1), ' ', team(ev, s.team1).name, h('span', { class: 'muted' }, ' vs '), badge(ev, s.team2), ' ', team(ev, s.team2).name), gameList), sideSources, qualityCard,
-      h('div', { class: 'card' }, h('h3', {}, 'Keys'), h('div', { class: 'note' }, h('kbd', {}, 'space'), ' play/pause · ', h('kbd', {}, '←'), ' ', h('kbd', {}, '→'), ' ±10 s · ', h('kbd', {}, 'J'), ' ', h('kbd', {}, 'L'), ' ±60 s · ', h('kbd', {}, 'F'), ' fullscreen · ', h('kbd', {}, 'M'), ' mute · ', h('kbd', {}, 'N'), ' next game · ', h('kbd', {}, 'R'), ' switch language')));
+    const qBtn = h('button', { class: 'btn small', style: 'margin-top:8px', onclick: () => toggleNative() }, t('btn.chooseQuality'));
+    const qualityCard = h('div', { class: 'card' }, h('h3', {}, t('side.quality')), h('div', { class: 'note' }, t('quality.playingAt'), qNow, t('quality.note')), qHint, qBtn);
+    const side = h('div', { class: 'side' }, h('div', { class: 'card' }, h('h3', {}, t('side.series')), h('div', { style: 'font-weight:600;margin-bottom:10px' }, badge(ev, s.team1), ' ', team(ev, s.team1).name, h('span', { class: 'muted' }, ' vs '), badge(ev, s.team2), ' ', team(ev, s.team2).name), gameList), sideSources, qualityCard,
+      h('div', { class: 'card' }, h('h3', {}, t('side.keys')), h('div', { class: 'note' }, h('kbd', {}, 'space'), t('keys.playpause'), h('kbd', {}, '←'), ' ', h('kbd', {}, '→'), t('keys.10'), h('kbd', {}, 'J'), ' ', h('kbd', {}, 'L'), t('keys.60'), h('kbd', {}, 'F'), t('keys.fs'), h('kbd', {}, 'M'), t('keys.mute'), h('kbd', {}, 'N'), t('keys.next'), h('kbd', {}, 'R'), t('keys.lang'))));
 
     const under = h('div', { class: 'under' },
-      h('span', { class: 'hint' }, 'The YouTube title bar, end screen and related videos are covered on purpose — they give away results.'),
+      h('span', { class: 'hint' }, t('under.hint')),
       h('span', { class: 'spacer' }),
-      h('button', { class: 'btn small', onclick: () => { prog.done = true; save(); toast('Marked as watched'); goNext(false); } }, 'Mark watched & continue'));
+      h('button', { class: 'btn small', onclick: () => { prog.done = true; save(); toast(t('toast.marked')); goNext(false); } }, t('btn.markWatchedContinue')));
 
     app.replaceChildren(
-      h('div', { class: 'watch-head' }, h('span', { class: 'round' }, r.name), h('span', { class: 'matchup' }, team(ev, s.team1).name, h('span', { class: 'vs' }, 'vs'), team(ev, s.team2).name), h('span', { class: 'game' }, `Game ${g.n}`)),
+      h('div', { class: 'watch-head' }, h('span', { class: 'round' }, roundName(r.name)), h('span', { class: 'matchup' }, team(ev, s.team1).name, h('span', { class: 'vs' }, 'vs'), team(ev, s.team2).name), h('span', { class: 'game' }, t('games.game', { n: g.n }))),
       h('div', { class: 'watch' }, h('div', {}, player, under), side));
 
     // ---- player logic ----
@@ -407,19 +766,17 @@
       if (!native) {
         const sliced = !!(src.end || src.offset);
         if (!await ask({
-          title: 'Show YouTube\u2019s own controls?',
-          body: 'Quality can only be picked from YouTube\u2019s gear menu, and this site normally hides YouTube\u2019s controls because they give things away: the length of the video and preview pictures along its scrubber.'
-            + (sliced ? ' Here it matters more \u2014 this video is a whole broadcast day, so that scrubber reaches every later game.' : '')
-            + ' Pick a quality, then hide them again; YouTube usually keeps your choice for the videos that follow.',
-          cancelText: 'Keep them hidden', confirmText: 'Show controls',
+          title: t('ask.native.title'),
+          body: t('ask.native.body') + (sliced ? t('ask.native.sliced') : '') + t('ask.native.tail'),
+          cancelText: t('ask.native.no'), confirmText: t('ask.native.yes'),
         })) return;
       }
       const wasPlaying = me.player?.getPlayerState?.() === 1, at = base() + now();
       native = !native;
       shield.style.display = native ? 'none' : ''; controls.style.display = native ? 'none' : '';
       if (native) cover.classList.add('hidden');
-      qBtn.textContent = native ? 'Hide YouTube controls' : 'Choose quality\u2026';
-      qHint.textContent = native ? 'Use the gear in YouTube\u2019s bar, then hide the controls again.' : '';
+      qBtn.textContent = native ? t('btn.hideYT') : t('btn.chooseQuality');
+      qHint.textContent = native ? t('quality.hint') : '';
       mount(at, wasPlaying);
     };
     current = me;
@@ -437,17 +794,22 @@
     const rel = (d) => { const t = Math.max(0, now() + d); seekTo(t); curEl.textContent = fmt(Math.min(t, dur() || t)); };
     const toggleMute = () => { if (!me.player) return; muted = !muted; muted ? me.player.mute() : me.player.unMute(); muteBtn.innerHTML = muted ? svgMute : svgVol; };
     const toggleFS = () => { if (document.fullscreenElement) document.exitFullscreen(); else player.requestFullscreen?.(); };
-    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const t = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; const startAt = base() + t; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: ns.id, startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(`${ev.languages[l]} commentary`); };
+    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const t = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; const startAt = base() + t; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: ns.id, startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
     const markDone = () => { prog.done = true; save(); };
-    const goNext = (ask) => {
+    // The parameter used to be called `ask`, which shadowed the modal helper and forced a
+    // native confirm() here.
+    const goNext = async (confirmFirst) => {
       const nx = nextAfter(ev, s, g);
-      if (ask && !prog.done && !confirm('Skip the rest of this game and mark it as watched?')) return;
+      if (confirmFirst && !prog.done && !await ask({
+        title: t('ask.skipRest.title'), body: t('ask.skipRest.body'),
+        confirmText: t('ask.skipRest.yes'), cancelText: t('ask.skipRest.no'),
+      })) return;
       markDone();
       if (!nx) { location.hash = `#/e/${ev.id}`; return; }
       if (nx.s.id !== s.id) { pageInterstitial(ev, s, nx); return; }
       location.hash = `#/e/${ev.id}/s/${nx.s.id}/g/${nx.g.n}`;
     };
-    const onEnd = () => { ended = true; markDone(); setPaused(true); cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = 'Game finished'; const nx = nextAfter(ev, s, g); coverSub.replaceChildren(h('div', { class: 'btn-row', style: 'justify-content:center;margin-top:12px' }, nx ? h('button', { class: 'btn primary', onclick: () => goNext(false) }, 'Continue ▶') : h('a', { class: 'btn primary', href: `#/e/${ev.id}` }, 'Back to bracket'), h('button', { class: 'btn', onclick: () => { ended = false; coverBtn.style.display = ''; coverBig.textContent = `${team(ev, s.team1).name} vs ${team(ev, s.team2).name}`; coverSub.textContent = `${r.name} · Game ${g.n}`; seekTo(0); me.player.playVideo(); } }, 'Rewatch'))); if (store.settings.autoNext && nx) setTimeout(() => { if (ended && current === me) goNext(false); }, 4000); };
+    const onEnd = () => { ended = true; markDone(); setPaused(true); cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = t('cover.finished'); const nx = nextAfter(ev, s, g); coverSub.replaceChildren(h('div', { class: 'btn-row', style: 'justify-content:center;margin-top:12px' }, nx ? h('button', { class: 'btn primary', onclick: () => goNext(false) }, t('btn.continue')) : h('a', { class: 'btn primary', href: `#/e/${ev.id}` }, t('btn.backBracket2')), h('button', { class: 'btn', onclick: () => { ended = false; coverBtn.style.display = ''; coverBig.textContent = `${team(ev, s.team1).name} vs ${team(ev, s.team2).name}`; coverSub.textContent = t('cover.sub', { round: roundName(r.name), n: g.n }); seekTo(0); me.player.playVideo(); } }, t('btn.rewatch')))); if (store.settings.autoNext && nx) setTimeout(() => { if (ended && current === me) goNext(false); }, 4000); };
 
     me.onKey = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
@@ -479,7 +841,7 @@
           onReady: (e) => { e.target.setVolume(store.settings.volume); wantQuality(); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); },
           onPlaybackQualityChange: showQuality,
           onStateChange: (e) => { const S = YT.PlayerState; if (e.data === S.PLAYING) { ended = false; wantQuality(); showQuality(); setPaused(false); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); } else if (e.data === S.PAUSED) setPaused(true); else if (e.data === S.ENDED) onEnd(); },
-          onError: (e) => { cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = 'This video is unavailable'; coverSub.textContent = `YouTube error ${e.data}. Try the other language, or run tools/check_links.py to find dead links.`; },
+          onError: (e) => { cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = t('err.unavailable'); coverSub.textContent = t('err.ytError', { code: e.data }); },
         },
       });
     };
@@ -505,14 +867,14 @@
     const slot = h('div', { class: 'reveal-slot' }); // stays empty until the viewer asks — nothing spoilery in the DOM
     const reveal = h('button', { class: 'btn', onclick: () => {
       const [w1, w2] = wins(s); const winner = seriesWinner(s);
-      slot.replaceChildren(h('div', { class: 'score' }, `${w1} – ${w2}`), h('div', {}, badge(ev, winner), ' ', h('b', {}, team(ev, winner).name), ' advances'));
-      reveal.remove(); revealed[s.id] = true; save(); } }, 'Show score');
+      slot.replaceChildren(h('div', { class: 'score' }, `${w1} – ${w2}`), h('div', {}, badge(ev, winner), ' ', h('b', {}, team(ev, winner).name), t('inter.advances')));
+      reveal.remove(); revealed[s.id] = true; save(); } }, t('btn.showScore'));
     const nr = roundOf(ev, nx.s);
     app.replaceChildren(h('div', { class: 'card inter' },
-      h('div', { class: 'muted' }, 'Series complete'),
+      h('div', { class: 'muted' }, t('inter.complete')),
       h('div', { class: 'big' }, badge(ev, s.team1), ' ', team(ev, s.team1).name, h('span', { class: 'muted' }, ' vs '), badge(ev, s.team2), ' ', team(ev, s.team2).name),
       slot,
-      h('div', { class: 'btn-row' }, reveal, h('a', { class: 'btn primary', href: `#/e/${ev.id}/s/${nx.s.id}/g/${nx.g.n}` }, `Next: ${nr.name} — ${team(ev, nx.s.team1).short} vs ${team(ev, nx.s.team2).short} ▶`), h('a', { class: 'btn ghost', href: `#/e/${ev.id}` }, 'Bracket'))));
+      h('div', { class: 'btn-row' }, reveal, h('a', { class: 'btn primary', href: `#/e/${ev.id}/s/${nx.s.id}/g/${nx.g.n}` }, t('btn.next', { round: roundName(nr.name), a: team(ev, nx.s.team1).short, b: team(ev, nx.s.team2).short })), h('a', { class: 'btn ghost', href: `#/e/${ev.id}` }, t('btn.bracket')))));
     window.scrollTo(0, 0);
   }
 
@@ -526,11 +888,12 @@
       else if (p[0] === 'e' && p[2] === 's' && p[4] === 'g') await pageWatch(p[1], p[3], p[5]);
       else location.hash = '#/';
     } catch (err) {
-      app.replaceChildren(h('div', { class: 'card' }, h('h1', {}, 'Something broke'), h('p', { class: 'muted' }, String(err.message || err)), h('a', { class: 'btn', href: '#/' }, 'Back to events')));
+      app.replaceChildren(h('div', { class: 'card' }, h('h1', {}, t('err.broke')), h('p', { class: 'muted' }, String(err.message || err)), h('a', { class: 'btn', href: '#/' }, t('btn.backEvents'))));
       console.error(err);
     }
     updateBlindPill();
   }
+  applyStaticText();
   window.addEventListener('hashchange', route);
   route();
 })();
