@@ -313,7 +313,11 @@
        "id": "Trzd_M0v5hg",
        "official": false,
        "offset": 0,
-       "note": "RuHub uploaded this game in two halves and this is the first; the second is at youtu.be/6BVYI6zj8DA. The English source is whole. Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
+       "note": "RuHub never published this game whole, so it plays here as the two halves they did upload, back to back. The English source is whole. Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off.",
+       "parts": [
+        "Trzd_M0v5hg",
+        "6BVYI6zj8DA"
+       ]
       }
      ]
     }
@@ -498,7 +502,11 @@
        "id": "rS727UO-hgg",
        "official": false,
        "offset": 0,
-       "note": "RuHub uploaded this game in two halves and this is the first; the second is at youtu.be/1nIMXonkT-Y. The English source is whole. Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off."
+       "note": "RuHub never published this game whole, so it plays here as the two halves they did upload, back to back. The first half also opens with a long studio segment before the game itself, which may mention other matches. The English source is whole. Russian and English are different recordings here and are not synchronised: switching language mid-game can land a few minutes off.",
+       "parts": [
+        "rS727UO-hgg",
+        "1nIMXonkT-Y"
+       ]
       }
      ]
     },

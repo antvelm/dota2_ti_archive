@@ -41,11 +41,16 @@ def main():
                 for src in g["sources"]:
                     if src.get("provider") != "youtube":
                         continue
-                    st, author, title = status(src["id"])
-                    flag = "" if st == "ok" else "  <-- "
-                    if st != "ok":
-                        dead += 1
-                    print(f"{flag}{s['id']:10} g{g['n']} {src['lang']}  {src['id']}  {st}  {author or ''}")
+                    # A split upload has every half in "parts"; "id" is only the first of
+                    # them, so checking it alone would leave the rest to rot unnoticed.
+                    ids = src.get("parts") or [src["id"]]
+                    for i, vid in enumerate(ids):
+                        st, author, title = status(vid)
+                        flag = "" if st == "ok" else "  <-- "
+                        if st != "ok":
+                            dead += 1
+                        part = f" part {i + 1}/{len(ids)}" if len(ids) > 1 else ""
+                        print(f"{flag}{s['id']:10} g{g['n']} {src['lang']}{part}  {vid}  {st}  {author or ''}")
     print(f"\n{dead} dead source(s)")
     sys.exit(1 if dead else 0)
 

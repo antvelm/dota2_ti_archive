@@ -121,6 +121,7 @@
       'err.unavailable': 'This video is unavailable',
       'err.ytError': 'YouTube error {code}. Try the other language, or run tools/check_links.py to find dead links.',
       'toast.commentary': '{lang} commentary',
+      'toast.nextPart': 'Part {n} of {total} \u2014 this game was uploaded in pieces',
       'inter.complete': 'Series complete', 'btn.showScore': 'Show score', 'inter.advances': ' advances',
       'btn.next': 'Next: {round} — {a} vs {b} ▶', 'btn.bracket': 'Bracket',
       'err.broke': 'Something broke', 'btn.backEvents': 'Back to events',
@@ -220,6 +221,7 @@
       'err.unavailable': 'Это видео недоступно',
       'err.ytError': 'Ошибка YouTube {code}. Попробуйте другой язык или запустите tools/check_links.py, чтобы найти битые ссылки.',
       'toast.commentary': 'Комментарий: {lang}',
+      'toast.nextPart': 'Часть {n} из {total} — эта игра загружена по частям',
       'inter.complete': 'Серия завершена', 'btn.showScore': 'Показать счёт', 'inter.advances': ' проходит дальше',
       'btn.next': 'Далее: {round} — {a} vs {b} ▶', 'btn.bracket': 'Сетка',
       'err.broke': 'Что-то сломалось', 'btn.backEvents': 'Назад к турнирам',
@@ -787,7 +789,21 @@
     // broadcast days, and a game is [offset, end) inside one. Everything below runs on slice
     // time, where 0 is the start of this game, so the position, the duration, the scrubber
     // and the resume point never expose the day around it, and seeking cannot leave it.
-    const base = () => src.offset || 0;
+    // A handful of sources survive only as a split upload: RuHub cut two TI5 games in
+    // half and never published a whole one. The halves play back to back, each keeping its
+    // own timeline. That costs nothing visible here, because blind mode hides duration
+    // anyway, and it keeps the seeking maths below on a single video.
+    let partIdx = 0, switching = false;
+    const partIds = () => (src.parts && src.parts.length ? src.parts : [src.id]);
+    const partId = () => partIds()[partIdx] || src.id;
+    const morePartsAfter = () => partIdx < partIds().length - 1;
+    const nextPart = () => {
+      partIdx++; prog.pos = 0; ended = false; switching = true;
+      me.player.loadVideoById({ videoId: partId(), startSeconds: 0 });
+      toast(t('toast.nextPart', { n: partIdx + 1, total: partIds().length }));
+    };
+    // Only the first part can be a slice of something longer; the rest start at their own 0.
+    const base = () => (partIdx ? 0 : src.offset || 0);
     const dur = () => { try { const stop = src.end || me.player?.getDuration() || 0; return stop ? Math.max(0, stop - base()) : 0; } catch (e) { return 0; } };
     const now = () => { try { return Math.max(0, (me.player?.getCurrentTime() || 0) - base()); } catch (e) { return 0; } };
     const paint = (t, d) => { const p = d ? Math.min(1, t / d) : 0; fill.style.width = (p * 100) + '%'; knob.style.left = (p * 100) + '%'; if (!seeking) range.value = Math.round(p * 1000); };
@@ -797,7 +813,7 @@
     const rel = (d) => { const t = Math.max(0, now() + d); seekTo(t); curEl.textContent = fmt(Math.min(t, dur() || t)); };
     const toggleMute = () => { if (!me.player) return; muted = !muted; muted ? me.player.mute() : me.player.unMute(); muteBtn.innerHTML = muted ? svgMute : svgVol; };
     const toggleFS = () => { if (document.fullscreenElement) document.exitFullscreen(); else player.requestFullscreen?.(); };
-    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const t = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; const startAt = base() + t; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: ns.id, startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
+    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const t = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; partIdx = 0; const startAt = base() + t; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: partId(), startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
     const markDone = () => { prog.done = true; save(); };
     // The parameter used to be called `ask`, which shadowed the modal helper and forced a
     // native confirm() here.
@@ -812,7 +828,7 @@
       if (nx.s.id !== s.id) { pageInterstitial(ev, s, nx); return; }
       location.hash = `#/e/${ev.id}/s/${nx.s.id}/g/${nx.g.n}`;
     };
-    const onEnd = () => { ended = true; markDone(); setPaused(true); cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = t('cover.finished'); const nx = nextAfter(ev, s, g); coverSub.replaceChildren(h('div', { class: 'btn-row', style: 'justify-content:center;margin-top:12px' }, nx ? h('button', { class: 'btn primary', onclick: () => goNext(false) }, t('btn.continue')) : h('a', { class: 'btn primary', href: `#/e/${ev.id}` }, t('btn.backBracket2')), h('button', { class: 'btn', onclick: () => { ended = false; coverBtn.style.display = ''; coverBig.textContent = `${team(ev, s.team1).name} vs ${team(ev, s.team2).name}`; coverSub.textContent = t('cover.sub', { round: roundName(r.name), n: g.n }); seekTo(0); me.player.playVideo(); } }, t('btn.rewatch')))); if (store.settings.autoNext && nx) setTimeout(() => { if (ended && current === me) goNext(false); }, 4000); };
+    const onEnd = () => { if (morePartsAfter()) { nextPart(); return; } ended = true; markDone(); setPaused(true); cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = t('cover.finished'); const nx = nextAfter(ev, s, g); coverSub.replaceChildren(h('div', { class: 'btn-row', style: 'justify-content:center;margin-top:12px' }, nx ? h('button', { class: 'btn primary', onclick: () => goNext(false) }, t('btn.continue')) : h('a', { class: 'btn primary', href: `#/e/${ev.id}` }, t('btn.backBracket2')), h('button', { class: 'btn', onclick: () => { ended = false; coverBtn.style.display = ''; coverBig.textContent = `${team(ev, s.team1).name} vs ${team(ev, s.team2).name}`; coverSub.textContent = t('cover.sub', { round: roundName(r.name), n: g.n }); seekTo(0); me.player.playVideo(); } }, t('btn.rewatch')))); if (store.settings.autoNext && nx) setTimeout(() => { if (ended && current === me) goNext(false); }, 4000); };
 
     me.onKey = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
@@ -837,13 +853,13 @@
       const slot = h('div'); yt.replaceChildren(slot);
       const q = store.settings.quality;
       me.player = new YT.Player(slot, {
-        videoId: src.id, width: '100%', height: '100%',
+        videoId: partId(), width: '100%', height: '100%',
         playerVars: Object.assign({ controls: native ? 1 : 0, rel: 0, iv_load_policy: 3, modestbranding: 1, playsinline: 1, disablekb: native ? 0 : 1, fs: 0, origin: location.origin, start: Math.floor(startAt) },
           src.end ? { end: Math.floor(src.end) } : {}, q && q !== 'auto' ? { vq: q } : {}, autoplay ? { autoplay: 1 } : {}),
         events: {
           onReady: (e) => { e.target.setVolume(store.settings.volume); wantQuality(); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); },
           onPlaybackQualityChange: showQuality,
-          onStateChange: (e) => { const S = YT.PlayerState; if (e.data === S.PLAYING) { ended = false; wantQuality(); showQuality(); setPaused(false); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); } else if (e.data === S.PAUSED) setPaused(true); else if (e.data === S.ENDED) onEnd(); },
+          onStateChange: (e) => { const S = YT.PlayerState; if (e.data === S.PLAYING) { ended = false; switching = false; wantQuality(); showQuality(); setPaused(false); if (store.settings.showDuration) durEl.textContent = ' / ' + fmt(dur()); } else if (e.data === S.PAUSED) setPaused(true); else if (e.data === S.ENDED) onEnd(); },
           onError: (e) => { cover.classList.remove('hidden', 'paused'); coverBtn.style.display = 'none'; coverBig.textContent = t('err.unavailable'); coverSub.textContent = t('err.ytError', { code: e.data }); },
         },
       });
@@ -860,7 +876,7 @@
       prog.pos = t;
       if (Date.now() - lastSave > 5000) { lastSave = Date.now(); save(); }
       // treat the last 2 s as the end: YouTube sometimes never fires ENDED on old uploads
-      if (d && d - t < 2 && !ended) { onEnd(); if (src.end) me.player.pauseVideo(); }   // a slice ends mid-video, so stop it ourselves
+      if (d && d - t < 2 && !ended && !switching) { onEnd(); if (src.end && !morePartsAfter()) me.player.pauseVideo(); }   // a slice ends mid-video, so stop it ourselves
     }, 250);
   }
 
