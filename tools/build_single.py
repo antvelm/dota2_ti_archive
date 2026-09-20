@@ -4,7 +4,7 @@
 The hub at /var/www/artifacts wants one standalone HTML file per tool: inline CSS
 and JS, no build step at serve time, no external assets. This inlines styles.css,
 app.js and every data/*.json listed in data/events.json, patches loadJSON() to read
-the embedded copies instead of fetching, and adds the artifacts back-link plus the
+the embedded copies instead of fetching, and adds the artifacts hub link plus the
 meta/og/favicon block the hub README asks for.
 
     python3 tools/build_single.py -o /path/to/ti-archive.html
@@ -33,16 +33,48 @@ HEAD = f"""<title>{TITLE}</title>
 <meta property="og:url" content="{URL}">
 <link rel="icon" href="{FAVICON}">"""
 
-# Quiet link back to the hub. Recedes at rest, full contrast on hover/focus; sits
+# Quiet link to the hub. Recedes at rest, full contrast on hover/focus; sits
 # above the sticky header, which scrolls over it.
 BACK_CSS = """
-/* back to the artifacts index */
+/* to the artifacts index */
 .af-back { align-self: flex-start; display: inline-block; padding: 10px 20px 0; font-size: .78rem;
   letter-spacing: .02em; color: var(--muted); text-decoration: none; opacity: .55;
   transition: opacity .12s ease, color .12s ease; }
 .af-back:hover, .af-back:focus-visible { opacity: 1; color: var(--text); }
 .af-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
-@media (prefers-reduced-motion: reduce) { .af-back { transition: none; } }
+/* display:inline-block above would beat the UA sheet's [hidden] rule on specificity */
+.af-back[hidden] { display: none; }
+
+/* the same link for someone who never came from the hub: quiet, in the footer, matching .gh */
+.foot .af-more-link { color: var(--muted); opacity: .8; border-bottom: 1px solid transparent;
+  transition: color .15s, opacity .15s, border-color .15s; }
+.foot .af-more-link:hover, .foot .af-more-link:focus-visible { color: var(--text); opacity: 1; border-bottom-color: var(--line); }
+.foot .af-more-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+@media (prefers-reduced-motion: reduce) { .af-back, .foot .af-more-link { transition: none; } }
+"""
+
+# Same href either way, but neither the label nor the placement can be. The top-left slot
+# reads as "up to the parent page" no matter what it says, and "artifacts" is the hub's own
+# name — both only make sense to someone who actually came from the hub. So that is the one
+# case where the top-left link appears. Everyone else gets it as what it really is to them:
+# a quiet outbound link in the footer, next to the GitHub one, naming the site in plain words.
+# The footer form is what ships in the markup, so it is also the no-JS fallback.
+BACK_LINK = """<a class="af-back" href="/artifacts" id="af-back" hidden>\u2190 artifacts</a>
+"""
+
+MORE_LINK = """    <span class="sep" aria-hidden="true">\u00b7</span>
+    <span id="af-more"><a class="af-more-link" href="/artifacts">more tools at antvelm.net</a></span>
+"""
+
+SWAP_JS = """<script>
+(function () {
+  var from = document.referrer || '';
+  if (from.indexOf(location.origin + '/artifacts') !== 0) return;   // not from the hub: leave the footer link
+  document.getElementById('af-back').hidden = false;
+  var more = document.getElementById('af-more');
+  if (more) more.previousElementSibling.remove(), more.remove();    // drop it and its separator
+})();
+</script>
 """
 
 FETCH_SRC = """  const cache = {};
@@ -70,8 +102,9 @@ def embed(paths):
         text = (ROOT / rel).read_text(encoding="utf-8")
         json.loads(text)  # fail loudly on malformed data
         # "</" would close the script tag early; "\/" is a legal JSON string escape.
+        safe = text.replace("</", "<\\/")
         out.append(f'<script type="application/json" id="ti-data-{i}">'
-                   f'{text.replace("</", "<\\/")}</script>')
+                   f'{safe}</script>')
         keys.append(f'  {json.dumps(rel)}: JSON.parse(document.getElementById("ti-data-{i}").textContent),')
     out.append("<script>\nwindow.__TI_DATA__ = {\n" + "\n".join(keys) + "\n};\n</script>")
     return "\n".join(out)
@@ -101,8 +134,10 @@ def build():
 
     html = sub(html, '<link rel="stylesheet" href="styles.css">',
                "<style>\n" + css.rstrip() + "\n" + BACK_CSS + "</style>", "stylesheet link")
-    html = sub(html, "<body>\n",
-               '<body>\n<a class="af-back" href="/artifacts">← artifacts</a>\n', "<body> tag")
+    html = sub(html, "<body>\n", "<body>\n" + BACK_LINK, "<body> tag")
+    html = sub(html, "  </p>\n</footer>", MORE_LINK + "  </p>\n</footer>", "footer links row")
+    # After the footer, so both nodes exist by the time it runs.
+    html = sub(html, "</body>", SWAP_JS + "</body>", "</body> tag")
     html = sub(html, '<script src="app.js"></script>',
                embed(data_files) + "\n<script>\n" + js.rstrip() + "\n</script>", "app.js script tag")
     return html

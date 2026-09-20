@@ -21,18 +21,73 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .muted { color: var(--muted); }
 
 /* header */
-.top { display: flex; align-items: center; gap: 18px; padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--bg-2); position: sticky; top: 0; z-index: 20; }
-.brand { font-weight: 700; letter-spacing: .3px; display: flex; align-items: center; gap: 8px; }
-.aegis { width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, var(--gold), var(--red) 70%); display: inline-block; box-shadow: 0 0 10px rgba(242,193,78,.4); }
-#crumbs { color: var(--muted); font-size: 14px; display: flex; gap: 8px; }
-#crumbs a:hover { color: var(--text); }
+/* Tight gap: the brand is the first crumb, so the trail has to read as one run. */
+.top { display: flex; align-items: center; gap: 10px; padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--bg-2); position: sticky; top: 0; z-index: 20; }
+/* A wordmark, not a link — navigation lives entirely in the trail beside it. */
+.brand { font-weight: 700; letter-spacing: .3px; display: flex; align-items: center; gap: 8px; cursor: default; }
+/* The Aegis of the Immortal, as supplied. The artwork is a circular orb painted onto a
+   square black backdrop, so the corners are clipped away rather than edited out of it. */
+.aegis { width: 18px; height: 18px; flex: none; display: block; border-radius: 50%;
+  filter: drop-shadow(0 0 7px rgba(232,100,26,.4)); }
+#crumbs { color: var(--muted); font-size: 14px; display: flex; gap: 8px; align-items: center; }
+/* A rule, not a separator: the wordmark is identity, what follows is the trail. Without it
+   the brand reads as the first crumb, and a bold white item beside a muted one beside a
+   white one looks like three unrelated things rather than one path. */
+#crumbs:not(:empty)::before { content: ''; align-self: stretch; width: 1px; margin-right: 2px; background: var(--line); }
+.crumb-sep { opacity: .45; }
+/* One rule for the whole trail: everything before the last is a link and is muted, the last
+   is where you are. The underline waits for hover so a link is not a third kind of thing. */
+a.crumb { color: var(--muted); border-bottom: 1px solid transparent; transition: color .15s, border-color .15s; }
+a.crumb:hover, a.crumb:focus-visible { color: var(--text); border-bottom-color: var(--text); }
+a.crumb:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; border-bottom-color: transparent; }
+.crumb-here { color: var(--text); cursor: default; }
+@media (prefers-reduced-motion: reduce) { a.crumb { transition: none; } }
 .top-right { margin-left: auto; display: flex; gap: 10px; align-items: center; }
-.pill { font-size: 12px; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
-.pill-on { border-color: rgba(60,207,122,.5); color: var(--green); }
-.pill-off { border-color: rgba(224,35,63,.6); color: var(--red-2); }
+/* gear: quiet until you look for it */
+.icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px;
+  padding: 0; background: transparent; border: 1px solid transparent; border-radius: 8px; color: var(--muted);
+  transition: color .15s, background .15s, border-color .15s; }
+.icon-btn:hover { color: var(--text); background: var(--bg-3); border-color: var(--line); }
+.icon-btn[aria-expanded="true"] { color: var(--text); background: var(--bg-3); border-color: var(--line); }
+.icon-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.icon-btn svg { width: 17px; height: 17px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* Settings live above the sticky header, anchored under the gear. */
+.settings-panel { position: absolute; top: calc(100% + 8px); right: 20px; z-index: 30; width: min(560px, calc(100vw - 32px));
+  max-height: min(70vh, 640px); overflow-y: auto; background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px 6px; }
+.settings-panel .settings { grid-template-columns: 1fr; gap: 0; }
+.settings-panel .setting:last-child { border-bottom: 0; }
+.settings-head { margin-bottom: 6px; }
+.settings-head .d { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+@media (max-width: 560px) { .settings-panel { right: 8px; left: 8px; width: auto; } }
+/* Blind mode: a real toggle, matching the gear's height so the header reads as one row.
+   The tint carries the state; the icon says which way it will go. */
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 11px;
+  font-size: 12px; font-weight: 500; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--bg-3); color: var(--muted); white-space: nowrap;
+  transition: color .15s, border-color .15s, background .15s; }
+.chip svg { width: 14px; height: 14px; flex: none; }
+.chip-on { color: var(--green); border-color: rgba(60,207,122,.4); background: rgba(60,207,122,.1); }
+.chip-off { color: var(--red-2); border-color: rgba(224,35,63,.45); background: rgba(224,35,63,.1); }
+.chip-on:hover { background: rgba(60,207,122,.18); border-color: rgba(60,207,122,.6); }
+.chip-off:hover { background: rgba(224,35,63,.18); border-color: rgba(224,35,63,.65); }
+.chip:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+/* one icon at a time: struck-through eye while hidden, open eye once results show */
+.chip-on .i-off, .chip-off .i-on { display: none; }
+@media (max-width: 560px) { .chip-label { display: none; } .chip { padding: 0 8px; } }
+@media (prefers-reduced-motion: reduce) { .chip { transition: none; } }
 
 main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 24px 20px 48px; }
 .foot { text-align: center; color: var(--muted); font-size: 12px; padding: 18px; border-top: 1px solid var(--line); }
+/* The sentence gets its own line; the links sit in a row under it. Mixing them made the row
+   left-heavy and read as off-centre even though the box was centred. */
+.foot .lead { margin: 0 auto 8px; max-width: 68ch; }
+/* flex, so the inline-flex GitHub link shares a centre line with its neighbours instead of
+   riding 2px high on its own baseline */
+.foot .foot-links { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; }
 .foot .sep { opacity: .5; margin: 0 6px; }
 /* quiet at rest, legible on hover — it should never compete with the video */
 .foot .gh { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); opacity: .8;
@@ -40,6 +95,11 @@ main { flex: 1; width: 100%; max-width: 1240px; margin: 0 auto; padding: 24px 20
 .foot .gh:hover, .foot .gh:focus-visible { color: var(--text); opacity: 1; border-bottom-color: var(--line); }
 .foot .gh:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
 .foot .gh svg { width: 13px; height: 13px; flex: none; }
+/* Too narrow for one row: stack the links and drop the separators, so no "·" ever leads a line. */
+@media (max-width: 560px) {
+  .foot .foot-links { flex-direction: column; gap: 6px; }
+  .foot .foot-links .sep { display: none; }
+}
 .loading { color: var(--muted); padding: 40px; text-align: center; }
 
 h1 { font-size: 26px; margin: 0 0 6px; }
@@ -110,6 +170,10 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 @media (max-width: 500px) { .settings { grid-template-columns: 1fr; } }
 .setting { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .setting .d { font-size: 12px; color: var(--muted); margin-top: 2px; }
+/* The label column absorbs the squeeze; the control keeps its natural width so a pair of
+   buttons stays a row instead of stacking. */
+.setting > div:first-child { min-width: 0; }
+.setting > .btn-row { flex: none; flex-wrap: nowrap; }
 select, input[type=file] { background: var(--bg-3); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; font: inherit; }
 .switch { position: relative; width: 40px; height: 22px; background: var(--bg-3); border: 1px solid var(--line); border-radius: 999px; flex: none; }
 .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--muted); transition: transform .15s, background .15s; }
