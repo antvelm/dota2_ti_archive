@@ -917,10 +917,6 @@
     teardown();
     const p = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
     try {
-      // The watch route drops the page's warm background; a glow beside a video reads as
-      // something happening. Set from the route rather than :has(), so it does not depend
-      // on selector support.
-      document.body.classList.toggle('watching', p[0] === 'e' && p[2] === 's' && p[4] === 'g');
       if (!p.length) await pageEvents();
       else if (p[0] === 'e' && p.length === 2) await pageEvent(p[1]);
       else if (p[0] === 'e' && p[2] === 's' && p[4] === 'g') await pageWatch(p[1], p[3], p[5]);
