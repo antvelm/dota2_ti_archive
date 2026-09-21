@@ -64,9 +64,9 @@
       'h2.bracket': 'Bracket', 'h2.progress': 'Progress',
       'bestof': 'best of {n}', 'card.bo': 'bo{n}',
       'legend.watched': 'watched', 'legend.upnext': 'up next',
-      'legend.locked': 'locked until the feeding series are watched',
-      'legend.hint1': 'Click a watched series to rewatch or reveal its score.',
-      'legend.hint2': 'Click a locked series to skip ahead to it.',
+      'legend.locked': 'locked',
+      'legend.hint1': 'Click a watched series to rewatch it or reveal its score.',
+      'legend.hint2': 'A series stays locked until everything feeding into it has been watched — click a locked one to skip ahead to it anyway.',
       'ev.progressFor': 'Progress for {short}',
       'ev.progressFor.d': 'Stored in this browser only. Export, import and the settings that apply to every event are under the gear in the header.',
       'btn.reset': 'Reset',
@@ -163,9 +163,9 @@
       'h2.bracket': 'Сетка', 'h2.progress': 'Прогресс',
       'bestof': 'Bo{n}', 'card.bo': 'bo{n}',
       'legend.watched': 'просмотрено', 'legend.upnext': 'далее',
-      'legend.locked': 'закрыто, пока не просмотрены ведущие к ней серии',
+      'legend.locked': 'закрыто',
       'legend.hint1': 'Нажмите на просмотренную серию, чтобы пересмотреть её или увидеть счёт.',
-      'legend.hint2': 'Нажмите на закрытую серию, чтобы перейти сразу к ней.',
+      'legend.hint2': 'Серия остаётся закрытой, пока не просмотрено всё, что к ней ведёт, — нажмите на закрытую, чтобы всё-таки перейти сразу к ней.',
       'ev.progressFor': 'Прогресс: {short}',
       'ev.progressFor.d': 'Хранится только в этом браузере. Экспорт, импорт и настройки для всех турниров — под шестерёнкой в шапке.',
       'btn.reset': 'Сбросить',
@@ -415,6 +415,10 @@
       yes.focus();
     });
   }
+  // A swatch, not a control: filled, round, and nothing about it invites a click. The
+  // bordered square it replaced was indistinguishable from a checkbox.
+  const legendKey = (color, label) => h('span', { class: 'key' },
+    h('i', { style: `background:${color}` }), label);
   const badge = (ev, id) => { const t = team(ev, id); const hue = [...id].reduce((a, c) => a + c.charCodeAt(0) * 17, 0) % 360; return h('span', { class: 'badge', style: `background:hsl(${hue} 45% 38%)` }, t.short.slice(0, 2).toUpperCase()); };
   // The header chip is the blind-mode control, not just a readout — it was the one thing in
   // the header that looked interactive and was not. The switch in the settings panel drives
@@ -618,7 +622,13 @@
       cont,
       h('h2', {}, t('h2.bracket')),
       h('div', { class: 'bracket-wrap' }, bracket),
-      h('div', { class: 'legend' }, h('span', {}, h('i', { style: 'border-color:rgba(60,207,122,.5)' }), t('legend.watched')), h('span', {}, h('i', { style: 'border-color:var(--gold)' }), t('legend.upnext')), h('span', {}, h('i', { style: 'opacity:.5' }), t('legend.locked')), h('span', {}, t('legend.hint1')), h('span', {}, t('legend.hint2'))),
+      // A colour key and a set of instructions are two different things and were reading as
+      // five peers on one line. Key first, on its own row; what you can do with it below.
+      h('div', { class: 'legend' },
+        legendKey('var(--green)', t('legend.watched')),
+        legendKey('var(--gold)', t('legend.upnext')),
+        legendKey('#3d4356', t('legend.locked'))),
+      h('p', { class: 'legend-hint' }, t('legend.hint1') + ' ' + t('legend.hint2')),
       h('h2', {}, t('h2.progress')), progress);
     updateBlindPill();
   }
