@@ -51,6 +51,18 @@ a.crumb:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; bor
 .icon-btn[aria-expanded="true"] { color: var(--text); background: var(--bg-3); border-color: var(--line); }
 .icon-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .icon-btn svg { width: 17px; height: 17px; }
+/* Interface language. Two options, so both are shown and one press switches — a
+   dropdown would hide half the choice behind a click. Matches the gear's height. */
+.lang-switch { display: inline-flex; height: 30px; flex: none; border: 1px solid var(--line);
+  border-radius: 8px; overflow: hidden; background: var(--bg-3); }
+.lang-switch button { padding: 0 9px; font-size: 12px; font-weight: 600; letter-spacing: .03em;
+  color: var(--muted); background: transparent; border: 0; transition: color .15s, background .15s; }
+.lang-switch button + button { border-left: 1px solid var(--line); }
+.lang-switch button:hover { color: var(--text); background: #262a36; }
+.lang-switch button.on { color: var(--text); background: #262a36; cursor: default; }
+.lang-switch button:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+@media (prefers-reduced-motion: reduce) { .lang-switch button { transition: none; } }
+
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 

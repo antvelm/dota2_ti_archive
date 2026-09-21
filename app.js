@@ -37,9 +37,9 @@
       'chip.onTitle': 'Spoiler-free: results stay hidden until you watch them',
       'chip.offTitle': 'Spoilers are visible — click to hide results again',
       'settings.title': 'Settings', 'settings.sub': 'These apply to every tournament.',
-      'set.ui': 'Interface language', 'set.ui.d': 'The language of this site. Commentary follows it until you pick a commentary language yourself.',
+      'set.ui': 'Interface language',
       'set.blind': 'Blind mode', 'set.blind.d': 'Hide results, scores and bracket progression until you have watched them.',
-      'set.lang': 'Commentary language', 'set.lang.d': 'Default audio/stream language. You can switch during a game.',
+      'set.lang': 'Commentary language', 'set.lang.d': 'Default audio/stream language. Follows the interface language until you pick one here. You can switch during a game.',
       'set.order': 'Playback order', 'set.order.d': 'By series plays each series to the end. Strict chronological follows real game start times, which interleaves concurrent series but can never leak a result.',
       'order.series': 'By series', 'order.chrono': 'Strict chronological',
       'set.duration': 'Show video duration', 'set.duration.d': 'A short video hints at a stomp, a long one at a close game. Off by default.',
@@ -137,9 +137,9 @@
       'chip.onTitle': 'Без спойлеров: результаты скрыты, пока вы их не посмотрите',
       'chip.offTitle': 'Спойлеры видны — нажмите, чтобы снова скрыть результаты',
       'settings.title': 'Настройки', 'settings.sub': 'Действуют для всех турниров.',
-      'set.ui': 'Язык интерфейса', 'set.ui.d': 'Язык сайта. Язык комментария следует за ним, пока вы не выберете его сами.',
+      'set.ui': 'Язык интерфейса',
       'set.blind': 'Режим без спойлеров', 'set.blind.d': 'Скрывать результаты, счёт и продвижение по сетке, пока вы их не посмотрите.',
-      'set.lang': 'Язык комментария', 'set.lang.d': 'Язык звука по умолчанию. Его можно переключить во время игры.',
+      'set.lang': 'Язык комментария', 'set.lang.d': 'Язык звука по умолчанию. Следует за языком интерфейса, пока вы не выберете его здесь. Его можно переключить во время игры.',
       'set.order': 'Порядок просмотра', 'set.order.d': 'По сериям — каждая серия проигрывается до конца. Строго хронологически — по реальному времени начала игр: параллельные серии чередуются, но результат не раскрывается.',
       'order.series': 'По сериям', 'order.chrono': 'Строго хронологически',
       'set.duration': 'Показывать длительность', 'set.duration.d': 'Короткое видео намекает на разгром, длинное — на близкую игру. По умолчанию выключено.',
@@ -458,7 +458,29 @@
 
   // Text that is in index.html rather than in a render pass, so it has to be pushed out
   // whenever the language changes.
+  // Two languages, so a segmented pair rather than a dropdown: both options are visible
+  // and one press switches. The commentary rule still lives in setUILang().
+  const langSwitch = $('#lang-switch');
+  const updateLangSwitch = () => {
+    langSwitch.setAttribute('aria-label', t('set.ui'));
+    for (const b of langSwitch.children) {
+      const on = b.dataset.ui === uiLang();
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', String(on));
+    }
+  };
+  langSwitch.onclick = (e) => {
+    const b = e.target.closest('button[data-ui]');
+    if (!b || b.dataset.ui === uiLang()) return;
+    store.settings.ui = b.dataset.ui;
+    setUILang(b.dataset.ui);          // pulls commentary along unless it was chosen
+    save();
+    if (!panel.hidden) renderSettings();
+    route();
+  };
+
   function applyStaticText() {
+    updateLangSwitch();
     document.documentElement.lang = uiLang();
     document.title = t('app.title');
     $('#foot-lead').textContent = t('foot.embed');
@@ -478,9 +500,6 @@
       h('div', { class: 'settings-head' }, h('strong', {}, t('settings.title')),
         h('span', { class: 'd' }, t('settings.sub'))),
       h('div', { class: 'settings' },
-        // The two languages sit together: the first row's description refers to the second,
-        // which only reads as a rule when they are adjacent.
-        setRow(t('set.ui'), t('set.ui.d'), sel('ui', Object.entries(UI_LANGS), setUILang)),
         setRow(t('set.lang'), t('set.lang.d'), sel('lang', Object.entries(UI_LANGS), () => { store.settings.langSet = true; })),
         setRow(t('set.blind'), t('set.blind.d'), sw('blind', (v) => v ? true : askBlindOff())),
         setRow(t('set.order'), t('set.order.d'),
