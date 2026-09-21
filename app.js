@@ -612,12 +612,14 @@
 
     app.replaceChildren(
       h('h1', {}, ev.name), h('p', { class: 'sub' }, `${ev.location} · ${dateText(ev.dates)} · ${stageName(ev.stage)}`),
+      // What this event does and does not cover belongs with the rest of its description,
+      // not stranded under the bracket where it is read after the watching, not before.
+      ev.notes && h('p', { class: 'note event-note' }, ev.notes),
       cont,
       h('h2', {}, t('h2.bracket')),
       h('div', { class: 'bracket-wrap' }, bracket),
       h('div', { class: 'legend' }, h('span', {}, h('i', { style: 'border-color:rgba(60,207,122,.5)' }), t('legend.watched')), h('span', {}, h('i', { style: 'border-color:var(--gold)' }), t('legend.upnext')), h('span', {}, h('i', { style: 'opacity:.5' }), t('legend.locked')), h('span', {}, t('legend.hint1')), h('span', {}, t('legend.hint2'))),
-      h('h2', {}, t('h2.progress')), progress,
-      ev.notes && h('p', { class: 'note', style: 'margin-top:18px' }, ev.notes));
+      h('h2', {}, t('h2.progress')), progress);
     updateBlindPill();
   }
 
