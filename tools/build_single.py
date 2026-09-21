@@ -20,19 +20,13 @@ DESC = ("A spoiler-free viewer for archived International VODs: the bracket, gam
         "video length and result all stay hidden until you have watched them.")
 # The archive moved to its own domain on 2026-09-20; antvelm.net/ti-archive 301s here.
 URL = "https://tiarchive.com/"
-FAVICON = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>"
-           "<rect width='32' height='32' rx='7' fill='%230a0a0b'/><text x='16' y='23' "
-           "font-family='monospace' font-size='19' font-weight='700' fill='%23a78bfa' "
-           "text-anchor='middle'>a</text></svg>")
-
 HEAD = f"""<title>{TITLE}</title>
 <meta name="description" content="{DESC}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{TITLE}">
 <meta property="og:description" content="{DESC}">
 <meta property="og:url" content="{URL}">
-<link rel="canonical" href="{URL}">
-<link rel="icon" href="{FAVICON}">"""
+<link rel="canonical" href="{URL}">"""
 
 FETCH_SRC = """  const cache = {};
   async function loadJSON(url) {
@@ -84,10 +78,11 @@ def build():
 
     js = sub(js, FETCH_SRC, FETCH_DST, "loadJSON() fetch block in app.js")
 
-    # head: our own title/meta/favicon replace the site's
+    # head: our own title/meta replace the site's, but the favicon is the site's own
+    # Aegis and stays — the cut stops short of that line rather than swallowing it.
     start = html.index("<title>")
-    end = html.index("\n", html.index('<link rel="icon"'))
-    html = html[:start] + HEAD + html[end:]
+    end = html.index('<link rel="icon"')
+    html = html[:start] + HEAD + "\n" + html[end:]
 
     html = sub(html, '<link rel="stylesheet" href="styles.css">',
                "<style>\n" + css.rstrip() + "\n</style>", "stylesheet link")
