@@ -15,9 +15,9 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
-TITLE = "TI Archive — rewatch The International without spoilers"
-DESC = ("A spoiler-free viewer for archived International VODs: the bracket, game count, "
-        "video length and result all stay hidden until you have watched them.")
+TITLE = "TI Archive — rewatch Dota 2's The International without spoilers"
+DESC = ("A spoiler-free viewer for archived Dota 2 International VODs: the bracket, game "
+        "count, video length and result all stay hidden until you have watched them.")
 # The archive moved to its own domain on 2026-09-20; antvelm.net/ti-archive 301s here.
 URL = "https://tiarchive.com/"
 HEAD = f"""<title>{TITLE}</title>

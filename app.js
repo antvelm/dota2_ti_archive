@@ -31,7 +31,7 @@
   const UI_LANGS = { en: 'English', ru: 'Русский' };
   const STR = {
     en: {
-      'app.title': 'TI Archive — spoiler-free',
+      'app.title': 'TI Archive — spoiler-free Dota 2 International VODs',
       'crumb.all': 'All events',
       'chip.on': 'Spoiler-free', 'chip.off': 'Spoilers shown',
       'chip.onTitle': 'Spoiler-free: results stay hidden until you watch them',
@@ -51,7 +51,7 @@
       'ask.blindOff.title': 'Turn off blind mode?',
       'ask.blindOff.body': 'The full bracket, with every result, will be shown on every event.',
       'ask.blindOff.yes': 'Show results', 'ask.blindOff.no': 'Keep hidden',
-      'events.h1': 'The International — archive',
+      'events.h1': 'Dota 2 — The International archive',
       'events.sub': 'Pick a tournament. Everything is hidden until you watch it.',
       'events.soon': ' · coming soon',
       'events.watched': '{done} of {total} series watched',
@@ -131,7 +131,7 @@
       'ttl.settings': 'Settings',
     },
     ru: {
-      'app.title': 'TI Archive — без спойлеров',
+      'app.title': 'TI Archive — записи The International по Dota 2, без спойлеров',
       'crumb.all': 'Все турниры',
       'chip.on': 'Без спойлеров', 'chip.off': 'Спойлеры видны',
       'chip.onTitle': 'Без спойлеров: результаты скрыты, пока вы их не посмотрите',
@@ -151,7 +151,7 @@
       'ask.blindOff.title': 'Выключить режим без спойлеров?',
       'ask.blindOff.body': 'Полная сетка со всеми результатами будет показана для всех турниров.',
       'ask.blindOff.yes': 'Показать результаты', 'ask.blindOff.no': 'Оставить скрытыми',
-      'events.h1': 'The International — архив',
+      'events.h1': 'Dota 2 — архив The International',
       'events.sub': 'Выберите турнир. Всё скрыто, пока вы не посмотрите.',
       'events.soon': ' · скоро',
       'events.watched': 'просмотрено серий: {done} из {total}',
