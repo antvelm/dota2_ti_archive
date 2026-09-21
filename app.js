@@ -5,14 +5,15 @@
 
   // ---------- storage ----------
   const KEY = 'ti-archive:v1';
-  // A Russian-speaking browser gets a Russian site on the first visit; the stored
-  // setting wins from then on.
-  const guessUI = () => (String(navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en');
+  // A Russian-speaking browser gets a Russian site and Russian casters on the first
+  // visit; the stored settings win from then on.
+  const guessLocale = () => (String(navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en');
   const defaults = () => ({
     v: 1,
-    // ui drives the interface; lang drives commentary and follows ui until the viewer
-    // picks a commentary language under a video, which is what sets langSet.
-    settings: { ui: guessUI(), lang: guessUI(), langSet: false, order: 'series', showDuration: false, blind: true, autoNext: true, volume: 100, quality: 'auto' },
+    // ui is what you read, lang is what you hear. Seeded together, then independent:
+    // the header switches the interface, the buttons under a video switch commentary,
+    // and neither reaches across. Nothing silently undoes the other.
+    settings: { ui: guessLocale(), lang: guessLocale(), order: 'series', showDuration: false, blind: true, autoNext: true, volume: 100, quality: 'auto' },
     events: {},
   });
   let store = defaults();
@@ -457,7 +458,7 @@
   // Text that is in index.html rather than in a render pass, so it has to be pushed out
   // whenever the language changes.
   // Two languages, so a segmented pair rather than a dropdown: both options are visible
-  // and one press switches. The commentary rule still lives in setUILang().
+  // and one press switches. It changes what you read, and nothing else.
   const langSwitch = $('#lang-switch');
   const updateLangSwitch = () => {
     langSwitch.setAttribute('aria-label', t('set.ui'));
@@ -470,9 +471,9 @@
   langSwitch.onclick = (e) => {
     const b = e.target.closest('button[data-ui]');
     if (!b || b.dataset.ui === uiLang()) return;
-    store.settings.ui = b.dataset.ui;
-    setUILang(b.dataset.ui);          // pulls commentary along unless it was chosen
+    store.settings.ui = b.dataset.ui;   // the interface only — commentary is its own setting
     save();
+    applyStaticText();
     if (!panel.hidden) renderSettings();
     route();
   };
@@ -488,9 +489,6 @@
     $('.sr-only', $('#settings-btn')).textContent = t('ttl.settings');
     const load = $('#loading'); if (load) load.textContent = t('loading');
   }
-  // Commentary follows the interface until the viewer overrides it under a video; after
-  // that their choice survives interface switches.
-  const setUILang = (v) => { if (!store.settings.langSet) store.settings.lang = v; applyStaticText(); };
 
   const panel = $('#settings-panel');
   const settingsBtn = $('#settings-btn');
@@ -830,7 +828,7 @@
     const rel = (d) => { const t = Math.max(0, now() + d); seekTo(t); curEl.textContent = fmt(Math.min(t, dur() || t)); };
     const toggleMute = () => { if (!me.player) return; muted = !muted; muted ? me.player.mute() : me.player.unMute(); muteBtn.innerHTML = muted ? svgMute : svgVol; };
     const toggleFS = () => { if (document.fullscreenElement) document.exitFullscreen(); else player.requestFullscreen?.(); };
-    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const at = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; store.settings.langSet = true; save(); src = ns; partIdx = 0; const startAt = base() + at; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: partId(), startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
+    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const at = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; partIdx = 0; const startAt = base() + at; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: partId(), startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
     const markDone = () => { prog.done = true; save(); };
     // The parameter used to be called `ask`, which shadowed the modal helper and forced a
     // native confirm() here.
