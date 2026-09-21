@@ -166,6 +166,8 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 
 /* continue card */
 .continue { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; background: linear-gradient(135deg, #1b1d26, #14151c); }
+.continue-actions { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+.continue-actions .btn { justify-content: center; }
 .continue .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
 .continue .matchup { font-size: 24px; font-weight: 700; margin: 6px 0 2px; }
 .continue .round { color: var(--gold); font-weight: 600; }
@@ -173,7 +175,14 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 .progress-line { font-size: 13px; color: var(--muted); margin-top: 10px; }
 
 /* bracket */
-.bracket-wrap { overflow-x: auto; padding-bottom: 8px; }
+.bracket-wrap { overflow-x: auto; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: #363c4e transparent; }
+/* Left alone it renders as a solid light slab - the brightest thing on the page, for a
+   scrollbar. Thumb only, in the palette, track invisible. */
+.bracket-wrap::-webkit-scrollbar { height: 10px; }
+.bracket-wrap::-webkit-scrollbar-track { background: transparent; }
+.bracket-wrap::-webkit-scrollbar-thumb { background: #363c4e; border-radius: 999px;
+  border: 3px solid transparent; background-clip: content-box; }
+.bracket-wrap::-webkit-scrollbar-thumb:hover { background: #4a5168; background-clip: content-box; }
 .bracket { display: grid; gap: 18px 12px; min-width: 1080px; align-items: stretch; }
 .bracket .col { display: flex; flex-direction: column; gap: 12px; }
 .bracket .col .stack { display: flex; flex-direction: column; gap: 12px; justify-content: space-around; flex: 1; }

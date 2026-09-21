@@ -61,15 +61,12 @@
       'ev.game': 'Game {n} · best of {bo}', 'ev.at': ' · at {t}',
       'ev.progressLine': '{done} of {total} series watched · {stage} · {dates}',
       'btn.resume': '▶ Resume', 'btn.watch': '▶ Watch',
-      'h2.bracket': 'Bracket', 'h2.progress': 'Progress',
-      'bestof': 'best of {n}', 'card.bo': 'bo{n}',
+      'h2.bracket': 'Bracket',      'bestof': 'best of {n}', 'card.bo': 'bo{n}',
       'legend.watched': 'watched', 'legend.upnext': 'up next',
       'legend.locked': 'locked',
       'legend.hint1': 'Click a watched series to rewatch it or reveal its score.',
       'legend.hint2': 'A series stays locked until everything feeding into it has been watched — click a locked one to skip ahead to it anyway.',
-      'ev.progressFor': 'Progress for {short}',
-      'ev.progressFor.d': 'Stored in this browser only. Export, import and the settings that apply to every event are under the gear in the header.',
-      'btn.reset': 'Reset',
+      'btn.reset': 'Reset', 'btn.resetProgress': 'Reset progress',
       'ask.reset.title': 'Reset progress for {short}?',
       'ask.reset.body': 'Every game here goes back to unwatched. Other tournaments are untouched.',
       'ask.reset.yes': 'Reset', 'ask.reset.no': 'Keep it',
@@ -160,15 +157,12 @@
       'ev.game': 'Игра {n} · Bo{bo}', 'ev.at': ' · на {t}',
       'ev.progressLine': 'просмотрено серий: {done} из {total} · {stage} · {dates}',
       'btn.resume': '▶ Продолжить', 'btn.watch': '▶ Смотреть',
-      'h2.bracket': 'Сетка', 'h2.progress': 'Прогресс',
-      'bestof': 'Bo{n}', 'card.bo': 'bo{n}',
+      'h2.bracket': 'Сетка',      'bestof': 'Bo{n}', 'card.bo': 'bo{n}',
       'legend.watched': 'просмотрено', 'legend.upnext': 'далее',
       'legend.locked': 'закрыто',
       'legend.hint1': 'Нажмите на просмотренную серию, чтобы пересмотреть её или увидеть счёт.',
       'legend.hint2': 'Серия остаётся закрытой, пока не просмотрено всё, что к ней ведёт, — нажмите на закрытую, чтобы всё-таки перейти сразу к ней.',
-      'ev.progressFor': 'Прогресс: {short}',
-      'ev.progressFor.d': 'Хранится только в этом браузере. Экспорт, импорт и настройки для всех турниров — под шестерёнкой в шапке.',
-      'btn.reset': 'Сбросить',
+      'btn.reset': 'Сбросить', 'btn.resetProgress': 'Сбросить прогресс',
       'ask.reset.title': 'Сбросить прогресс {short}?',
       'ask.reset.body': 'Все игры здесь снова станут непросмотренными. Другие турниры не затронуты.',
       'ask.reset.yes': 'Сбросить', 'ask.reset.no': 'Оставить',
@@ -570,10 +564,23 @@
     const doneSeries = ev.series.filter(s => seriesDone(ev, s)).length;
     const resumeItem = playlist(ev).find(it => { const p = st.games[gkey(it.s, it.g)]; return p && !p.done && p.pos > 30; });
 
+    // The only per-event control there is. It sits in the continue card, beside the
+    // progress it resets, rather than under the bracket behind a heading of its own.
+    const resetBtn = h('button', {
+      class: 'btn small ghost', onclick: async () => {
+        if (!await ask({
+          title: t('ask.reset.title', { short: ev.short }),
+          body: t('ask.reset.body'),
+          confirmText: t('ask.reset.yes'), cancelText: t('ask.reset.no'),
+        })) return;
+        store.events[ev.id] = { games: {}, revealed: {}, skipped: {} }; save(); route();
+      },
+    }, t('btn.resetProgress'));
+
     // continue card
     let cont;
     if (!next) {
-      cont = h('div', { class: 'card continue' }, h('div', {}, h('div', { class: 'label' }, t('ev.finished')), h('div', { class: 'matchup' }, t('ev.finishedAll', { short: ev.short })), h('div', { class: 'progress-line' }, t('ev.finishedHint'))));
+      cont = h('div', { class: 'card continue' }, h('div', {}, h('div', { class: 'label' }, t('ev.finished')), h('div', { class: 'matchup' }, t('ev.finishedAll', { short: ev.short })), h('div', { class: 'progress-line' }, t('ev.finishedHint'))), resetBtn);
     } else {
       const it = resumeItem || next; const r = roundOf(ev, it.s);
       cont = h('div', { class: 'card continue' },
@@ -582,7 +589,9 @@
           h('div', { class: 'matchup' }, h('span', { class: 'round' }, roundName(r.name)), h('span', { class: 'vs' }, '·'), badge(ev, it.s.team1), ' ', team(ev, it.s.team1).name, h('span', { class: 'vs' }, 'vs'), badge(ev, it.s.team2), ' ', team(ev, it.s.team2).name),
           h('div', { class: 'muted' }, t('ev.game', { n: it.g.n, bo: it.s.bestOf }) + (resumeItem ? t('ev.at', { t: fmt(st.games[gkey(it.s, it.g)].pos) }) : '')),
           h('div', { class: 'progress-line' }, t('ev.progressLine', { done: doneSeries, total: ev.series.length, stage: stageName(ev.stage), dates: dateText(ev.dates) }))),
-        h('a', { class: 'btn primary', href: `#/e/${ev.id}/s/${it.s.id}/g/${it.g.n}` }, resumeItem ? t('btn.resume') : t('btn.watch')));
+        h('div', { class: 'continue-actions' },
+          h('a', { class: 'btn primary', href: `#/e/${ev.id}/s/${it.s.id}/g/${it.g.n}` }, resumeItem ? t('btn.resume') : t('btn.watch')),
+          resetBtn));
     }
 
     // bracket
@@ -598,21 +607,6 @@
     rounds.filter(r => r.bracket === 'lower').forEach(r => bracket.append(cell(r, 2)));
     rounds.filter(r => r.bracket === 'final').forEach(r => { const c = cell(r, 1); c.style.gridRow = '1 / span 2'; bracket.append(c); });
 
-    // Per-event only. Everything global lives in the header's settings panel.
-    const progress = h('div', { class: 'settings' },
-      h('div', { class: 'setting' },
-        h('div', {}, h('div', {}, t('ev.progressFor', { short: ev.short })),
-          h('div', { class: 'd' }, t('ev.progressFor.d'))),
-        h('button', {
-          class: 'btn small', onclick: async () => {
-            if (!await ask({
-              title: t('ask.reset.title', { short: ev.short }),
-              body: t('ask.reset.body'),
-              confirmText: t('ask.reset.yes'), cancelText: t('ask.reset.no'),
-            })) return;
-            store.events[ev.id] = { games: {}, revealed: {}, skipped: {} }; save(); route();
-          },
-        }, t('btn.reset'))));
 
     app.replaceChildren(
       h('h1', {}, ev.name), h('p', { class: 'sub' }, `${ev.location} · ${dateText(ev.dates)} · ${stageName(ev.stage)}`),
@@ -628,8 +622,7 @@
         legendKey('var(--green)', t('legend.watched')),
         legendKey('var(--gold)', t('legend.upnext')),
         legendKey('#3d4356', t('legend.locked'))),
-      h('p', { class: 'legend-hint' }, t('legend.hint1') + ' ' + t('legend.hint2')),
-      h('h2', {}, t('h2.progress')), progress);
+      h('p', { class: 'legend-hint' }, t('legend.hint1') + ' ' + t('legend.hint2')));
     updateBlindPill();
   }
 
