@@ -14,7 +14,28 @@
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; background: var(--bg); color: var(--text); }
+html, body { margin: 0; color: var(--text); }
+/* Warm light from above, echoing the Aegis. Fixed, so it does not slide up the page as
+   you scroll and turn into a moving object competing with the content. */
+body { background:
+  radial-gradient(1100px 620px at 50% -260px, rgba(232,100,26,.16), transparent 68%),
+  radial-gradient(820px 460px at 88% -60px, rgba(200,16,46,.11), transparent 70%),
+  var(--bg);
+  background-attachment: fixed; }
+/* Nothing glows next to a video. The router sets this class on the watch route. */
+body.watching { background: var(--bg); }
+
+/* The artwork, and the scrim that makes text survivable on top of it. Two fixed layers
+   rather than a background on body, so the image never scrolls and the scrim can be tuned
+   independently of it. build_single.py inlines bg.jpg when it bundles. */
+body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: url("bg.jpg") center top / cover no-repeat; opacity: .42; }
+body::after { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(14,15,19,.35) 0%, rgba(14,15,19,.72) 55%, rgba(14,15,19,.92) 100%); }
+/* Everything real sits above both layers. */
+.top, main, .foot { position: relative; z-index: 1; }
+/* The player page gets none of it. */
+body.watching::before, body.watching::after { display: none; }
 body { min-height: 100vh; display: flex; flex-direction: column; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; cursor: pointer; }
@@ -131,11 +152,17 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 
 /* cards */
-.card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+.card { background: linear-gradient(180deg, #1b1e28 0%, #141620 100%); border: 1px solid #30364a;
+  border-radius: var(--radius); padding: 18px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 10px 26px rgba(0,0,0,.4); }
 .events { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-.event-card { display: block; transition: transform .15s, border-color .15s; }
-.event-card:hover { transform: translateY(-2px); border-color: #3a3f4f; }
-.event-card .short { font-size: 34px; font-weight: 800; color: var(--gold); }
+.event-card { display: block; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+/* [href] only: a "coming soon" card is not a link and should not rise to meet the cursor. */
+.event-card[href]:hover { transform: translateY(-3px); border-color: rgba(242,193,78,.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 16px 34px rgba(0,0,0,.55),
+              0 0 0 1px rgba(242,193,78,.14), 0 0 34px rgba(242,193,78,.1); }
+.event-card .short { font-size: 34px; font-weight: 800; color: var(--gold);
+  text-shadow: 0 0 24px rgba(242,193,78,.28); }
 .event-card .name { font-weight: 600; margin-top: 4px; }
 .event-card .meta { color: var(--muted); font-size: 13px; margin-top: 8px; }
 .event-card .prog { margin-top: 12px; height: 4px; background: var(--bg-3); border-radius: 2px; overflow: hidden; }
@@ -277,3 +304,8 @@ kbd { font: 11px ui-monospace, monospace; border: 1px solid var(--line); border-
 .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: var(--bg-3); border: 1px solid var(--line); padding: 10px 16px; border-radius: 8px; box-shadow: var(--shadow); z-index: 50; font-size: 14px; }
 .legend { display: flex; gap: 16px; font-size: 12px; color: var(--muted); margin-top: 10px; flex-wrap: wrap; }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; border: 1px solid var(--line); }
+
+@media (prefers-reduced-motion: reduce) {
+  .event-card { transition: none; }
+  .event-card[href]:hover { transform: none; }
+}

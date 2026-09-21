@@ -9,6 +9,7 @@ fetching, and swaps in the meta/og/canonical/favicon block.
     python3 tools/build_single.py -o /path/to/ti-archive.html
 """
 import argparse
+import base64
 import json
 import pathlib
 import sys
@@ -61,6 +62,16 @@ def embed(paths):
     return "\n".join(out)
 
 
+def inline_bg(css):
+    """The stylesheet points at bg.jpg; a single-file build has to carry it."""
+    marker = 'url("bg.jpg")'
+    if marker not in css:
+        return css
+    raw = (ROOT / "bg.jpg").read_bytes()
+    uri = "data:image/jpeg;base64," + base64.b64encode(raw).decode("ascii")
+    return css.replace(marker, 'url("%s")' % uri)
+
+
 def sub(text, old, new, what):
     if text.count(old) != 1:
         sys.exit(f"build_single: expected exactly one {what}, found {text.count(old)}")
@@ -85,7 +96,7 @@ def build():
     html = html[:start] + HEAD + "\n" + html[end:]
 
     html = sub(html, '<link rel="stylesheet" href="styles.css">',
-               "<style>\n" + css.rstrip() + "\n</style>", "stylesheet link")
+               "<style>\n" + inline_bg(css).rstrip() + "\n</style>", "stylesheet link")
     html = sub(html, '<script src="app.js"></script>',
                embed(data_files) + "\n<script>\n" + js.rstrip() + "\n</script>", "app.js script tag")
     return html
