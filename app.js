@@ -10,7 +10,8 @@
   const guessUI = () => (String(navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en');
   const defaults = () => ({
     v: 1,
-    // ui drives the interface; lang drives commentary and follows ui until langSet.
+    // ui drives the interface; lang drives commentary and follows ui until the viewer
+    // picks a commentary language under a video, which is what sets langSet.
     settings: { ui: guessUI(), lang: guessUI(), langSet: false, order: 'series', showDuration: false, blind: true, autoNext: true, volume: 100, quality: 'auto' },
     events: {},
   });
@@ -28,7 +29,6 @@
   // ---------- language ----------
   // The interface speaks English or Russian. Commentary follows the interface until the
   // viewer picks a commentary language of their own; after that their choice is kept.
-  const UI_LANGS = { en: 'English', ru: 'Русский' };
   const STR = {
     en: {
       'app.title': 'TI Archive — spoiler-free Dota 2 International VODs',
@@ -39,7 +39,6 @@
       'settings.title': 'Settings', 'settings.sub': 'These apply to every tournament.',
       'set.ui': 'Interface language',
       'set.blind': 'Blind mode', 'set.blind.d': 'Hide results, scores and bracket progression until you have watched them.',
-      'set.lang': 'Commentary language', 'set.lang.d': 'Default audio/stream language. Follows the interface language until you pick one here. You can switch during a game.',
       'set.order': 'Playback order', 'set.order.d': 'By series plays each series to the end. Strict chronological follows real game start times, which interleaves concurrent series but can never leak a result.',
       'order.series': 'By series', 'order.chrono': 'Strict chronological',
       'set.duration': 'Show video duration', 'set.duration.d': 'A short video hints at a stomp, a long one at a close game. Off by default.',
@@ -139,7 +138,6 @@
       'settings.title': 'Настройки', 'settings.sub': 'Действуют для всех турниров.',
       'set.ui': 'Язык интерфейса',
       'set.blind': 'Режим без спойлеров', 'set.blind.d': 'Скрывать результаты, счёт и продвижение по сетке, пока вы их не посмотрите.',
-      'set.lang': 'Язык комментария', 'set.lang.d': 'Язык звука по умолчанию. Следует за языком интерфейса, пока вы не выберете его здесь. Его можно переключить во время игры.',
       'set.order': 'Порядок просмотра', 'set.order.d': 'По сериям — каждая серия проигрывается до конца. Строго хронологически — по реальному времени начала игр: параллельные серии чередуются, но результат не раскрывается.',
       'order.series': 'По сериям', 'order.chrono': 'Строго хронологически',
       'set.duration': 'Показывать длительность', 'set.duration.d': 'Короткое видео намекает на разгром, длинное — на близкую игру. По умолчанию выключено.',
@@ -490,7 +488,8 @@
     $('.sr-only', $('#settings-btn')).textContent = t('ttl.settings');
     const load = $('#loading'); if (load) load.textContent = t('loading');
   }
-  // Commentary follows the interface until the viewer picks a commentary language themselves.
+  // Commentary follows the interface until the viewer overrides it under a video; after
+  // that their choice survives interface switches.
   const setUILang = (v) => { if (!store.settings.langSet) store.settings.lang = v; applyStaticText(); };
 
   const panel = $('#settings-panel');
@@ -500,7 +499,6 @@
       h('div', { class: 'settings-head' }, h('strong', {}, t('settings.title')),
         h('span', { class: 'd' }, t('settings.sub'))),
       h('div', { class: 'settings' },
-        setRow(t('set.lang'), t('set.lang.d'), sel('lang', Object.entries(UI_LANGS), () => { store.settings.langSet = true; })),
         setRow(t('set.blind'), t('set.blind.d'), sw('blind', (v) => v ? true : askBlindOff())),
         setRow(t('set.order'), t('set.order.d'),
           sel('order', [['series', t('order.series')], ['chrono', t('order.chrono')]])),
@@ -684,7 +682,7 @@
   }
   function importProgress(e) {
     const f = e.target.files[0]; if (!f) return;
-    f.text().then(t => { const j = JSON.parse(t); if (j.v !== 1) throw new Error('bad file'); store = Object.assign(defaults(), j); save(); toast(t('toast.imported')); route(); }).catch(() => toast(t('toast.importFail')));
+    f.text().then(txt => { const j = JSON.parse(txt); if (j.v !== 1) throw new Error('bad file'); store = Object.assign(defaults(), j); save(); toast(t('toast.imported')); route(); }).catch(() => toast(t('toast.importFail')));
   }
 
   // ---------- watch page ----------
@@ -832,7 +830,7 @@
     const rel = (d) => { const t = Math.max(0, now() + d); seekTo(t); curEl.textContent = fmt(Math.min(t, dur() || t)); };
     const toggleMute = () => { if (!me.player) return; muted = !muted; muted ? me.player.mute() : me.player.unMute(); muteBtn.innerHTML = muted ? svgMute : svgVol; };
     const toggleFS = () => { if (document.fullscreenElement) document.exitFullscreen(); else player.requestFullscreen?.(); };
-    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const t = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; partIdx = 0; const startAt = base() + t; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: partId(), startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
+    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const at = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; store.settings.langSet = true; save(); src = ns; partIdx = 0; const startAt = base() + at; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: partId(), startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
     const markDone = () => { prog.done = true; save(); };
     // The parameter used to be called `ask`, which shadowed the modal helper and forced a
     // native confirm() here.
