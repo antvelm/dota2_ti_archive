@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Bundle the site into one self-contained HTML file for antvelm.net/artifacts.
+"""Bundle the site into one self-contained HTML file.
 
-The hub at /var/www/artifacts wants one standalone HTML file per tool: inline CSS
-and JS, no build step at serve time, no external assets. This inlines styles.css,
-app.js and every data/*.json listed in data/events.json, patches loadJSON() to read
-the embedded copies instead of fetching, and adds the artifacts hub link plus the
-meta/og/favicon block the hub README asks for.
+One standalone HTML file: inline CSS and JS, no build step at serve time, no
+external assets. This inlines styles.css, app.js and every data/*.json listed in
+data/events.json, patches loadJSON() to read the embedded copies instead of
+fetching, and swaps in the meta/og/canonical/favicon block.
 
     python3 tools/build_single.py -o /path/to/ti-archive.html
 """
@@ -21,9 +20,6 @@ DESC = ("A spoiler-free viewer for archived International VODs: the bracket, gam
         "video length and result all stay hidden until you have watched them.")
 # The archive moved to its own domain on 2026-09-20; antvelm.net/ti-archive 301s here.
 URL = "https://tiarchive.com/"
-# The hub is a *different origin* now, so every link to it has to be absolute.
-HUB = "https://antvelm.net/artifacts"
-HUB_ORIGIN = "//".join(HUB.split("//")[:1] + [HUB.split("//", 1)[1].split("/", 1)[0]])
 FAVICON = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>"
            "<rect width='32' height='32' rx='7' fill='%230a0a0b'/><text x='16' y='23' "
            "font-family='monospace' font-size='19' font-weight='700' fill='%23a78bfa' "
@@ -37,58 +33,6 @@ HEAD = f"""<title>{TITLE}</title>
 <meta property="og:url" content="{URL}">
 <link rel="canonical" href="{URL}">
 <link rel="icon" href="{FAVICON}">"""
-
-# Quiet link to the hub. Recedes at rest, full contrast on hover/focus; sits
-# above the sticky header, which scrolls over it.
-BACK_CSS = """
-/* to the artifacts index */
-.af-back { align-self: flex-start; display: inline-block; padding: 10px 20px 0; font-size: .78rem;
-  letter-spacing: .02em; color: var(--muted); text-decoration: none; opacity: .55;
-  transition: opacity .12s ease, color .12s ease; }
-.af-back:hover, .af-back:focus-visible { opacity: 1; color: var(--text); }
-.af-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
-/* display:inline-block above would beat the UA sheet's [hidden] rule on specificity */
-.af-back[hidden] { display: none; }
-
-/* the same link for someone who never came from the hub: quiet, in the footer, matching .gh */
-.foot .af-more-link { color: var(--muted); opacity: .8; border-bottom: 1px solid transparent;
-  transition: color .15s, opacity .15s, border-color .15s; }
-.foot .af-more-link:hover, .foot .af-more-link:focus-visible { color: var(--text); opacity: 1; border-bottom-color: var(--line); }
-.foot .af-more-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
-@media (prefers-reduced-motion: reduce) { .af-back, .foot .af-more-link { transition: none; } }
-"""
-
-# Same href either way, but neither the label nor the placement can be. The top-left slot
-# reads as "up to the parent page" no matter what it says, and "artifacts" is the hub's own
-# name — both only make sense to someone who actually came from the hub. So that is the one
-# case where the top-left link appears. Everyone else gets it as what it really is to them:
-# a quiet outbound link in the footer, next to the GitHub one, naming the site in plain words.
-# The footer form is what ships in the markup, so it is also the no-JS fallback.
-BACK_LINK = f"""<a class="af-back" href="{HUB}" id="af-back" hidden>\u2190 artifacts</a>
-"""
-
-MORE_LINK = f"""    <span class="sep" aria-hidden="true">\u00b7</span>
-    <span id="af-more"><a class="af-more-link" href="{HUB}">more tools at antvelm.net</a></span>
-"""
-
-SWAP_JS = """<script>
-(function () {
-  // The hub is on another origin, so two things changed. location.origin is this
-  // domain and never matches it; and antvelm.net sends
-  // Referrer-Policy: strict-origin-when-cross-origin, which trims the referrer to
-  // a bare "https://antvelm.net/" — the "/artifacts" path is simply not visible
-  // from here. Arriving from that origin at all is the closest test still available,
-  // and it is a superset: a visitor coming from any antvelm.net page gets the
-  // top-left link. That is the intended reading of it anyway.
-  var from = document.referrer || '';
-  if (from.indexOf('__HUB_ORIGIN__') !== 0) return;   // not from the hub: leave the footer link
-  document.getElementById('af-back').hidden = false;
-  var more = document.getElementById('af-more');
-  if (more) more.previousElementSibling.remove(), more.remove();    // drop it and its separator
-})();
-</script>
-"""
-SWAP_JS = SWAP_JS.replace("__HUB_ORIGIN__", HUB_ORIGIN)
 
 FETCH_SRC = """  const cache = {};
   async function loadJSON(url) {
@@ -146,14 +90,7 @@ def build():
     html = html[:start] + HEAD + html[end:]
 
     html = sub(html, '<link rel="stylesheet" href="styles.css">',
-               "<style>\n" + css.rstrip() + "\n" + BACK_CSS + "</style>", "stylesheet link")
-    html = sub(html, "<body>\n", "<body>\n" + BACK_LINK, "<body> tag")
-    # Anchored on the end of the GitHub link rather than on the end of the footer,
-    # so the fine print below it can move without silently breaking this.
-    html = sub(html, "</span></a>\n  </p>", "</span></a>\n" + MORE_LINK + "  </p>",
-               "footer links row")
-    # After the footer, so both nodes exist by the time it runs.
-    html = sub(html, "</body>", SWAP_JS + "</body>", "</body> tag")
+               "<style>\n" + css.rstrip() + "\n</style>", "stylesheet link")
     html = sub(html, '<script src="app.js"></script>',
                embed(data_files) + "\n<script>\n" + js.rstrip() + "\n</script>", "app.js script tag")
     return html
