@@ -5,13 +5,15 @@
 
   // ---------- storage ----------
   const KEY = 'ti-archive:v1';
-  // A Russian-speaking browser gets a Russian site on the first visit; the stored
-  // setting wins from then on.
-  const guessUI = () => (String(navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en');
+  // A Russian-speaking browser gets a Russian site and Russian casters on the first
+  // visit; the stored settings win from then on.
+  const guessLocale = () => (String(navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en');
   const defaults = () => ({
     v: 1,
-    // ui drives the interface; lang drives commentary and follows ui until langSet.
-    settings: { ui: guessUI(), lang: guessUI(), langSet: false, order: 'series', showDuration: false, blind: true, autoNext: true, volume: 100, quality: 'auto' },
+    // ui is what you read, lang is what you hear. Seeded together, then independent:
+    // the header switches the interface, the buttons under a video switch commentary,
+    // and neither reaches across. Nothing silently undoes the other.
+    settings: { ui: guessLocale(), lang: guessLocale(), order: 'series', showDuration: false, blind: true, autoNext: true, volume: 100, quality: 'auto' },
     events: {},
   });
   let store = defaults();
@@ -28,18 +30,16 @@
   // ---------- language ----------
   // The interface speaks English or Russian. Commentary follows the interface until the
   // viewer picks a commentary language of their own; after that their choice is kept.
-  const UI_LANGS = { en: 'English', ru: 'Русский' };
   const STR = {
     en: {
-      'app.title': 'TI Archive — spoiler-free',
+      'app.title': 'TI Archive — spoiler-free Dota 2 International VODs',
       'crumb.all': 'All events',
       'chip.on': 'Spoiler-free', 'chip.off': 'Spoilers shown',
       'chip.onTitle': 'Spoiler-free: results stay hidden until you watch them',
       'chip.offTitle': 'Spoilers are visible — click to hide results again',
       'settings.title': 'Settings', 'settings.sub': 'These apply to every tournament.',
-      'set.ui': 'Interface language', 'set.ui.d': 'The language of this site. Commentary follows it until you pick a commentary language yourself.',
+      'set.ui': 'Interface language',
       'set.blind': 'Blind mode', 'set.blind.d': 'Hide results, scores and bracket progression until you have watched them.',
-      'set.lang': 'Commentary language', 'set.lang.d': 'Default audio/stream language. You can switch during a game.',
       'set.order': 'Playback order', 'set.order.d': 'By series plays each series to the end. Strict chronological follows real game start times, which interleaves concurrent series but can never leak a result.',
       'order.series': 'By series', 'order.chrono': 'Strict chronological',
       'set.duration': 'Show video duration', 'set.duration.d': 'A short video hints at a stomp, a long one at a close game. Off by default.',
@@ -51,7 +51,7 @@
       'ask.blindOff.title': 'Turn off blind mode?',
       'ask.blindOff.body': 'The full bracket, with every result, will be shown on every event.',
       'ask.blindOff.yes': 'Show results', 'ask.blindOff.no': 'Keep hidden',
-      'events.h1': 'The International — archive',
+      'events.h1': 'Dota 2 — The International archive',
       'events.sub': 'Pick a tournament. Everything is hidden until you watch it.',
       'events.soon': ' · coming soon',
       'events.watched': '{done} of {total} series watched',
@@ -61,15 +61,12 @@
       'ev.game': 'Game {n} · best of {bo}', 'ev.at': ' · at {t}',
       'ev.progressLine': '{done} of {total} series watched · {stage} · {dates}',
       'btn.resume': '▶ Resume', 'btn.watch': '▶ Watch',
-      'h2.bracket': 'Bracket', 'h2.progress': 'Progress',
-      'bestof': 'best of {n}', 'card.bo': 'bo{n}',
+      'h2.bracket': 'Bracket',      'bestof': 'best of {n}', 'card.bo': 'bo{n}',
       'legend.watched': 'watched', 'legend.upnext': 'up next',
-      'legend.locked': 'locked until the feeding series are watched',
-      'legend.hint1': 'Click a watched series to rewatch or reveal its score.',
-      'legend.hint2': 'Click a locked series to skip ahead to it.',
-      'ev.progressFor': 'Progress for {short}',
-      'ev.progressFor.d': 'Stored in this browser only. Export, import and the settings that apply to every event are under the gear in the header.',
-      'btn.reset': 'Reset',
+      'legend.locked': 'locked',
+      'legend.hint1': 'Click a watched series to rewatch it or reveal its score.',
+      'legend.hint2': 'A series stays locked until everything feeding into it has been watched — click a locked one to skip ahead to it anyway.',
+      'btn.reset': 'Reset', 'btn.resetProgress': 'Reset progress',
       'ask.reset.title': 'Reset progress for {short}?',
       'ask.reset.body': 'Every game here goes back to unwatched. Other tournaments are untouched.',
       'ask.reset.yes': 'Reset', 'ask.reset.no': 'Keep it',
@@ -131,15 +128,14 @@
       'ttl.settings': 'Settings',
     },
     ru: {
-      'app.title': 'TI Archive — без спойлеров',
+      'app.title': 'TI Archive — записи The International по Dota 2, без спойлеров',
       'crumb.all': 'Все турниры',
       'chip.on': 'Без спойлеров', 'chip.off': 'Спойлеры видны',
       'chip.onTitle': 'Без спойлеров: результаты скрыты, пока вы их не посмотрите',
       'chip.offTitle': 'Спойлеры видны — нажмите, чтобы снова скрыть результаты',
       'settings.title': 'Настройки', 'settings.sub': 'Действуют для всех турниров.',
-      'set.ui': 'Язык интерфейса', 'set.ui.d': 'Язык сайта. Язык комментария следует за ним, пока вы не выберете его сами.',
+      'set.ui': 'Язык интерфейса',
       'set.blind': 'Режим без спойлеров', 'set.blind.d': 'Скрывать результаты, счёт и продвижение по сетке, пока вы их не посмотрите.',
-      'set.lang': 'Язык комментария', 'set.lang.d': 'Язык звука по умолчанию. Его можно переключить во время игры.',
       'set.order': 'Порядок просмотра', 'set.order.d': 'По сериям — каждая серия проигрывается до конца. Строго хронологически — по реальному времени начала игр: параллельные серии чередуются, но результат не раскрывается.',
       'order.series': 'По сериям', 'order.chrono': 'Строго хронологически',
       'set.duration': 'Показывать длительность', 'set.duration.d': 'Короткое видео намекает на разгром, длинное — на близкую игру. По умолчанию выключено.',
@@ -151,7 +147,7 @@
       'ask.blindOff.title': 'Выключить режим без спойлеров?',
       'ask.blindOff.body': 'Полная сетка со всеми результатами будет показана для всех турниров.',
       'ask.blindOff.yes': 'Показать результаты', 'ask.blindOff.no': 'Оставить скрытыми',
-      'events.h1': 'The International — архив',
+      'events.h1': 'Dota 2 — архив The International',
       'events.sub': 'Выберите турнир. Всё скрыто, пока вы не посмотрите.',
       'events.soon': ' · скоро',
       'events.watched': 'просмотрено серий: {done} из {total}',
@@ -161,15 +157,12 @@
       'ev.game': 'Игра {n} · Bo{bo}', 'ev.at': ' · на {t}',
       'ev.progressLine': 'просмотрено серий: {done} из {total} · {stage} · {dates}',
       'btn.resume': '▶ Продолжить', 'btn.watch': '▶ Смотреть',
-      'h2.bracket': 'Сетка', 'h2.progress': 'Прогресс',
-      'bestof': 'Bo{n}', 'card.bo': 'bo{n}',
+      'h2.bracket': 'Сетка',      'bestof': 'Bo{n}', 'card.bo': 'bo{n}',
       'legend.watched': 'просмотрено', 'legend.upnext': 'далее',
-      'legend.locked': 'закрыто, пока не просмотрены ведущие к ней серии',
+      'legend.locked': 'закрыто',
       'legend.hint1': 'Нажмите на просмотренную серию, чтобы пересмотреть её или увидеть счёт.',
-      'legend.hint2': 'Нажмите на закрытую серию, чтобы перейти сразу к ней.',
-      'ev.progressFor': 'Прогресс: {short}',
-      'ev.progressFor.d': 'Хранится только в этом браузере. Экспорт, импорт и настройки для всех турниров — под шестерёнкой в шапке.',
-      'btn.reset': 'Сбросить',
+      'legend.hint2': 'Серия остаётся закрытой, пока не просмотрено всё, что к ней ведёт, — нажмите на закрытую, чтобы всё-таки перейти сразу к ней.',
+      'btn.reset': 'Сбросить', 'btn.resetProgress': 'Сбросить прогресс',
       'ask.reset.title': 'Сбросить прогресс {short}?',
       'ask.reset.body': 'Все игры здесь снова станут непросмотренными. Другие турниры не затронуты.',
       'ask.reset.yes': 'Сбросить', 'ask.reset.no': 'Оставить',
@@ -416,6 +409,10 @@
       yes.focus();
     });
   }
+  // A swatch, not a control: filled, round, and nothing about it invites a click. The
+  // bordered square it replaced was indistinguishable from a checkbox.
+  const legendKey = (color, label) => h('span', { class: 'key' },
+    h('i', { style: `background:${color}` }), label);
   const badge = (ev, id) => { const t = team(ev, id); const hue = [...id].reduce((a, c) => a + c.charCodeAt(0) * 17, 0) % 360; return h('span', { class: 'badge', style: `background:hsl(${hue} 45% 38%)` }, t.short.slice(0, 2).toUpperCase()); };
   // The header chip is the blind-mode control, not just a readout — it was the one thing in
   // the header that looked interactive and was not. The switch in the settings panel drives
@@ -458,7 +455,29 @@
 
   // Text that is in index.html rather than in a render pass, so it has to be pushed out
   // whenever the language changes.
+  // Two languages, so a segmented pair rather than a dropdown: both options are visible
+  // and one press switches. It changes what you read, and nothing else.
+  const langSwitch = $('#lang-switch');
+  const updateLangSwitch = () => {
+    langSwitch.setAttribute('aria-label', t('set.ui'));
+    for (const b of langSwitch.children) {
+      const on = b.dataset.ui === uiLang();
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', String(on));
+    }
+  };
+  langSwitch.onclick = (e) => {
+    const b = e.target.closest('button[data-ui]');
+    if (!b || b.dataset.ui === uiLang()) return;
+    store.settings.ui = b.dataset.ui;   // the interface only — commentary is its own setting
+    save();
+    applyStaticText();
+    if (!panel.hidden) renderSettings();
+    route();
+  };
+
   function applyStaticText() {
+    updateLangSwitch();
     document.documentElement.lang = uiLang();
     document.title = t('app.title');
     $('#foot-lead').textContent = t('foot.embed');
@@ -468,8 +487,6 @@
     $('.sr-only', $('#settings-btn')).textContent = t('ttl.settings');
     const load = $('#loading'); if (load) load.textContent = t('loading');
   }
-  // Commentary follows the interface until the viewer picks a commentary language themselves.
-  const setUILang = (v) => { if (!store.settings.langSet) store.settings.lang = v; applyStaticText(); };
 
   const panel = $('#settings-panel');
   const settingsBtn = $('#settings-btn');
@@ -478,10 +495,6 @@
       h('div', { class: 'settings-head' }, h('strong', {}, t('settings.title')),
         h('span', { class: 'd' }, t('settings.sub'))),
       h('div', { class: 'settings' },
-        // The two languages sit together: the first row's description refers to the second,
-        // which only reads as a rule when they are adjacent.
-        setRow(t('set.ui'), t('set.ui.d'), sel('ui', Object.entries(UI_LANGS), setUILang)),
-        setRow(t('set.lang'), t('set.lang.d'), sel('lang', Object.entries(UI_LANGS), () => { store.settings.langSet = true; })),
         setRow(t('set.blind'), t('set.blind.d'), sw('blind', (v) => v ? true : askBlindOff())),
         setRow(t('set.order'), t('set.order.d'),
           sel('order', [['series', t('order.series')], ['chrono', t('order.chrono')]])),
@@ -551,10 +564,23 @@
     const doneSeries = ev.series.filter(s => seriesDone(ev, s)).length;
     const resumeItem = playlist(ev).find(it => { const p = st.games[gkey(it.s, it.g)]; return p && !p.done && p.pos > 30; });
 
+    // The only per-event control there is. It sits in the continue card, beside the
+    // progress it resets, rather than under the bracket behind a heading of its own.
+    const resetBtn = h('button', {
+      class: 'btn small ghost', onclick: async () => {
+        if (!await ask({
+          title: t('ask.reset.title', { short: ev.short }),
+          body: t('ask.reset.body'),
+          confirmText: t('ask.reset.yes'), cancelText: t('ask.reset.no'),
+        })) return;
+        store.events[ev.id] = { games: {}, revealed: {}, skipped: {} }; save(); route();
+      },
+    }, t('btn.resetProgress'));
+
     // continue card
     let cont;
     if (!next) {
-      cont = h('div', { class: 'card continue' }, h('div', {}, h('div', { class: 'label' }, t('ev.finished')), h('div', { class: 'matchup' }, t('ev.finishedAll', { short: ev.short })), h('div', { class: 'progress-line' }, t('ev.finishedHint'))));
+      cont = h('div', { class: 'card continue' }, h('div', {}, h('div', { class: 'label' }, t('ev.finished')), h('div', { class: 'matchup' }, t('ev.finishedAll', { short: ev.short })), h('div', { class: 'progress-line' }, t('ev.finishedHint'))), resetBtn);
     } else {
       const it = resumeItem || next; const r = roundOf(ev, it.s);
       cont = h('div', { class: 'card continue' },
@@ -563,7 +589,9 @@
           h('div', { class: 'matchup' }, h('span', { class: 'round' }, roundName(r.name)), h('span', { class: 'vs' }, '·'), badge(ev, it.s.team1), ' ', team(ev, it.s.team1).name, h('span', { class: 'vs' }, 'vs'), badge(ev, it.s.team2), ' ', team(ev, it.s.team2).name),
           h('div', { class: 'muted' }, t('ev.game', { n: it.g.n, bo: it.s.bestOf }) + (resumeItem ? t('ev.at', { t: fmt(st.games[gkey(it.s, it.g)].pos) }) : '')),
           h('div', { class: 'progress-line' }, t('ev.progressLine', { done: doneSeries, total: ev.series.length, stage: stageName(ev.stage), dates: dateText(ev.dates) }))),
-        h('a', { class: 'btn primary', href: `#/e/${ev.id}/s/${it.s.id}/g/${it.g.n}` }, resumeItem ? t('btn.resume') : t('btn.watch')));
+        h('div', { class: 'continue-actions' },
+          h('a', { class: 'btn primary', href: `#/e/${ev.id}/s/${it.s.id}/g/${it.g.n}` }, resumeItem ? t('btn.resume') : t('btn.watch')),
+          resetBtn));
     }
 
     // bracket
@@ -579,30 +607,22 @@
     rounds.filter(r => r.bracket === 'lower').forEach(r => bracket.append(cell(r, 2)));
     rounds.filter(r => r.bracket === 'final').forEach(r => { const c = cell(r, 1); c.style.gridRow = '1 / span 2'; bracket.append(c); });
 
-    // Per-event only. Everything global lives in the header's settings panel.
-    const progress = h('div', { class: 'settings' },
-      h('div', { class: 'setting' },
-        h('div', {}, h('div', {}, t('ev.progressFor', { short: ev.short })),
-          h('div', { class: 'd' }, t('ev.progressFor.d'))),
-        h('button', {
-          class: 'btn small', onclick: async () => {
-            if (!await ask({
-              title: t('ask.reset.title', { short: ev.short }),
-              body: t('ask.reset.body'),
-              confirmText: t('ask.reset.yes'), cancelText: t('ask.reset.no'),
-            })) return;
-            store.events[ev.id] = { games: {}, revealed: {}, skipped: {} }; save(); route();
-          },
-        }, t('btn.reset'))));
 
     app.replaceChildren(
       h('h1', {}, ev.name), h('p', { class: 'sub' }, `${ev.location} · ${dateText(ev.dates)} · ${stageName(ev.stage)}`),
+      // What this event does and does not cover belongs with the rest of its description,
+      // not stranded under the bracket where it is read after the watching, not before.
+      ev.notes && h('p', { class: 'note event-note' }, ev.notes),
       cont,
       h('h2', {}, t('h2.bracket')),
       h('div', { class: 'bracket-wrap' }, bracket),
-      h('div', { class: 'legend' }, h('span', {}, h('i', { style: 'border-color:rgba(60,207,122,.5)' }), t('legend.watched')), h('span', {}, h('i', { style: 'border-color:var(--gold)' }), t('legend.upnext')), h('span', {}, h('i', { style: 'opacity:.5' }), t('legend.locked')), h('span', {}, t('legend.hint1')), h('span', {}, t('legend.hint2'))),
-      h('h2', {}, t('h2.progress')), progress,
-      ev.notes && h('p', { class: 'note', style: 'margin-top:18px' }, ev.notes));
+      // A colour key and a set of instructions are two different things and were reading as
+      // five peers on one line. Key first, on its own row; what you can do with it below.
+      h('div', { class: 'legend' },
+        legendKey('var(--green)', t('legend.watched')),
+        legendKey('var(--gold)', t('legend.upnext')),
+        legendKey('#3d4356', t('legend.locked'))),
+      h('p', { class: 'legend-hint' }, t('legend.hint1') + ' ' + t('legend.hint2')));
     updateBlindPill();
   }
 
@@ -665,7 +685,7 @@
   }
   function importProgress(e) {
     const f = e.target.files[0]; if (!f) return;
-    f.text().then(t => { const j = JSON.parse(t); if (j.v !== 1) throw new Error('bad file'); store = Object.assign(defaults(), j); save(); toast(t('toast.imported')); route(); }).catch(() => toast(t('toast.importFail')));
+    f.text().then(txt => { const j = JSON.parse(txt); if (j.v !== 1) throw new Error('bad file'); store = Object.assign(defaults(), j); save(); toast(t('toast.imported')); route(); }).catch(() => toast(t('toast.importFail')));
   }
 
   // ---------- watch page ----------
@@ -813,7 +833,7 @@
     const rel = (d) => { const t = Math.max(0, now() + d); seekTo(t); curEl.textContent = fmt(Math.min(t, dur() || t)); };
     const toggleMute = () => { if (!me.player) return; muted = !muted; muted ? me.player.mute() : me.player.unMute(); muteBtn.innerHTML = muted ? svgMute : svgVol; };
     const toggleFS = () => { if (document.fullscreenElement) document.exitFullscreen(); else player.requestFullscreen?.(); };
-    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const t = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; partIdx = 0; const startAt = base() + t; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: partId(), startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
+    const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const at = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; partIdx = 0; const startAt = base() + at; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: partId(), startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
     const markDone = () => { prog.done = true; save(); };
     // The parameter used to be called `ask`, which shadowed the modal helper and forced a
     // native confirm() here.

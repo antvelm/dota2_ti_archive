@@ -14,7 +14,24 @@
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; background: var(--bg); color: var(--text); }
+html, body { margin: 0; color: var(--text); }
+/* Warm light from above, echoing the Aegis. Fixed, so it does not slide up the page as
+   you scroll and turn into a moving object competing with the content. */
+body { background:
+  radial-gradient(1100px 620px at 50% -260px, rgba(232,100,26,.16), transparent 68%),
+  radial-gradient(820px 460px at 88% -60px, rgba(200,16,46,.11), transparent 70%),
+  var(--bg);
+  background-attachment: fixed; }
+/* The artwork, and the scrim that makes text survivable on top of it. Two fixed layers
+   rather than a background on body, so the image never scrolls and the scrim can be tuned
+   independently of it. Applies to every page, the watch page included. build_single.py
+   inlines bg.jpg when it bundles. */
+body::before { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: url("bg.jpg") center top / cover no-repeat; opacity: .42; }
+body::after { content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(14,15,19,.35) 0%, rgba(14,15,19,.72) 55%, rgba(14,15,19,.92) 100%); }
+/* Everything real sits above both layers. */
+.top, main, .foot { position: relative; z-index: 1; }
 body { min-height: 100vh; display: flex; flex-direction: column; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; cursor: pointer; }
@@ -51,6 +68,18 @@ a.crumb:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; bor
 .icon-btn[aria-expanded="true"] { color: var(--text); background: var(--bg-3); border-color: var(--line); }
 .icon-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 .icon-btn svg { width: 17px; height: 17px; }
+/* Interface language. Two options, so both are shown and one press switches — a
+   dropdown would hide half the choice behind a click. Matches the gear's height. */
+.lang-switch { display: inline-flex; height: 30px; flex: none; border: 1px solid var(--line);
+  border-radius: 8px; overflow: hidden; background: var(--bg-3); }
+.lang-switch button { padding: 0 9px; font-size: 12px; font-weight: 600; letter-spacing: .03em;
+  color: var(--muted); background: transparent; border: 0; transition: color .15s, background .15s; }
+.lang-switch button + button { border-left: 1px solid var(--line); }
+.lang-switch button:hover { color: var(--text); background: #262a36; }
+.lang-switch button.on { color: var(--text); background: #262a36; cursor: default; }
+.lang-switch button:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+@media (prefers-reduced-motion: reduce) { .lang-switch button { transition: none; } }
+
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 
@@ -119,11 +148,17 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 
 /* cards */
-.card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+.card { background: linear-gradient(180deg, #1b1e28 0%, #141620 100%); border: 1px solid #30364a;
+  border-radius: var(--radius); padding: 18px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 10px 26px rgba(0,0,0,.4); }
 .events { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-.event-card { display: block; transition: transform .15s, border-color .15s; }
-.event-card:hover { transform: translateY(-2px); border-color: #3a3f4f; }
-.event-card .short { font-size: 34px; font-weight: 800; color: var(--gold); }
+.event-card { display: block; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+/* [href] only: a "coming soon" card is not a link and should not rise to meet the cursor. */
+.event-card[href]:hover { transform: translateY(-3px); border-color: rgba(242,193,78,.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 16px 34px rgba(0,0,0,.55),
+              0 0 0 1px rgba(242,193,78,.14), 0 0 34px rgba(242,193,78,.1); }
+.event-card .short { font-size: 34px; font-weight: 800; color: var(--gold);
+  text-shadow: 0 0 24px rgba(242,193,78,.28); }
 .event-card .name { font-weight: 600; margin-top: 4px; }
 .event-card .meta { color: var(--muted); font-size: 13px; margin-top: 8px; }
 .event-card .prog { margin-top: 12px; height: 4px; background: var(--bg-3); border-radius: 2px; overflow: hidden; }
@@ -131,6 +166,8 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 
 /* continue card */
 .continue { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; background: linear-gradient(135deg, #1b1d26, #14151c); }
+.continue-actions { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+.continue-actions .btn { justify-content: center; }
 .continue .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
 .continue .matchup { font-size: 24px; font-weight: 700; margin: 6px 0 2px; }
 .continue .round { color: var(--gold); font-weight: 600; }
@@ -138,7 +175,14 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 .progress-line { font-size: 13px; color: var(--muted); margin-top: 10px; }
 
 /* bracket */
-.bracket-wrap { overflow-x: auto; padding-bottom: 8px; }
+.bracket-wrap { overflow-x: auto; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: #363c4e transparent; }
+/* Left alone it renders as a solid light slab - the brightest thing on the page, for a
+   scrollbar. Thumb only, in the palette, track invisible. */
+.bracket-wrap::-webkit-scrollbar { height: 10px; }
+.bracket-wrap::-webkit-scrollbar-track { background: transparent; }
+.bracket-wrap::-webkit-scrollbar-thumb { background: #363c4e; border-radius: 999px;
+  border: 3px solid transparent; background-clip: content-box; }
+.bracket-wrap::-webkit-scrollbar-thumb:hover { background: #4a5168; background-clip: content-box; }
 .bracket { display: grid; gap: 18px 12px; min-width: 1080px; align-items: stretch; }
 .bracket .col { display: flex; flex-direction: column; gap: 12px; }
 .bracket .col .stack { display: flex; flex-direction: column; gap: 12px; justify-content: space-around; flex: 1; }
@@ -240,6 +284,10 @@ kbd { font: 11px ui-monospace, monospace; border: 1px solid var(--line); border-
 .side .g.on .dot { background: var(--gold); }
 .side .g .ghost-note { color: var(--muted); font-size: 12px; margin-left: auto; }
 .note { font-size: 12px; color: var(--muted); line-height: 1.5; }
+/* The event's scope note, sitting under the title. Slightly larger than a bare .note
+   because at the top it is read rather than referred back to. */
+.event-note { font-size: 13px; margin: -8px 0 18px;
+  padding-left: 12px; border-left: 2px solid var(--line); }
 .warn { color: var(--gold); }
 
 /* interstitial */
@@ -263,5 +311,16 @@ kbd { font: 11px ui-monospace, monospace; border: 1px solid var(--line); border-
 @media (prefers-reduced-motion: reduce) { .modal-back { animation: none; } }
 
 .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: var(--bg-3); border: 1px solid var(--line); padding: 10px 16px; border-radius: 8px; box-shadow: var(--shadow); z-index: 50; font-size: 14px; }
-.legend { display: flex; gap: 16px; font-size: 12px; color: var(--muted); margin-top: 10px; flex-wrap: wrap; }
-.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; border: 1px solid var(--line); }
+/* The key. Filled dots, because a 10px bordered square is a checkbox to anyone who has
+   used a computer, and these do nothing when clicked. */
+.legend { display: flex; gap: 6px 18px; font-size: 12px; color: var(--muted); margin-top: 12px; flex-wrap: wrap; }
+.legend .key { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.legend i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+/* What you can do, kept apart from what the colours mean. */
+.legend-hint { font-size: 12px; color: var(--muted); opacity: .8; line-height: 1.5;
+  margin: 8px 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .event-card { transition: none; }
+  .event-card[href]:hover { transform: none; }
+}

@@ -19,16 +19,15 @@ npx serve .
 docker compose -f deploy/docker-compose.yml up -d --build
 ```
 
-## Published build
+## Single-file build
 
-The copy at <https://antvelm.net/ti-archive> is a single self-contained HTML file
-(that hub takes one file per tool). Regenerate it after any change here — editing the
-published file directly gets overwritten:
+`tools/build_single.py` bundles the whole archive — CSS, JS and every `data/*.json` —
+into one self-contained HTML file with no external assets, for serving anywhere that
+takes a single file. Regenerate it after any change here; editing a published file
+directly gets overwritten on the next build:
 
 ```sh
-python3 tools/build_single.py \
-  -o "/var/www/artifacts/Dota 2 TI Archive - Spoiler-free VOD viewer/ti-archive.html"
-python3 /var/www/artifacts/build-artifacts.py
+python3 tools/build_single.py -o /path/to/ti-archive.html
 ```
 
 ## How the spoiler protection works
