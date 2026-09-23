@@ -62,23 +62,21 @@
       'ev.progressLine': '{done} of {total} series watched · {stage} · {dates}',
       'btn.resume': '▶ Resume', 'btn.watch': '▶ Watch',
       'h2.bracket': 'Bracket',      'bestof': 'best of {n}', 'card.bo': 'bo{n}',
-      'legend.watched': 'watched', 'legend.upnext': 'up next',
-      'legend.locked': 'locked',
-      'legend.hint1': 'Click a watched series to rewatch it or reveal its score.',
-      'legend.hint2': 'A series stays locked until everything feeding into it has been watched — click a locked one to skip ahead to it anyway.',
+      'bracket.upper': 'Upper bracket', 'bracket.lower': 'Lower bracket',
+      'legend.hint': 'A series stays locked until everything feeding into it has been watched — click a locked one to skip ahead to it, or just reveal who got there.',
       'btn.reset': 'Reset', 'btn.resetProgress': 'Reset progress',
       'ask.reset.title': 'Reset progress for {short}?',
       'ask.reset.body': 'Every game here goes back to unwatched. Other tournaments are untouched.',
       'ask.reset.yes': 'Reset', 'ask.reset.no': 'Keep it',
       'card.tbd': 'TBD', 'card.watched': '✓ watched', 'card.inprogress': 'in progress',
-      'card.upnext': 'up next', 'card.skipped': 'skipped', 'card.notwatched': 'not watched', 'card.locked': 'locked',
+      'card.upnext': 'up next', 'card.upnextGame': 'up next · game {n}', 'card.skipped': 'skipped', 'card.notwatched': 'not watched', 'card.locked': 'locked',
       'card.titleSkipped': 'Skipped — click to watch it after all',
-      'card.titleLocked': 'Locked. Click to skip ahead to it, revealing the series that feed into it.',
-      'ask.skip.title': 'Skip ahead to the {round}?',
-      'ask.skip.body.one': 'That means giving up one series you have not watched. Its result will appear in the bracket, and it drops out of the queue so Continue follows you forward.',
-      'ask.skip.body.many': 'That means giving up {n} series you have not watched. Their results will appear in the bracket, and they drop out of the queue so Continue follows you forward.',
-      'ask.skip.yes': 'Skip ahead', 'ask.skip.no': 'Keep watching in order',
-      'toast.skipped': 'Skipped {n} series', 'toast.backInQueue': 'Back in the queue',
+      'card.titleLocked': 'Locked. Click to reveal the series that feed into it, and optionally watch it.',
+      'ask.skip.title': 'Reveal who reaches {round}?',
+      'ask.skip.body.one': 'Shows the result of 1 series you haven’t watched. You can still watch it later.',
+      'ask.skip.body.many': 'Shows the results of {n} series you haven’t watched. You can still watch them later.',
+      'ask.skip.yes': 'Watch {round}', 'ask.skip.reveal': 'Reveal', 'ask.skip.no': 'Cancel',
+      'toast.skipped': 'Revealed {n} series', 'toast.backInQueue': 'Back in the queue',
       'toast.imported': 'Progress imported', 'toast.importFail': 'Could not import that file',
       'series.count': '{n} series',
       'watch.noVodTitle': '{a} vs {b} — game {n}',
@@ -158,23 +156,21 @@
       'ev.progressLine': 'просмотрено серий: {done} из {total} · {stage} · {dates}',
       'btn.resume': '▶ Продолжить', 'btn.watch': '▶ Смотреть',
       'h2.bracket': 'Сетка',      'bestof': 'Bo{n}', 'card.bo': 'bo{n}',
-      'legend.watched': 'просмотрено', 'legend.upnext': 'далее',
-      'legend.locked': 'закрыто',
-      'legend.hint1': 'Нажмите на просмотренную серию, чтобы пересмотреть её или увидеть счёт.',
-      'legend.hint2': 'Серия остаётся закрытой, пока не просмотрено всё, что к ней ведёт, — нажмите на закрытую, чтобы всё-таки перейти сразу к ней.',
+      'bracket.upper': 'Верхняя сетка', 'bracket.lower': 'Нижняя сетка',
+      'legend.hint': 'Серия остаётся закрытой, пока не просмотрено всё, что к ней ведёт, — нажмите на закрытую, чтобы перейти сразу к ней или просто узнать, кто туда вышел.',
       'btn.reset': 'Сбросить', 'btn.resetProgress': 'Сбросить прогресс',
       'ask.reset.title': 'Сбросить прогресс {short}?',
       'ask.reset.body': 'Все игры здесь снова станут непросмотренными. Другие турниры не затронуты.',
       'ask.reset.yes': 'Сбросить', 'ask.reset.no': 'Оставить',
       'card.tbd': 'TBD', 'card.watched': '✓ просмотрено', 'card.inprogress': 'в процессе',
-      'card.upnext': 'далее', 'card.skipped': 'пропущено', 'card.notwatched': 'не просмотрено', 'card.locked': 'закрыто',
+      'card.upnext': 'далее', 'card.upnextGame': 'далее · игра {n}', 'card.skipped': 'пропущено', 'card.notwatched': 'не просмотрено', 'card.locked': 'закрыто',
       'card.titleSkipped': 'Пропущено — нажмите, чтобы всё-таки посмотреть',
-      'card.titleLocked': 'Закрыто. Нажмите, чтобы перейти сразу сюда, раскрыв ведущие к ней серии.',
-      'ask.skip.title': 'Перейти сразу к стадии «{round}»?',
-      'ask.skip.body.one': 'Придётся отказаться от одной непросмотренной серии. Её результат появится в сетке, и она выйдет из очереди, чтобы «Продолжить» вело вас дальше.',
-      'ask.skip.body.many': 'Придётся отказаться от непросмотренных серий: {n}. Их результаты появятся в сетке, и они выйдут из очереди, чтобы «Продолжить» вело вас дальше.',
-      'ask.skip.yes': 'Перейти сразу', 'ask.skip.no': 'Смотреть по порядку',
-      'toast.skipped': 'Пропущено серий: {n}', 'toast.backInQueue': 'Снова в очереди',
+      'card.titleLocked': 'Закрыто. Нажмите, чтобы раскрыть ведущие к ней серии и, если хотите, посмотреть её.',
+      'ask.skip.title': 'Раскрыть, кто выходит в стадию «{round}»?',
+      'ask.skip.body.one': 'Покажет результат 1 непросмотренной серии. Посмотреть её можно и потом.',
+      'ask.skip.body.many': 'Покажет результаты непросмотренных серий: {n}. Посмотреть их можно и потом.',
+      'ask.skip.yes': 'Смотреть {round}', 'ask.skip.reveal': 'Раскрыть', 'ask.skip.no': 'Отмена',
+      'toast.skipped': 'Раскрыто серий: {n}', 'toast.backInQueue': 'Снова в очереди',
       'toast.imported': 'Прогресс импортирован', 'toast.importFail': 'Не удалось импортировать этот файл',
       'series.count': 'серий: {n}',
       'watch.noVodTitle': '{a} vs {b} — игра {n}',
@@ -257,6 +253,16 @@
     return vars ? s.replace(/\{(\w+)\}/g, (m, k) => (vars[k] === undefined ? m : vars[k])) : s;
   };
   const roundName = (name) => (uiLang() === 'ru' && ROUNDS_RU[name]) || name;
+  // Column heads in the bracket sit under an "Upper bracket" / "Lower bracket" row label, so
+  // they drop the prefix: nine columns that all began "Lower Bracket Round" read as one blur.
+  const SHORT_RU = { Final: 'Финал', Quarterfinals: 'Четвертьфинал', Semifinals: 'Полуфинал' };
+  const roundShort = (name) => {
+    const m = name.match(/^(?:Upper|Lower) Bracket (.+)$/);
+    if (!m) return roundName(name);
+    if (uiLang() !== 'ru') return m[1];
+    const r = m[1].match(/^Round (\d+)$/);
+    return r ? `Раунд ${r[1]}` : SHORT_RU[m[1]] || roundName(name);
+  };
   const stageName = (name) => (uiLang() === 'ru' && STAGE_RU[name]) || name;
   // "August 18–21, 2011" and "August 31 – September 2, 2012" are the only two shapes in the
   // data. Anything else is passed through untouched rather than mangled.
@@ -298,7 +304,7 @@
   const seriesLoser = (s) => { const [a, b] = wins(s); return a > b ? s.team2 : s.team1; };
   const gameDone = (ev, s, g) => !!evState(ev.id).games[gkey(s, g)]?.done;
   const seriesDone = (ev, s) => s.games.every(g => gameDone(ev, s, g));
-  const seriesStarted = (ev, s) => s.games.some(g => evState(ev.id).games[gkey(s, g)]);
+  const seriesStarted = (ev, s) => s.games.some(g => { const p = evState(ev.id).games[gkey(s, g)]; return p && (p.done || p.pos > 30); });
   const seriesSkipped = (ev, s) => !!evState(ev.id).skipped[s.id];
   const seriesRevealed = (ev, s) => seriesDone(ev, s) || !!evState(ev.id).revealed[s.id] || seriesSkipped(ev, s) || !store.settings.blind;
   const seriesResolved = (ev, s) => seriesDone(ev, s) || !!evState(ev.id).revealed[s.id] || seriesSkipped(ev, s);
@@ -333,7 +339,12 @@
     }
     return items;
   }
-  const nextUnwatched = (ev) => playlist(ev).find(it => !gameDone(ev, it.s, it.g)) || null;
+  // A series already under way is finished before anything new is started, even if the
+  // queue order would put another series' game first.
+  const nextUnwatched = (ev) => {
+    const open = playlist(ev).filter(it => !gameDone(ev, it.s, it.g));
+    return open.find(it => seriesStarted(ev, it.s)) || open[0] || null;
+  };
   const nextAfter = (ev, s, g) => { const pl = playlist(ev); const i = pl.findIndex(it => it.s.id === s.id && it.g.n === g.n); return pl.slice(i + 1).find(it => !gameDone(ev, it.s, it.g)) || pl[i + 1] || null; };
   const fmt = (t) => { t = Math.max(0, Math.floor(t || 0)); const h = Math.floor(t / 3600), m = Math.floor((t % 3600) / 60), s = t % 60; return (h ? h + ':' : '') + String(m).padStart(h ? 2 : 1, '0') + ':' + String(s).padStart(2, '0'); };
   const roundOf = (ev, s) => ev.roundsById[s.round];
@@ -370,7 +381,8 @@
   // Yes/no question, in the page's own idiom rather than the browser's. Resolves true on
   // confirm; false on cancel, Esc or a click on the backdrop. Keys are swallowed while it
   // is open so the player's shortcuts cannot fire behind it.
-  function ask({ title, body, lines, confirmText = 'Confirm', cancelText = 'Cancel' }) {
+  // altText adds a middle choice, which resolves to 'alt'.
+  function ask({ title, body, lines, confirmText = 'Confirm', cancelText = 'Cancel', altText }) {
     return new Promise(resolve => {
       const restoreTo = document.activeElement;
       let settled = false;
@@ -384,21 +396,22 @@
       };
       const no = h('button', { class: 'btn', onclick: () => close(false) }, cancelText);
       const yes = h('button', { class: 'btn primary', onclick: () => close(true) }, confirmText);
+      const alt = altText ? h('button', { class: 'btn', onclick: () => close('alt') }, altText) : null;
       const box = h('div', { class: 'modal', role: 'alertdialog', 'aria-modal': 'true', 'aria-labelledby': 'ask-title' },
         h('h3', { id: 'ask-title' }, title),
         body && h('p', {}, body),
         lines && lines.length ? h('ul', { class: 'modal-list' }, lines.map(l => h('li', {}, h('span', {}, l.label), h('span', {}, l.value)))) : null,
-        h('div', { class: 'modal-actions' }, no, yes));
+        h('div', { class: 'modal-actions' }, no, alt, yes));
       const back = h('div', { class: 'modal-back', onclick: (e) => { if (e.target === back) close(false); } }, box);
       const onKey = (e) => {
         if (e.metaKey || e.ctrlKey || e.altKey) return;   // leave the browser's own shortcuts alone
         if (e.key === 'Escape') close(false);
         else if (e.key === 'Tab') {
-          const order = [no, yes];
+          const order = [no, alt, yes].filter(Boolean);
           const i = order.indexOf(document.activeElement);
           order[(i + (e.shiftKey ? order.length - 1 : 1)) % order.length].focus();
         } else if (e.key === 'Enter' || e.key === ' ') {
-          if (document.activeElement === no) close(false); else close(true);
+          if (document.activeElement === no) close(false); else if (document.activeElement === alt) close('alt'); else close(true);
         }
         // Every other key is swallowed too, so space/J/L/F cannot reach the player behind it.
         e.preventDefault();
@@ -409,10 +422,6 @@
       yes.focus();
     });
   }
-  // A swatch, not a control: filled, round, and nothing about it invites a click. The
-  // bordered square it replaced was indistinguishable from a checkbox.
-  const legendKey = (color, label) => h('span', { class: 'key' },
-    h('i', { style: `background:${color}` }), label);
   const badge = (ev, id) => { const t = team(ev, id); const hue = [...id].reduce((a, c) => a + c.charCodeAt(0) * 17, 0) % 360; return h('span', { class: 'badge', style: `background:hsl(${hue} 45% 38%)` }, t.short.slice(0, 2).toUpperCase()); };
   // The header chip is the blind-mode control, not just a readout — it was the one thing in
   // the header that looked interactive and was not. The switch in the settings panel drives
@@ -560,9 +569,9 @@
     const ev = await loadEvent(id);
     setCrumbs({ text: t('crumb.all'), href: '#/' }, { text: ev.short });
     const st = evState(ev.id);
-    const next = nextUnwatched(ev);
-    const doneSeries = ev.series.filter(s => seriesDone(ev, s)).length;
     const resumeItem = playlist(ev).find(it => { const p = st.games[gkey(it.s, it.g)]; return p && !p.done && p.pos > 30; });
+    const next = resumeItem || nextUnwatched(ev);
+    const doneSeries = ev.series.filter(s => seriesDone(ev, s)).length;
 
     // The only per-event control there is. It sits in the continue card, beside the
     // progress it resets, rather than under the bracket behind a heading of its own.
@@ -582,7 +591,7 @@
     if (!next) {
       cont = h('div', { class: 'card continue' }, h('div', {}, h('div', { class: 'label' }, t('ev.finished')), h('div', { class: 'matchup' }, t('ev.finishedAll', { short: ev.short })), h('div', { class: 'progress-line' }, t('ev.finishedHint'))), resetBtn);
     } else {
-      const it = resumeItem || next; const r = roundOf(ev, it.s);
+      const it = next; const r = roundOf(ev, it.s);
       cont = h('div', { class: 'card continue' },
         h('div', {},
           h('div', { class: 'label' }, resumeItem ? t('ev.resume') : (doneSeries ? t('ev.upnext') : t('ev.start'))),
@@ -601,11 +610,15 @@
     const cell = (r, rowIdx) => {
       const list = ev.series.filter(s => s.round === r.id).sort((a, b) => a.id.localeCompare(b.id)); // bracket position, not start time
       const stack = h('div', { class: 'stack' }, list.map(s => seriesCard(ev, s, next)));
-      return h('div', { class: 'col', style: `grid-column:${r.order}; grid-row:${rowIdx}` }, h('div', { class: 'col-title' }, roundName(r.name), h('small', {}, t('bestof', { n: r.bestOf }))), stack);
+      return h('div', { class: 'col', style: `grid-column:${r.order}; grid-row:${rowIdx}` }, h('div', { class: 'col-title' }, roundShort(r.name), h('small', {}, t('bestof', { n: r.bestOf }))), stack);
     };
-    rounds.filter(r => r.bracket === 'upper').forEach(r => bracket.append(cell(r, 1)));
-    rounds.filter(r => r.bracket === 'lower').forEach(r => bracket.append(cell(r, 2)));
-    rounds.filter(r => r.bracket === 'final').forEach(r => { const c = cell(r, 1); c.style.gridRow = '1 / span 2'; bracket.append(c); });
+    // Each bracket gets one label across its row; the grand final column runs past both.
+    const hasFinal = rounds.some(r => r.bracket === 'final');
+    const rowLabel = (key, row) => h('div', { class: 'bracket-label', style: `grid-row:${row}; grid-column:1 / ${hasFinal ? -2 : -1}` }, t(key));
+    bracket.append(rowLabel('bracket.upper', 1), rowLabel('bracket.lower', 3));
+    rounds.filter(r => r.bracket === 'upper').forEach(r => bracket.append(cell(r, 2)));
+    rounds.filter(r => r.bracket === 'lower').forEach(r => bracket.append(cell(r, 4)));
+    rounds.filter(r => r.bracket === 'final').forEach(r => { const c = cell(r, 2); c.style.gridRow = '2 / span 3'; c.classList.add('final'); bracket.append(c); });
 
 
     app.replaceChildren(
@@ -616,18 +629,15 @@
       cont,
       h('h2', {}, t('h2.bracket')),
       h('div', { class: 'bracket-wrap' }, bracket),
-      // A colour key and a set of instructions are two different things and were reading as
-      // five peers on one line. Key first, on its own row; what you can do with it below.
-      h('div', { class: 'legend' },
-        legendKey('var(--green)', t('legend.watched')),
-        legendKey('var(--gold)', t('legend.upnext')),
-        legendKey('#3d4356', t('legend.locked'))),
-      h('p', { class: 'legend-hint' }, t('legend.hint1') + ' ' + t('legend.hint2')));
+      // No colour key: every card already names its state in words. Locking is the one
+      // behaviour a card cannot explain by itself, and it only exists in blind mode.
+      store.settings.blind && h('p', { class: 'legend-hint' }, t('legend.hint')));
     updateBlindPill();
   }
 
   // Jump the queue to `s` by marking everything feeding into it as skipped. Their results
   // become visible in the bracket — that is the trade — but they stay watchable afterwards.
+  // "Just reveal" stops there, on the bracket; the other choice goes on to watch `s`.
   async function offerSkipTo(ev, s) {
     const pending = [...feeders(ev, s)].map(id => ev.seriesById[id]).filter(f => !seriesResolved(ev, f));
     if (!pending.length) return;
@@ -639,28 +649,33 @@
       body: pending.length === 1 ? t('ask.skip.body.one') : t('ask.skip.body.many', { n: pending.length }),
       lines: [...byRound].map(([name, n]) => ({ label: name, value: nSeries(n) })),
       cancelText: t('ask.skip.no'),
-      confirmText: t('ask.skip.yes'),
+      altText: t('ask.skip.reveal'),
+      // Name what gets watched ("watch" alone read as watching the revealed series), short
+      // form since the title already says which bracket. Watching implies revealing.
+      confirmText: t('ask.skip.yes', { round: uiLang() === 'ru' ? roundShort(roundOf(ev, s).name).toLowerCase() : roundShort(roundOf(ev, s).name) }),
     });
     if (!ok) return;
     const st = evState(ev.id);
     pending.forEach(f => { st.skipped[f.id] = true; });
     save();
     toast(t('toast.skipped', { n: pending.length }));
+    if (ok === 'alt') { route(); return; }
     const g = s.games.find(x => !gameDone(ev, s, x)) || s.games[0];
-    location.hash = `#/e/${ev.id}/s/${s.id}/g/${g.n}`;   // the dialog promised to take them there
+    location.hash = `#/e/${ev.id}/s/${s.id}/g/${g.n}`;
   }
 
   function seriesCard(ev, s, next) {
     const done = seriesDone(ev, s), unlocked = seriesUnlocked(ev, s), revealed = seriesRevealed(ev, s);
     const skipped = seriesSkipped(ev, s) && !done;
     const isNext = next && next.s.id === s.id;
+    const inProgress = !done && seriesStarted(ev, s);
     const [w1, w2] = wins(s); const winner = seriesWinner(s);
     const t1 = slotTeam(ev, s, 0), t2 = slotTeam(ev, s, 1);
     const row = (tid, score, isWin) => tid
       ? h('div', { class: 't' + (revealed ? (isWin ? ' win' : ' lose') : '') }, h('span', { class: 'n' }, badge(ev, tid), team(ev, tid).short), revealed && h('span', { class: 'sc' }, score))
       : h('div', { class: 't' }, h('span', { class: 'n tbd' }, t('card.tbd')));
     const firstUnwatched = s.games.find(g => !gameDone(ev, s, g)) || s.games[0];
-    const card = h('button', { class: 'series-card' + (unlocked ? '' : ' locked') + (skipped ? ' skipped' : '') + (done ? ' done' : '') + (isNext ? ' current' : ''),
+    const card = h('button', { class: 'series-card' + (unlocked ? '' : ' locked') + (skipped ? ' skipped' : '') + (done ? ' done' : '') + (inProgress ? ' inprogress' : '') + (isNext ? ' current' : ''),
       title: unlocked ? (skipped ? t('card.titleSkipped') : '') : t('card.titleLocked'),
       onclick: () => {
         if (!unlocked) { offerSkipTo(ev, s); return; }
@@ -670,8 +685,10 @@
       row(t1, w1, winner === s.team1), row(t2, w2, winner === s.team2));
     const stateLine = h('div', { class: 'state' });
     if (done) stateLine.append(h('span', { class: 'w' }, t('card.watched')));
-    else if (seriesStarted(ev, s)) stateLine.append(h('span', { class: 'p' }, t('card.inprogress')));
-    else if (isNext) stateLine.append(h('span', { class: 'p' }, t('card.upnext')));
+    // Up next outranks in progress: the card the continue button points at must say so,
+    // and naming the game keeps what "in progress" told you.
+    else if (isNext) stateLine.append(h('span', { class: 'p' }, inProgress ? t('card.upnextGame', { n: next.g.n }) : t('card.upnext')));
+    else if (inProgress) stateLine.append(h('span', { class: 'ip' }, t('card.inprogress')));
     else if (skipped) stateLine.append(h('span', { class: 's' }, t('card.skipped')));
     else stateLine.append(h('span', {}, unlocked ? t('card.notwatched') : t('card.locked')));
     stateLine.append(h('span', {}, t('card.bo', { n: s.bestOf })));

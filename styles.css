@@ -9,6 +9,7 @@
   --red-2: #e0233f;
   --gold: #f2c14e;
   --green: #3ccf7a;
+  --blue: #5aa9ff;
   --radius: 10px;
   --shadow: 0 10px 30px rgba(0,0,0,.45);
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -186,17 +187,24 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 .bracket { display: grid; gap: 18px 12px; min-width: 1080px; align-items: stretch; }
 .bracket .col { display: flex; flex-direction: column; gap: 12px; }
 .bracket .col .stack { display: flex; flex-direction: column; gap: 12px; justify-content: space-around; flex: 1; }
-.bracket .col-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; text-align: center; margin-bottom: 2px; white-space: nowrap; }
-.bracket .col-title small { display: block; text-transform: none; letter-spacing: 0; color: #5f6473; }
+/* One label per bracket, ruled across its row, so the column heads can be just the round. */
+.bracket-label { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 700; color: var(--text);
+  text-transform: uppercase; letter-spacing: .1em; margin-top: 6px; }
+.bracket-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.bracket-label:first-child { margin-top: 0; }
+.bracket .col-title { font-size: 13px; font-weight: 600; color: #c9ccd6; text-align: center; margin-bottom: 2px; }
+.bracket .col-title small { display: block; font-size: 11px; font-weight: 400; color: #5f6473; }
+.bracket .col.final .col-title { color: var(--gold); }
 .series-card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; min-width: 0; font-size: 13px; text-align: left; width: 100%; transition: border-color .15s; }
 .series-card:hover { border-color: #444a5c; }
 .series-card.locked { opacity: .5; }
 .series-card.locked:hover { opacity: .75; border-color: #444a5c; }
 /* skipped: jumped over on purpose, still one click away from being watched */
-.series-card.skipped { border-style: dashed; opacity: .72; }
+.series-card.skipped { border-style: dashed; border-color: rgba(224,35,63,.55); opacity: .72; }
 .series-card.skipped:hover { opacity: 1; }
 .series-card .state .s { color: var(--red-2); }
 .series-card.done { border-color: rgba(60,207,122,.35); }
+.series-card.inprogress { border-color: rgba(90,169,255,.55); }
 .series-card.current { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(242,193,78,.35); }
 .series-card .t { display: flex; justify-content: space-between; align-items: center; padding: 3px 2px; }
 .series-card .t + .t { border-top: 1px solid var(--line); }
@@ -210,6 +218,7 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 .series-card .state { font-size: 11px; color: var(--muted); padding: 3px 2px 0; display: flex; justify-content: space-between; }
 .series-card .state .w { color: var(--green); }
 .series-card .state .p { color: var(--gold); }
+.series-card .state .ip { color: var(--blue); }
 
 /* settings */
 .settings { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 4px 40px; }
@@ -311,14 +320,9 @@ kbd { font: 11px ui-monospace, monospace; border: 1px solid var(--line); border-
 @media (prefers-reduced-motion: reduce) { .modal-back { animation: none; } }
 
 .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: var(--bg-3); border: 1px solid var(--line); padding: 10px 16px; border-radius: 8px; box-shadow: var(--shadow); z-index: 50; font-size: 14px; }
-/* The key. Filled dots, because a 10px bordered square is a checkbox to anyone who has
-   used a computer, and these do nothing when clicked. */
-.legend { display: flex; gap: 6px 18px; font-size: 12px; color: var(--muted); margin-top: 12px; flex-wrap: wrap; }
-.legend .key { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
-.legend i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
-/* What you can do, kept apart from what the colours mean. */
+/* The one bracket behaviour a card cannot explain by itself: locking. */
 .legend-hint { font-size: 12px; color: var(--muted); opacity: .8; line-height: 1.5;
-  margin: 8px 0 0; }
+  margin: 12px 0 0; }
 
 @media (prefers-reduced-motion: reduce) {
   .event-card { transition: none; }
