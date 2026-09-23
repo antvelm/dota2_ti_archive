@@ -16,82 +16,194 @@
   "og": {
    "name": "OG",
    "short": "OG",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "n0tail",
+    "Miracle-",
+    "MoonMeander",
+    "Cr1t-",
+    "Fly"
+   ]
   },
   "mvpp": {
    "name": "MVP Phoenix",
    "short": "MVP",
-   "region": "KR"
+   "region": "KR",
+   "players": [
+    "MP",
+    "QO",
+    "Forev",
+    "Febby",
+    "DuBu"
+   ]
   },
   "dc": {
    "name": "Digital Chaos",
    "short": "DC",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "Resolut1on",
+    "w33",
+    "Moo",
+    "Saksa",
+    "MiSeRy"
+   ]
   },
   "wings": {
    "name": "Wings Gaming",
    "short": "Wings",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "shadow",
+    "bLink",
+    "Faith bian",
+    "y`",
+    "iceice"
+   ]
   },
   "ehome": {
    "name": "EHOME",
    "short": "EHOME",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "iceiceice",
+    "old chicken",
+    "eLeVeN",
+    "LaNm",
+    "Fenrir"
+   ]
   },
   "alliance": {
    "name": "Alliance",
    "short": "Alliance",
-   "region": "SE"
+   "region": "SE",
+   "players": [
+    "Loda",
+    "s4",
+    "AdmiralBulldog",
+    "Akke",
+    "EGM"
+   ]
   },
   "eg": {
    "name": "Evil Geniuses",
    "short": "EG",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "Fear",
+    "SumaiL",
+    "Universe",
+    "Zai",
+    "ppd"
+   ]
   },
   "newbee": {
    "name": "Newbee",
    "short": "Newbee",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Hao",
+    "Mu",
+    "kpii",
+    "ChuaN",
+    "kaka"
+   ]
   },
   "tnc": {
    "name": "TNC Pro Team",
    "short": "TNC",
-   "region": "PH"
+   "region": "PH",
+   "players": [
+    "Raven",
+    "Kuku",
+    "Sam H",
+    "eyyou",
+    "DeMoN"
+   ]
   },
   "vgr": {
    "name": "Vici Gaming Reborn",
    "short": "VG.R",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "END",
+    "Nono",
+    "Mikasa",
+    "fy",
+    "ddc"
+   ]
   },
   "secret": {
    "name": "Team Secret",
    "short": "Secret",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Arteezy",
+    "EternaLEnVy",
+    "BuLba",
+    "Puppey",
+    "pieliedie"
+   ]
   },
   "lgd": {
    "name": "LGD Gaming",
    "short": "LGD",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Agressif",
+    "Maybe",
+    "xiao8",
+    "Banana",
+    "MMY!"
+   ]
   },
   "fnatic": {
    "name": "Fnatic",
    "short": "Fnatic",
-   "region": "MY"
+   "region": "MY",
+   "players": [
+    "Mushi",
+    "MidOne",
+    "Ohaiyo",
+    "DJ",
+    "343"
+   ]
   },
   "escape": {
    "name": "Escape Gaming",
    "short": "Escape",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Era",
+    "qojqva",
+    "KheZu",
+    "YapzOr",
+    "syndereN"
+   ]
   },
   "navi": {
    "name": "Natus Vincere",
    "short": "Na'Vi",
-   "region": "UA"
+   "region": "UA",
+   "players": [
+    "Ditya Ra",
+    "Dendi",
+    "GeneRaL",
+    "SoNNeikO",
+    "Artstyle"
+   ]
   },
   "tl": {
    "name": "Team Liquid",
    "short": "Liquid",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "MATUMBAMAN",
+    "FATA-",
+    "MinD ContRoL",
+    "JerAx",
+    "KuroKy"
+   ]
   }
  },
  "rounds": [

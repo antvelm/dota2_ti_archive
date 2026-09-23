@@ -16,82 +16,195 @@
   "ehome": {
    "name": "EHOME",
    "short": "EHOME",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "820",
+    "QQQ",
+    "X!!",
+    "LaNm",
+    "SJQ"
+   ]
   },
   "tyloo": {
    "name": "TyLoo",
    "short": "TyLoo",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Awoke",
+    "Kabu",
+    "DD",
+    "Hao",
+    "Faith"
+   ]
   },
   "mym": {
    "name": "Meet Your Makers",
    "short": "MYM",
-   "region": "DK"
+   "region": "DK",
+   "players": [
+    "MiSeRy",
+    "MaNia",
+    "PlaymatE",
+    "Maelk",
+    "DeMoN"
+   ]
   },
   "scythe": {
    "name": "Scythe Gaming",
    "short": "Scythe",
-   "region": "SG"
+   "region": "SG",
+   "players": [
+    "iceiceice",
+    "Hyhy",
+    "xy-",
+    "ToFu",
+    "Chawy",
+    "Roy"
+   ]
   },
   "ok.nirvana.int": {
    "name": "OK.Nirvana.Int",
    "short": "Nirvana.int",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Fear",
+    "Lacoste",
+    "ComeWithMe",
+    "Pajkatt",
+    "1437"
+   ]
   },
   "ig": {
    "name": "Invictus Gaming",
    "short": "iG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Zhou",
+    "Ferrari 430",
+    "xiao8",
+    "SanSheng",
+    "DDC"
+   ]
   },
   "navi": {
    "name": "Natus Vincere",
    "short": "Na'Vi",
-   "region": "UA"
+   "region": "UA",
+   "players": [
+    "Artstyle",
+    "Dendi",
+    "XBOCT",
+    "Puppey",
+    "LighTofHeaveN"
+   ]
   },
   "m5": {
    "name": "Moscow Five",
    "short": "M5",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "NS",
+    "Dread",
+    "ARS-ART",
+    "Santa",
+    "God"
+   ]
   },
   "sgc": {
    "name": "Storm Games Clan",
    "short": "SGC",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "CraNich",
+    "lacek",
+    "Tonci",
+    "Tulex",
+    "Warlog"
+   ]
   },
   "virus": {
    "name": "Virus Gaming",
    "short": "Virus",
-   "region": "FR"
+   "region": "FR",
+   "players": [
+    "Maldejambes",
+    "VladTepes",
+    "Sockshka",
+    "Pseudo",
+    "Ph0eniX"
+   ]
   },
   "mith": {
    "name": "MiTH.Trust",
    "short": "MiTH",
-   "region": "TH"
+   "region": "TH",
+   "players": [
+    "l3nu",
+    "TnK",
+    "LaKelz",
+    "Lookball",
+    "aabBAA"
+   ]
   },
   "ggnet": {
    "name": "GosuGamers",
    "short": "GGnet",
-   "region": "DE"
+   "region": "DE",
+   "players": [
+    "KuroKy",
+    "Mirakel",
+    "Azen",
+    "Kebap",
+    "Kev-"
+   ]
   },
   "ok.nirvana.cn": {
    "name": "OK.Nirvana.CN",
    "short": "Nirvana.cn",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "insence",
+    "ksssssss",
+    "Banana",
+    "Yao",
+    "seaking"
+   ]
   },
   "mineski": {
    "name": "Mineski",
    "short": "Mineski",
-   "region": "PH"
+   "region": "PH",
+   "players": [
+    "Wootz",
+    "Julz",
+    "John",
+    "Owa",
+    "VASH"
+   ]
   },
   "nevo": {
    "name": "Next Evolution",
    "short": "Nevo",
-   "region": "DK"
+   "region": "DK",
+   "players": [
+    "syndereN",
+    "AngeL",
+    "miGGel",
+    "Ryze",
+    "eatenfish"
+   ]
   },
   "mufc": {
    "name": "MUFC",
    "short": "MUFC",
-   "region": "MY"
+   "region": "MY",
+   "players": [
+    "SilverCross",
+    "Net",
+    "Sharky",
+    "xiaoling",
+    "kYxY"
+   ]
   }
  },
  "rounds": [

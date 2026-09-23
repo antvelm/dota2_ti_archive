@@ -39,7 +39,7 @@ python3 tools/build_single.py -o /path/to/ti-archive.html
 | Video length (a 20-minute VOD is a stomp) | Duration and progress fill are hidden by default ("blind scrubber"); seeking still works. Toggle in settings. |
 | Bracket structure revealing who advanced | Later series are locked and show `TBD` until every series feeding into them is watched (or revealed). |
 | Total game count on the progress bar | Progress is counted in series, never in games. |
-| — *(deliberate escape hatch)* | Click any locked series to **skip ahead** to it. Everything feeding into it is marked `skipped`: those results appear in the bracket and drop out of the queue, so *Continue* goes to where you jumped. Nothing is deleted — click a skipped series to put it back and watch it after all. |
+| — *(deliberate escape hatch)* | Click any locked series to **reveal** who reaches it, or to reveal and watch it straight away. Everything feeding into it is marked `skipped`: those results appear in the bracket and drop out of the queue, so *Continue* goes to where you jumped. Nothing is deleted — click a skipped series to put it back and watch it after all. |
 | Casters mentioning a concurrent series' result | Choose *Strict chronological* order in settings: games play in real start order (by Valve match id), so nothing discussed on the broadcast has happened after the game you are watching. Default is *By series*, which plays each series to the end and is nicer to watch. |
 
 Watch progress lives in `localStorage` (export/import in settings).
@@ -50,7 +50,7 @@ One JSON file per event in `data/`, listed in `data/events.json`.
 
 ```
 event
- ├─ teams{slug → name, short, region}
+ ├─ teams{slug → name, short, region, players[] (positions 1–5, from Liquipedia — tools/fetch_rosters.mjs)}
  ├─ rounds[]   id, name, bracket (upper|lower|final), order (column), bestOf
  └─ series[]   id, round, team1, team2, start (ISO), bestOf, advantage? ([1,0])
       ├─ slots[]  {from: <series id>, take: winner|loser}  — who feeds team1 / team2

@@ -16,42 +16,98 @@
   "falcons": {
    "name": "Team Falcons",
    "short": "Falcons",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "skiter",
+    "Malr1ne",
+    "ATF",
+    "Cr1t-",
+    "Sneyking"
+   ]
   },
   "xg": {
    "name": "Xtreme Gaming",
    "short": "XG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Ame",
+    "Xm",
+    "Xxs",
+    "XinQ",
+    "xNova"
+   ]
   },
   "pari": {
    "name": "PARIVISION",
    "short": "PARI",
-   "region": "CIS"
+   "region": "CIS",
+   "players": [
+    "Satanic",
+    "No[o]ne-",
+    "DM",
+    "9Class",
+    "Dukalis"
+   ]
   },
   "tundra": {
    "name": "Tundra Esports",
    "short": "Tundra",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Crystallis",
+    "bzm",
+    "33",
+    "Saksa",
+    "Tobi"
+   ]
   },
   "heroic": {
    "name": "HEROIC",
    "short": "HEROIC",
-   "region": "BR"
+   "region": "BR",
+   "players": [
+    "Yuma",
+    "4nalog",
+    "Wisper",
+    "Scofield",
+    "KJ"
+   ]
   },
   "bb": {
    "name": "BB Team",
    "short": "BB",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Pure",
+    "gpk~",
+    "MieRo",
+    "Save-",
+    "Kataomi"
+   ]
   },
   "tidebd": {
    "name": "Team Tidebound",
    "short": "Tidebd",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "shiro",
+    "NothingToSay",
+    "Bach",
+    "planet",
+    "y`"
+   ]
   },
   "ngx": {
    "name": "Nigma Galaxy",
    "short": "NGX",
-   "region": "LB"
+   "region": "LB",
+   "players": [
+    "Ghost",
+    "SumaiL",
+    "No!ob",
+    "OmaR",
+    "GH"
+   ]
   }
  },
  "rounds": [

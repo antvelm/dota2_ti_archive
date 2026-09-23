@@ -16,42 +16,98 @@
   "vision": {
    "name": "TEAM VISION",
    "short": "VISION",
-   "region": ""
+   "region": "",
+   "players": [
+    "Satanic",
+    "No[o]ne-",
+    "Noticed",
+    "9Class",
+    "Dukalis"
+   ]
   },
   "tspirit": {
    "name": "Team Spirit",
    "short": "TSpirit",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Yatoro",
+    "Larl",
+    "Collapse",
+    "not me",
+    "rue"
+   ]
   },
   "yandex": {
    "name": "Team Yandex",
    "short": "Yandex",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "watson",
+    "CHIRA JUNIOR",
+    "DM",
+    "Saksa",
+    "Malady"
+   ]
   },
   "iw": {
    "name": "Iron Wing",
    "short": "IW",
-   "region": ""
+   "region": "",
+   "players": [
+    "Pure",
+    "bzm",
+    "33",
+    "Ari",
+    "Whitemon"
+   ]
   },
   "bb": {
    "name": "BoomBoys",
    "short": "BB",
-   "region": ""
+   "region": "",
+   "players": [
+    "Kiritych~",
+    "gpk~",
+    "MieRo",
+    "Save-",
+    "Kataomi"
+   ]
   },
   "ngx": {
    "name": "Nigma Galaxy",
    "short": "NGX",
-   "region": "LB"
+   "region": "LB",
+   "players": [
+    "SumaiL",
+    "lorenof",
+    "Davai",
+    "OmaR",
+    "GH"
+   ]
   },
   "liquid": {
    "name": "Team Liquid",
    "short": "Liquid",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "m1CKe",
+    "Nisha",
+    "Ace",
+    "Boxi",
+    "tOfu"
+   ]
   },
   "falcons": {
    "name": "Team Falcons",
    "short": "Falcons",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "skiter",
+    "Malr1ne",
+    "ATF",
+    "Cr1t-",
+    "Sneyking"
+   ]
   }
  },
  "rounds": [

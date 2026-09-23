@@ -200,9 +200,11 @@ h2 { font-size: 18px; margin: 28px 0 12px; color: var(--muted); font-weight: 600
 .series-card.locked { opacity: .5; }
 .series-card.locked:hover { opacity: .75; border-color: #444a5c; }
 /* skipped: jumped over on purpose, still one click away from being watched */
-.series-card.skipped { border-style: dashed; border-color: rgba(224,35,63,.55); opacity: .72; }
+/* Quiet like locked: skipping is a choice, not something to flag. The dashed border is
+   what tells it apart. */
+.series-card.skipped { border-style: dashed; border-color: #444a5c; opacity: .72; }
 .series-card.skipped:hover { opacity: 1; }
-.series-card .state .s { color: var(--red-2); }
+.series-card .state .s { color: var(--muted); }
 .series-card.done { border-color: rgba(60,207,122,.35); }
 .series-card.inprogress { border-color: rgba(90,169,255,.55); }
 .series-card.current { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(242,193,78,.35); }
@@ -258,7 +260,8 @@ select, input[type=file] { background: var(--bg-3); color: var(--text); border: 
 .player .cover.paused { background: rgba(8,9,12,.55); }
 .player .cover.paused .playbtn { background: rgba(0,0,0,.55); border: 2px solid rgba(255,255,255,.8); box-shadow: none; }
 .player .controls { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; padding: 26px 12px 8px; background: linear-gradient(transparent, rgba(0,0,0,.85)); display: flex; align-items: center; gap: 10px; opacity: 0; transition: opacity .2s; }
-.player:hover .controls, .player.show-controls .controls, .player.paused .controls { opacity: 1; }
+.player.show-controls .controls, .player.paused .controls { opacity: 1; }
+.player:not(.show-controls):not(.paused) .shield { cursor: none; }
 .controls .ic { background: transparent; border: 0; padding: 6px; border-radius: 6px; display: grid; place-items: center; }
 .controls .ic:hover { background: rgba(255,255,255,.12); }
 .controls .ic svg { width: 20px; height: 20px; fill: #fff; }
@@ -272,19 +275,31 @@ select, input[type=file] { background: var(--bg-3); color: var(--text); border: 
 .seek.blind .fill, .seek.blind .knob { display: none; }
 .seek.blind .track { background: repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 8px, transparent 8px 14px); }
 .seek input { position: absolute; inset: 0; width: 100%; opacity: 0; margin: 0; cursor: pointer; }
+/* Under the player while YouTube's own controls are showing: the only way back. */
+.native-bar { display: none; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  margin-top: 12px; padding: 10px 12px 10px 16px; border: 1px solid rgba(242,193,78,.5); border-radius: var(--radius);
+  background: rgba(242,193,78,.08); font-size: 14px; }
+.player.native + .native-bar { display: flex; }
+.src-note:not(:empty) { margin-top: 12px; }
+.controls .qbtn { background: transparent; border: 1px solid rgba(255,255,255,.3); border-radius: 6px; color: #ddd;
+  padding: 4px 8px; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.controls .qbtn:hover { background: rgba(255,255,255,.12); }
 .controls .vol { width: 70px; accent-color: #fff; }
 .langs { display: flex; border: 1px solid rgba(255,255,255,.3); border-radius: 6px; overflow: hidden; }
 .langs button { background: transparent; border: 0; color: #ddd; padding: 4px 9px; font-size: 12px; font-weight: 600; }
 .langs button.on { background: #fff; color: #000; }
 .langs button:disabled { opacity: .35; }
 
-.under { display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
-.under .spacer { flex: 1; }
 .hint { color: var(--muted); font-size: 12px; }
+.keys { display: grid; grid-template-columns: auto 1fr; gap: 7px 12px; align-items: center; margin: 0; font-size: 13px; }
+.keys dt { display: flex; gap: 4px; }
+.keys dd { margin: 0; color: var(--text); }
+.keys kbd { font-size: 12px; padding: 1px 7px; color: var(--text); }
 kbd { font: 11px ui-monospace, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; color: var(--muted); }
 
 .side .card + .card { margin-top: 14px; }
 .side h3 { margin: 0 0 8px; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.side .btn.block { width: 100%; justify-content: center; margin-top: 12px; }
 .side .games { display: flex; flex-direction: column; gap: 6px; }
 .side .g { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg-3); text-align: left; width: 100%; }
 .side .g.on { border-color: var(--gold); }
@@ -292,6 +307,13 @@ kbd { font: 11px ui-monospace, monospace; border: 1px solid var(--line); border-
 .side .g.done .dot { background: var(--green); }
 .side .g.on .dot { background: var(--gold); }
 .side .g .ghost-note { color: var(--muted); font-size: 12px; margin-left: auto; }
+.rosters { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.roster { min-width: 0; }
+.roster-team { display: flex; align-items: center; gap: 7px; font-weight: 600; margin-bottom: 6px; }
+.roster ol { margin: 0; padding: 0; list-style: none; font-size: 13px; line-height: 1.7; }
+.roster li { display: flex; gap: 8px; min-width: 0; }
+.roster .pos { color: #5f6473; font-size: 11px; width: 8px; flex: none; }
+.roster .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .note { font-size: 12px; color: var(--muted); line-height: 1.5; }
 /* The event's scope note, sitting under the title. Slightly larger than a bare .note
    because at the top it is read rather than referred back to. */

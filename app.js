@@ -91,17 +91,13 @@
       'lang.noVod': 'No {lang} VOD for this game',
       'games.game': 'Game {n}', 'games.watched': 'watched',
       'games.note': 'Further games appear as you finish them — how many there are is part of the story.',
-      'side.thisGame': 'This game', 'side.matchId': 'Match ID {id}',
       'side.advantage': '{team} start {n}–0 up as upper-bracket winners — that game was never played.',
-      'side.series': 'Series', 'side.quality': 'Video quality',
-      'quality.playingAt': 'Playing at ',
-      'quality.note': '. YouTube picks this from your connection and the size of the player, so fullscreen usually gets more.',
-      'btn.chooseQuality': 'Choose quality…', 'btn.hideYT': 'Hide YouTube controls',
-      'quality.hint': 'Use the gear in YouTube’s bar, then hide the controls again.',
+      'side.series': 'Series', 'ttl.quality': 'Video quality', 'side.rosters': 'Players',
+      'btn.hideYT': 'Hide YouTube controls',
+      'quality.hint': 'YouTube’s controls are showing — pick a quality with their gear, then hide them again.',
       'side.keys': 'Keys',
-      'keys.playpause': ' play/pause · ', 'keys.10': ' ±10 s · ', 'keys.60': ' ±60 s · ',
-      'keys.fs': ' fullscreen · ', 'keys.mute': ' mute · ', 'keys.next': ' next game · ', 'keys.lang': ' switch language',
-      'under.hint': 'The YouTube title bar, end screen and related videos are covered on purpose — they give away results.',
+      'keys.playpause': 'Play / pause', 'keys.10': 'Back / forward 10 s', 'keys.60': 'Back / forward 60 s',
+      'keys.fs': 'Fullscreen', 'keys.mute': 'Mute', 'keys.next': 'Next game', 'keys.lang': 'Switch commentary',
       'btn.markWatchedContinue': 'Mark watched & continue', 'toast.marked': 'Marked as watched',
       'ask.native.title': 'Show YouTube’s own controls?',
       'ask.native.body': 'Quality can only be picked from YouTube’s gear menu, and this site normally hides YouTube’s controls because they give things away: the length of the video and preview pictures along its scrubber.',
@@ -185,17 +181,13 @@
       'lang.noVod': 'Нет записи ({lang}) для этой игры',
       'games.game': 'Игра {n}', 'games.watched': 'просмотрено',
       'games.note': 'Следующие игры появятся, когда вы закончите текущие — сколько их всего, тоже часть истории.',
-      'side.thisGame': 'Эта игра', 'side.matchId': 'ID матча {id}',
       'side.advantage': '{team} начинают со счётом {n}–0 как победители верхней сетки — та игра не игралась.',
-      'side.series': 'Серия', 'side.quality': 'Качество видео',
-      'quality.playingAt': 'Сейчас ',
-      'quality.note': '. YouTube выбирает его по вашему соединению и размеру плеера, так что в полноэкранном режиме обычно выше.',
-      'btn.chooseQuality': 'Выбрать качество…', 'btn.hideYT': 'Скрыть элементы YouTube',
-      'quality.hint': 'Используйте шестерёнку на панели YouTube, затем снова скройте элементы.',
+      'side.series': 'Серия', 'ttl.quality': 'Качество видео', 'side.rosters': 'Игроки',
+      'btn.hideYT': 'Скрыть элементы YouTube',
+      'quality.hint': 'Сейчас видны элементы YouTube — выберите качество их шестерёнкой, затем скройте их.',
       'side.keys': 'Клавиши',
-      'keys.playpause': ' пуск/пауза · ', 'keys.10': ' ±10 с · ', 'keys.60': ' ±60 с · ',
-      'keys.fs': ' полный экран · ', 'keys.mute': ' звук · ', 'keys.next': ' следующая игра · ', 'keys.lang': ' сменить язык',
-      'under.hint': 'Заголовок YouTube, финальный экран и похожие видео закрыты намеренно — они выдают результат.',
+      'keys.playpause': 'Пуск / пауза', 'keys.10': 'Назад / вперёд на 10 с', 'keys.60': 'Назад / вперёд на 60 с',
+      'keys.fs': 'Полный экран', 'keys.mute': 'Звук', 'keys.next': 'Следующая игра', 'keys.lang': 'Сменить комментарий',
       'btn.markWatchedContinue': 'Отметить и продолжить', 'toast.marked': 'Отмечено как просмотренное',
       'ask.native.title': 'Показать элементы управления YouTube?',
       'ask.native.body': 'Качество выбирается только через меню-шестерёнку YouTube, а сайт обычно скрывает его элементы: они выдают длительность видео и превью на полосе перемотки.',
@@ -777,27 +769,41 @@
     const langBox = h('div', { class: 'langs' }, langs.map(l => h('button', { class: l === lang ? 'on' : '', disabled: !srcFor(l), title: srcFor(l) ? ev.languages[l] : t('lang.noVod', { lang: ev.languages[l] }), onclick: () => switchLang(l) }, l.toUpperCase())));
     const nextBtn = h('button', { class: 'ic', html: svgNext, title: t('ttl.next'), onclick: () => goNext(true) });
     const fsBtn = h('button', { class: 'ic', html: svgFull, title: t('ttl.fs'), onclick: () => toggleFS() });
-    const controls = h('div', { class: 'controls' }, playBtn, timeEl, seek, langBox, muteBtn, vol, nextBtn, fsBtn);
+    // Quality lives in the bar, where people look for it, showing what is playing now.
+    const qBarBtn = h('button', { class: 'qbtn', title: t('ttl.quality'), onclick: () => toggleNative() }, t('quality.auto'));
+    const controls = h('div', { class: 'controls' }, playBtn, timeEl, seek, langBox, muteBtn, vol, qBarBtn, nextBtn, fsBtn);
     const player = h('div', { class: 'player paused', tabindex: 0 }, yt, shield, cover, controls);
+    // While YouTube's own controls are up ours are gone, so the way back sits right under the
+    // player, where the person who opened them is looking. Not on it: laid over YouTube's
+    // bar it was hard to read and could cover their gear.
+    const nativeBar = h('div', { class: 'native-bar' }, h('span', {}, t('quality.hint')), h('button', { class: 'btn small primary', onclick: () => toggleNative() }, t('btn.hideYT')));
 
     const gameList = h('div', { class: 'games' }, s.games.filter(x => x.n <= g.n || gameDone(ev, s, x) || !store.settings.blind).map(x => h('a', { class: 'g' + (x.n === g.n ? ' on' : '') + (gameDone(ev, s, x) ? ' done' : ''), href: `#/e/${ev.id}/s/${s.id}/g/${x.n}` }, h('span', { class: 'dot' }), t('games.game', { n: x.n }), gameDone(ev, s, x) && h('span', { class: 'ghost-note' }, t('games.watched')))));
     if (store.settings.blind && !seriesDone(ev, s)) gameList.append(h('div', { class: 'note' }, t('games.note')));
     const srcNote = () => src?.note ? h('div', { class: 'note warn' }, src.note) : null;
-    const sideSources = h('div', { class: 'card' }, h('h3', {}, t('side.thisGame')), h('div', { class: 'note' }, t('watch.meta', { round: roundName(r.name), bo: s.bestOf, short: ev.short })), g.matchId ? h('div', { class: 'note' }, t('side.matchId', { id: g.matchId })) : null, s.advantage && (s.advantage[0] || s.advantage[1]) ? h('div', { class: 'note' }, t('side.advantage', { team: team(ev, s.advantage[0] ? s.team1 : s.team2).short, n: Math.max(...s.advantage) })) : null, h('div', { class: 'note', id: 'src-note' }, srcNote()));
-    const qNow = h('span', {}, '\u2026'), qHint = h('div', { class: 'note' });
-    const qBtn = h('button', { class: 'btn small', style: 'margin-top:8px', onclick: () => toggleNative() }, t('btn.chooseQuality'));
-    const qualityCard = h('div', { class: 'card' }, h('h3', {}, t('side.quality')), h('div', { class: 'note' }, t('quality.playingAt'), qNow, t('quality.note')), qHint, qBtn);
-    const side = h('div', { class: 'side' }, h('div', { class: 'card' }, h('h3', {}, t('side.series')), h('div', { style: 'font-weight:600;margin-bottom:10px' }, badge(ev, s.team1), ' ', team(ev, s.team1).name, h('span', { class: 'muted' }, ' vs '), badge(ev, s.team2), ' ', team(ev, s.team2).name), gameList), sideSources, qualityCard,
-      h('div', { class: 'card' }, h('h3', {}, t('side.keys')), h('div', { class: 'note' }, h('kbd', {}, 'space'), t('keys.playpause'), h('kbd', {}, '←'), ' ', h('kbd', {}, '→'), t('keys.10'), h('kbd', {}, 'J'), ' ', h('kbd', {}, 'L'), t('keys.60'), h('kbd', {}, 'F'), t('keys.fs'), h('kbd', {}, 'M'), t('keys.mute'), h('kbd', {}, 'N'), t('keys.next'), h('kbd', {}, 'R'), t('keys.lang'))));
+    // The round and game are in the heading; what is left worth saying goes where it applies:
+    // a head start with the series, a note about this recording under the video.
+    const advantage = s.advantage && (s.advantage[0] || s.advantage[1]) ? h('div', { class: 'note', style: 'margin-top:8px' }, t('side.advantage', { team: team(ev, s.advantage[0] ? s.team1 : s.team2).short, n: Math.max(...s.advantage) })) : null;
+    // Each team's roster for the event, in position order (1 carry … 5 hard support).
+    const rosterCol = (tid) => h('div', { class: 'roster' },
+      h('div', { class: 'roster-team' }, badge(ev, tid), team(ev, tid).short),
+      h('ol', {}, team(ev, tid).players.map((p, i) => h('li', {}, h('span', { class: 'pos' }, i + 1), h('span', { class: 'name' }, p)))));
+    const rosters = team(ev, s.team1).players && team(ev, s.team2).players
+      ? h('div', { class: 'card' }, h('h3', {}, t('side.rosters')), h('div', { class: 'rosters' }, rosterCol(s.team1), rosterCol(s.team2)))
+      : null;
+    const markBtn = h('button', { class: 'btn small block', onclick: () => { prog.done = true; save(); toast(t('toast.marked')); goNext(false); } }, t('btn.markWatchedContinue'));
+    const side = h('div', { class: 'side' }, h('div', { class: 'card' }, h('h3', {}, t('side.series')), h('div', { style: 'font-weight:600;margin-bottom:10px' }, badge(ev, s.team1), ' ', team(ev, s.team1).name, h('span', { class: 'muted' }, ' vs '), badge(ev, s.team2), ' ', team(ev, s.team2).name), gameList, advantage, markBtn), rosters,
+      // One shortcut per row, keys in a column of their own: run together in a sentence the
+      // keys and their labels blurred into one line of grey.
+      h('div', { class: 'card' }, h('h3', {}, t('side.keys')), h('dl', { class: 'keys' }, [
+        [['space'], 'keys.playpause'], [['←', '→'], 'keys.10'], [['J', 'L'], 'keys.60'],
+        [['F'], 'keys.fs'], [['M'], 'keys.mute'], [['N'], 'keys.next'], [['R'], 'keys.lang'],
+      ].flatMap(([ks, label]) => [h('dt', {}, ks.map(k => h('kbd', {}, k))), h('dd', {}, t(label))]))));
 
-    const under = h('div', { class: 'under' },
-      h('span', { class: 'hint' }, t('under.hint')),
-      h('span', { class: 'spacer' }),
-      h('button', { class: 'btn small', onclick: () => { prog.done = true; save(); toast(t('toast.marked')); goNext(false); } }, t('btn.markWatchedContinue')));
 
     app.replaceChildren(
       h('div', { class: 'watch-head' }, h('span', { class: 'round' }, roundName(r.name)), h('span', { class: 'matchup' }, team(ev, s.team1).name, h('span', { class: 'vs' }, 'vs'), team(ev, s.team2).name), h('span', { class: 'game' }, t('games.game', { n: g.n }))),
-      h('div', { class: 'watch' }, h('div', {}, player, under), side));
+      h('div', { class: 'watch' }, h('div', {}, player, nativeBar, h('div', { class: 'note src-note', id: 'src-note' }, srcNote())), side));
 
     // ---- player logic ----
     teardown();
@@ -817,9 +823,11 @@
       native = !native;
       shield.style.display = native ? 'none' : ''; controls.style.display = native ? 'none' : '';
       if (native) cover.classList.add('hidden');
-      qBtn.textContent = native ? t('btn.hideYT') : t('btn.chooseQuality');
-      qHint.textContent = native ? t('quality.hint') : '';
+      player.classList.toggle('native', native);
       mount(at, wasPlaying);
+      // A rebuilt player that is not playing fires no PAUSED event, so the cover would stay
+      // off and leave YouTube's own paused screen — title and all — on show.
+      if (!native && !wasPlaying) setPaused(true);
     };
     current = me;
     // A source can be a slice of a longer video: from 2015 the official uploads are whole
@@ -849,6 +857,17 @@
     const seekTo = (t) => { const d = dur(); t = Math.max(0, d ? Math.min(t, d - 1) : t); me.player?.seekTo(base() + t, true); prog.pos = t; };
     const rel = (d) => { const t = Math.max(0, now() + d); seekTo(t); curEl.textContent = fmt(Math.min(t, dur() || t)); };
     const toggleMute = () => { if (!me.player) return; muted = !muted; muted ? me.player.mute() : me.player.unMute(); muteBtn.innerHTML = muted ? svgMute : svgVol; };
+    // Controls show on mouse movement and fade after a moment of stillness. :hover alone kept
+    // them up for good in fullscreen, where the pointer never leaves the player, covering
+    // the bottom of the picture. The pointer hides with them; paused keeps both.
+    let idleTimer = 0;
+    const wake = () => {
+      player.classList.add('show-controls');
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => { if (!controls.matches(':hover')) player.classList.remove('show-controls'); }, 2500);
+    };
+    player.addEventListener('mousemove', wake);
+    player.addEventListener('mouseleave', () => { clearTimeout(idleTimer); player.classList.remove('show-controls'); });
     const toggleFS = () => { if (document.fullscreenElement) document.exitFullscreen(); else player.requestFullscreen?.(); };
     const switchLang = (l) => { const ns = srcFor(l); if (!ns || l === lang) return; const at = now() || prog.pos; const wasPlaying = me.player?.getPlayerState() === 1; lang = l; store.settings.lang = l; save(); src = ns; partIdx = 0; const startAt = base() + at; [...langBox.children].forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === l)); $('#src-note').replaceChildren(srcNote() || ''); me.player.loadVideoById(Object.assign({ videoId: partId(), startSeconds: startAt }, ns.end ? { endSeconds: ns.end } : {})); if (!wasPlaying) setTimeout(() => me.player.pauseVideo(), 600); toast(t('toast.commentary', { lang: ev.languages[l] })); };
     const markDone = () => { prog.done = true; save(); };
@@ -870,6 +889,7 @@
     me.onKey = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
       const k = e.key.toLowerCase();
+      if (['arrowright', 'arrowleft', 'j', 'l'].includes(k)) wake();   // show where the seek landed
       if (k === ' ' || k === 'k') { e.preventDefault(); togglePlay(); }
       else if (k === 'arrowright') { e.preventDefault(); rel(10); }
       else if (k === 'arrowleft') { e.preventDefault(); rel(-10); }
@@ -884,7 +904,7 @@
     // (Re)build the player at an absolute video time. `native` shows YouTube's own controls:
     // quality can only be chosen from their gear menu, which the embed API cannot open or drive.
     const wantQuality = () => { const q = store.settings.quality; if (q && q !== 'auto') { try { me.player.setPlaybackQuality(q); } catch (e) { } } };
-    const showQuality = () => { try { qNow.textContent = qualityLabel(me.player.getPlaybackQuality()); } catch (e) { } };
+    const showQuality = () => { try { qBarBtn.textContent = qualityLabel(me.player.getPlaybackQuality()); } catch (e) { } };
     mount = (startAt, autoplay) => {
       try { me.player?.destroy(); } catch (e) { }
       const slot = h('div'); yt.replaceChildren(slot);

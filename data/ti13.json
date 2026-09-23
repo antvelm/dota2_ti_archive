@@ -16,82 +16,194 @@
   "liquid": {
    "name": "Team Liquid",
    "short": "Liquid",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "miCKe",
+    "Nisha",
+    "33",
+    "Boxi",
+    "Insania"
+   ]
   },
   "gg": {
    "name": "Gaimin Gladiators",
    "short": "GG",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "dyrachyo",
+    "Quinn",
+    "Ace",
+    "tOfu",
+    "Seleri"
+   ]
   },
   "c9": {
    "name": "Cloud9",
    "short": "C9",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "watson",
+    "No[o]ne-",
+    "DM",
+    "Kataomi`",
+    "Fishman"
+   ]
   },
   "xg": {
    "name": "Xtreme Gaming",
    "short": "XG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Ame",
+    "Xm",
+    "Xxs",
+    "XinQ",
+    "Dy"
+   ]
   },
   "aurora": {
    "name": "Aurora Gaming",
    "short": "Aurora",
-   "region": "TH"
+   "region": "TH",
+   "players": [
+    "23",
+    "lorenof",
+    "Jabz",
+    "Q",
+    "Oli"
+   ]
   },
   "tundra": {
    "name": "Tundra Esports",
    "short": "Tundra",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Pure",
+    "Topson",
+    "RAMZES666",
+    "Saksa",
+    "Whitemon"
+   ]
   },
   "falcons": {
    "name": "Team Falcons",
    "short": "Falcons",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "skiter",
+    "Malr1ne",
+    "ATF",
+    "Cr1t-",
+    "Sneyking"
+   ]
   },
   "nouns": {
    "name": "Nouns Esports",
    "short": "nouns",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Yuma",
+    "Copy",
+    "Gunnar",
+    "Lelis",
+    "Fly"
+   ]
   },
   "bb": {
    "name": "BB Team",
    "short": "BB",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Nightfall",
+    "gpk",
+    "MieRo`",
+    "Save-",
+    "TORONTOTOKYO"
+   ]
   },
   "talon": {
    "name": "Talon Esports",
    "short": "Talon",
-   "region": "TH"
+   "region": "TH",
+   "players": [
+    "Akashi",
+    "Mikoto",
+    "Ws",
+    "Jhocam",
+    "ponyo"
+   ]
   },
   "1w": {
    "name": "1w Team",
    "short": "1w",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Munkushi~",
+    "CHIRA JUNIOR",
+    "Cloud",
+    "swedenstrong",
+    "RESPECT"
+   ]
   },
   "zero": {
    "name": "Team Zero",
    "short": "Zero",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Erika",
+    "7e",
+    "Beyond",
+    "ponlo",
+    "zzq"
+   ]
   },
   "heroic": {
    "name": "HEROIC",
    "short": "HEROIC",
-   "region": "BR"
+   "region": "BR",
+   "players": [
+    "K1",
+    "4nalog",
+    "Davai Lama",
+    "Scofield",
+    "KJ"
+   ]
   },
   "bc": {
    "name": "beastcoast",
    "short": "bc",
-   "region": "PE"
+   "region": "PE",
+   "players": [
+    "payk",
+    "Lumpy",
+    "Vitaly",
+    "Elmisho",
+    "MoOz"
+   ]
   },
   "tspirit": {
    "name": "Team Spirit",
    "short": "TSpirit",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Yatoro",
+    "Larl",
+    "Collapse",
+    "Mira",
+    "Miposhka"
+   ]
   },
   "g2.ig": {
    "name": "G2 x iG",
    "short": "G2.iG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Monet",
+    "NothingToSay",
+    "JT-",
+    "BoBoKa",
+    "xNova"
+   ]
   }
  },
  "rounds": [
