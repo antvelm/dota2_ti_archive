@@ -16,82 +16,194 @@
   "tspirit": {
    "name": "Team Spirit",
    "short": "TSpirit",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Yatoro",
+    "Larl",
+    "Collapse",
+    "Mira",
+    "Miposhka"
+   ]
   },
   "gg": {
    "name": "Gaimin Gladiators",
    "short": "GG",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "dyrachyo",
+    "Quinn",
+    "Ace",
+    "tOfu",
+    "Seleri"
+   ]
   },
   "lgd": {
    "name": "LGD Gaming",
    "short": "LGD",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "shiro",
+    "NothingToSay",
+    "niu",
+    "planet",
+    "y`"
+   ]
   },
   "liquid": {
    "name": "Team Liquid",
    "short": "Liquid",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "miCKe",
+    "Nisha",
+    "zai",
+    "Boxi",
+    "Insania"
+   ]
   },
   "vp": {
    "name": "Virtus.pro",
    "short": "VP",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Kiritych",
+    "squad1x",
+    "Noticed",
+    "sayuw",
+    "fng"
+   ]
   },
   "talon": {
    "name": "Talon Esports",
    "short": "Talon",
-   "region": "TH"
+   "region": "TH",
+   "players": [
+    "23savage",
+    "Mikoto",
+    "Jabz",
+    "Q",
+    "Oli"
+   ]
   },
   "ar": {
    "name": "Azure Ray",
    "short": "AR",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Lou",
+    "Somnus",
+    "chalice",
+    "fy",
+    "天命"
+   ]
   },
   "9p": {
    "name": "9Pandas",
    "short": "9P",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "RAMZES666",
+    "kiyotaka",
+    "MieRo`",
+    "Antares",
+    "Solo"
+   ]
   },
   "nouns": {
    "name": "nouns",
    "short": "nouns",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "K1",
+    "Gunnar",
+    "Moo",
+    "Lelis",
+    "Yamsun"
+   ]
   },
   "tsm": {
    "name": "TSM",
    "short": "TSM",
-   "region": "NA"
+   "region": "NA",
+   "players": [
+    "Timado",
+    "Bryle",
+    "kasane",
+    "Ari",
+    "Whitemon"
+   ]
   },
   "sr": {
    "name": "Shopify Rebellion",
    "short": "SR",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Arteezy",
+    "Abed",
+    "SabeRLight-",
+    "Cr1t-",
+    "Fly"
+   ]
   },
   "eg": {
    "name": "Evil Geniuses",
    "short": "EG",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "Pakazs",
+    "Chris Luck",
+    "Wisper",
+    "Matthew",
+    "Panda"
+   ]
   },
   "bb": {
    "name": "BetBoom Team",
    "short": "BB",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Nightfall",
+    "gpk",
+    "Pure",
+    "Save-",
+    "TORONTOTOKYO"
+   ]
   },
   "kstars": {
    "name": "Keyd Stars",
    "short": "KStars",
-   "region": "BR"
+   "region": "BR",
+   "players": [
+    "Costabile",
+    "4nalog",
+    "fcr",
+    "Kingrd",
+    "KJ"
+   ]
   },
   "entity": {
    "name": "Entity",
    "short": "Entity",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "watson",
+    "Stormstormer",
+    "Gabbi",
+    "Kataomi`",
+    "Fishman"
+   ]
   },
   "tundra": {
    "name": "Tundra Esports",
    "short": "Tundra",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "skiter",
+    "Topson",
+    "33",
+    "Nine",
+    "Sneyking"
+   ]
   }
  },
  "rounds": [

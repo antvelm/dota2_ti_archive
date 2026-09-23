@@ -16,82 +16,194 @@
   "tl": {
    "name": "Team Liquid",
    "short": "Liquid",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "MATUMBAMAN",
+    "Miracle-",
+    "MinD ContRoL",
+    "GH",
+    "KuroKy"
+   ]
   },
   "ig": {
    "name": "Invictus Gaming",
    "short": "iG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "BurNIng",
+    "Op",
+    "Xxs",
+    "BoBoKa",
+    "Q"
+   ]
   },
   "newbee": {
    "name": "Newbee",
    "short": "Newbee",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Moogy",
+    "Sccc",
+    "kpii",
+    "Kaka",
+    "Faith"
+   ]
   },
   "eg": {
    "name": "Evil Geniuses",
    "short": "EG",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "Arteezy",
+    "SumaiL",
+    "Universe",
+    "zai",
+    "Cr1t-"
+   ]
   },
   "lfy": {
    "name": "LGD.Forever Young",
    "short": "LFY",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Monet",
+    "Super",
+    "Inflame",
+    "Ahfu",
+    "ddc"
+   ]
   },
   "tnc": {
    "name": "TNC Pro Team",
    "short": "TNC",
-   "region": "PH"
+   "region": "PH",
+   "players": [
+    "Raven",
+    "Kuku",
+    "Sam H",
+    "Tims",
+    "1437"
+   ]
   },
   "lgd": {
    "name": "LGD Gaming",
    "short": "LGD",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Ame",
+    "Somnus丶M",
+    "eLeVeN",
+    "Yao",
+    "Victoria"
+   ]
   },
   "vp": {
    "name": "Virtus.pro",
    "short": "VP",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "RAMZES666",
+    "No[o]ne",
+    "9pasha",
+    "Lil",
+    "Solo"
+   ]
   },
   "secret": {
    "name": "Team Secret",
    "short": "Secret",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "MP",
+    "MidOne",
+    "KheZu",
+    "YapzOr",
+    "Puppey"
+   ]
   },
   "execration": {
    "name": "Execration",
    "short": "XctN",
-   "region": "PH"
+   "region": "PH",
+   "players": [
+    "Nando",
+    "CartMaN",
+    "Bimbo",
+    "RR",
+    "Kim0"
+   ]
   },
   "c9": {
    "name": "Cloud9",
    "short": "C9",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "EternaLEnVy",
+    "FATA-",
+    "MSS",
+    "Aui 2000",
+    "pieliedie"
+   ]
   },
   "empire": {
    "name": "Team Empire",
    "short": "Empire",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Resolut1on",
+    "fn",
+    "Ghostik",
+    "RodjER",
+    "Miposhka"
+   ]
   },
   "og": {
    "name": "OG",
    "short": "OG",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "n0tail",
+    "ana",
+    "s4",
+    "JerAx",
+    "Fly"
+   ]
   },
   "infamous": {
    "name": "Infamous",
    "short": "Infamous",
-   "region": "PE"
+   "region": "PE",
+   "players": [
+    "Benjaz",
+    "Timado",
+    "Kingteka",
+    "Matthew",
+    "Accel"
+   ]
   },
   "igv": {
    "name": "iG.Vitality",
    "short": "iG.V",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Paparazi灬",
+    "Sakata",
+    "InJuly",
+    "super",
+    "@dogf1ghts"
+   ]
   },
   "dc": {
    "name": "Digital Chaos",
    "short": "DC",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "mason",
+    "Abed",
+    "Forev",
+    "BuLba",
+    "DuBu"
+   ]
   }
  },
  "rounds": [

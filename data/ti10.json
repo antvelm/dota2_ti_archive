@@ -16,82 +16,194 @@
   "psg.lgd": {
    "name": "PSG.LGD",
    "short": "PSG.LGD",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Ame",
+    "NothingToSay",
+    "Faith bian",
+    "XinQ",
+    "y`"
+   ]
   },
   "tspirit": {
    "name": "Team Spirit",
    "short": "TSpirit",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Yatoro",
+    "TORONTOTOKYO",
+    "Collapse",
+    "Mira",
+    "Miposhka"
+   ]
   },
   "secret": {
    "name": "Team Secret",
    "short": "Secret",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "MATUMBAMAN",
+    "Nisha",
+    "zai",
+    "YapzOr",
+    "Puppey"
+   ]
   },
   "ig": {
    "name": "Invictus Gaming",
    "short": "iG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "flyfly",
+    "Emo",
+    "JT-",
+    "Kaka",
+    "Oli"
+   ]
   },
   "og": {
    "name": "OG",
    "short": "OG",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "SumaiL",
+    "Topson",
+    "Ceb",
+    "Saksa",
+    "N0tail"
+   ]
   },
   "vp": {
    "name": "Virtus.pro",
    "short": "VP",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Nightfall",
+    "gpk",
+    "DM",
+    "Save-",
+    "Kingslayer"
+   ]
   },
   "t1": {
    "name": "T1",
    "short": "T1",
-   "region": "SEA"
+   "region": "SEA",
+   "players": [
+    "23savage",
+    "Karl",
+    "Kuku",
+    "Xepher",
+    "Whitemon"
+   ]
   },
   "vg": {
    "name": "Vici Gaming",
    "short": "VG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "poyoyo",
+    "Ori",
+    "old eLeVeN",
+    "Pyw",
+    "Dy"
+   ]
   },
   "fnatic": {
    "name": "Fnatic",
    "short": "Fnatic",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Raven",
+    "ChYuan",
+    "Deth",
+    "Jabz",
+    "DJ"
+   ]
   },
   "und": {
    "name": "Team Undying",
    "short": "UND",
-   "region": "NA"
+   "region": "NA",
+   "players": [
+    "Timado",
+    "Bryle",
+    "SabeRLight-",
+    "MoonMeander",
+    "DuBu"
+   ]
   },
   "qc": {
    "name": "Quincy Crew",
    "short": "QC",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "YawaR",
+    "Quinn",
+    "Lelis",
+    "MSS",
+    "SVG"
+   ]
   },
   "aster": {
    "name": "Team Aster",
    "short": "Aster",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Monet",
+    "White丶Album 白学家",
+    "Xxs",
+    "Borax",
+    "LaNm"
+   ]
   },
   "a": {
    "name": "Alliance",
    "short": "[A]",
-   "region": "SE"
+   "region": "SE",
+   "players": [
+    "Nikobaby",
+    "LIMMP",
+    "s4",
+    "Handsken",
+    "fng"
+   ]
   },
   "bc": {
    "name": "beastcoast",
    "short": "bc",
-   "region": "PE"
+   "region": "PE",
+   "players": [
+    "K1",
+    "Chris Luck",
+    "Wisper",
+    "Scofield",
+    "Stinger"
+   ]
   },
   "eg": {
    "name": "Evil Geniuses",
    "short": "EG",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "Arteezy",
+    "Abed",
+    "iceiceice",
+    "Cr1t-",
+    "Fly"
+   ]
   },
   "elephant": {
    "name": "Elephant",
    "short": "Elephant",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Eurus",
+    "Somnus丶M",
+    "Yang",
+    "fy",
+    "Super"
+   ]
   }
  },
  "rounds": [

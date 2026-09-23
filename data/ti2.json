@@ -16,82 +16,194 @@
   "lgd": {
    "name": "LGD Gaming",
    "short": "LGD",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Sylar",
+    "xiao8",
+    "Yao",
+    "DD",
+    "DDC"
+   ]
   },
   "orange": {
    "name": "Orange Esports",
    "short": "Orange",
-   "region": "MY"
+   "region": "MY",
+   "players": [
+    "YamateH",
+    "Mushi",
+    "WinteR",
+    "XtiNcT",
+    "Ice"
+   ]
   },
   "col": {
    "name": "compLexity Gaming",
    "short": "coL",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "TC",
+    "Jeyo",
+    "HANNAH MONTANA",
+    "FLUFFNSTUFF",
+    "ixmike88"
+   ]
   },
   "zenith": {
    "name": "Team Zenith",
    "short": "Zenith",
-   "region": "SG"
+   "region": "SG",
+   "players": [
+    "Hyhy",
+    "iceiceice",
+    "Loda",
+    "xFreedom",
+    "xy-"
+   ]
   },
   "ig": {
    "name": "Invictus Gaming",
    "short": "iG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Zhou",
+    "Ferrari 430",
+    "YYF",
+    "ChuaN",
+    "Faith"
+   ]
   },
   "eg": {
    "name": "Evil Geniuses",
    "short": "EG",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "Fear",
+    "BuLba",
+    "DeMoN",
+    "Maelk",
+    "UNiVeRsE"
+   ]
   },
   "dk": {
    "name": "Team DK",
    "short": "DK",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "BurNIng",
+    "Super",
+    "rOtK",
+    "Zippo",
+    "LongDD"
+   ]
   },
   "navi": {
    "name": "Natus Vincere",
    "short": "Na'Vi",
-   "region": "UA"
+   "region": "UA",
+   "players": [
+    "XBOCT",
+    "Dendi",
+    "LighTofHeaveN",
+    "Puppey",
+    "ARS-ART"
+   ]
   },
   "clg": {
    "name": "Counter Logic Gaming",
    "short": "CLG",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Pajkatt",
+    "MiSeRy",
+    "Lacoste",
+    "Mirakel",
+    "Akke"
+   ]
   },
   "mtw": {
    "name": "Mortal Teamwork",
    "short": "mTw",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Sockshka",
+    "syndereN",
+    "Funzii",
+    "Kebap",
+    "7ckngMad"
+   ]
   },
   "mouz": {
    "name": "mousesports",
    "short": "mouz",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Black^",
+    "SingSing",
+    "SexyBamboe",
+    "1437",
+    "KuroKy"
+   ]
   },
   "ehome": {
    "name": "EHOME",
    "short": "EHOME",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "LaNm",
+    "KingJ",
+    "PCT",
+    "X!!",
+    "QQQ"
+   ]
   },
   "tongfu": {
    "name": "TongFu",
    "short": "TongFu",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Hao",
+    "Mu",
+    "Kabu",
+    "Awoke",
+    "SanSheng"
+   ]
   },
   "m5": {
    "name": "Moscow Five",
    "short": "M5",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Silent",
+    "Admiration",
+    "Vigoss",
+    "PGG",
+    "Bloodangel"
+   ]
   },
   "darer": {
    "name": "Darer",
    "short": "Darer",
-   "region": "UA"
+   "region": "UA",
+   "players": [
+    "Artstyle",
+    "God",
+    "Mag~",
+    "Goblak",
+    "Funn1k"
+   ]
   },
   "al": {
    "name": "Absolute Legends",
    "short": "aL",
-   "region": "AU"
+   "region": "AU",
+   "players": [
+    "blackshatan",
+    "xMusiCa",
+    "bLeeK",
+    "Godot",
+    "Snoopy"
+   ]
   }
  },
  "rounds": [

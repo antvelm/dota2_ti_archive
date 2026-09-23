@@ -16,82 +16,194 @@
   "navi": {
    "name": "Natus Vincere",
    "short": "Na'Vi",
-   "region": "UA"
+   "region": "UA",
+   "players": [
+    "XBOCT",
+    "Dendi",
+    "Funn1k",
+    "Puppey",
+    "KuroKy"
+   ]
   },
   "orange": {
    "name": "Orange Esports",
    "short": "Orange",
-   "region": "MY"
+   "region": "MY",
+   "players": [
+    "Mushi",
+    "kYxY",
+    "Ohaiyo",
+    "XtiNcT",
+    "Net"
+   ]
   },
   "tongfu": {
    "name": "TongFu",
    "short": "TongFu",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Hao",
+    "Mu",
+    "SanSheng",
+    "Banana",
+    "KingJ"
+   ]
   },
   "fnatic": {
    "name": "Fnatic",
    "short": "Fnatic",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Era",
+    "H4nn1",
+    "Trixi",
+    "BigDaddy",
+    "Fly"
+   ]
   },
   "alliance": {
    "name": "Alliance",
    "short": "Alliance",
-   "region": "SE"
+   "region": "SE",
+   "players": [
+    "Loda",
+    "s4",
+    "AdmiralBulldog",
+    "EGM",
+    "Akke"
+   ]
   },
   "lgd": {
    "name": "LGD Gaming",
    "short": "LGD",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Sylar",
+    "Yao",
+    "xiao8",
+    "DD",
+    "ddc"
+   ]
   },
   "dk": {
    "name": "DK",
    "short": "DK",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "BurNIng",
+    "Super",
+    "rOtK",
+    "QQQ",
+    "MMY!"
+   ]
   },
   "ig": {
    "name": "Invictus Gaming",
    "short": "iG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Zhou",
+    "Ferrari 430",
+    "YYF",
+    "ChuaN",
+    "Faith"
+   ]
   },
   "dignitas": {
    "name": "Team Dignitas",
    "short": "Dignitas",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "Aui 2000",
+    "Sneyking",
+    "Universe",
+    "Waytosexy",
+    "Fogged"
+   ]
   },
   "rattlesnake": {
    "name": "RattleSnake",
    "short": "RSnake",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "LaNm",
+    "Luo",
+    "Icy",
+    "Kabu",
+    "Sag"
+   ]
   },
   "lgd.int": {
    "name": "LGD.International",
    "short": "LGD.int",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Pajkatt",
+    "God",
+    "Brax",
+    "1437",
+    "MiSeRY"
+   ]
   },
   "mouz": {
    "name": "mousesports",
    "short": "mouz",
-   "region": "EU"
+   "region": "EU",
+   "players": [
+    "Black^",
+    "FATA-",
+    "qojqva",
+    "syndereN",
+    "paS"
+   ]
   },
   "liquid": {
    "name": "Team Liquid",
    "short": "Liquid",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "Korok",
+    "TC",
+    "BuLba",
+    "FLUFFNSTUFF",
+    "ixmike88"
+   ]
   },
   "mufc": {
    "name": "MUFC",
    "short": "MUFC",
-   "region": "MY"
+   "region": "MY",
+   "players": [
+    "dabeliuteef",
+    "TooFuckingGood",
+    "Ling",
+    "FzFz",
+    "WinteR"
+   ]
   },
   "zenith": {
    "name": "Zenith",
    "short": "Zenith",
-   "region": "SG"
+   "region": "SG",
+   "players": [
+    "iceiceice",
+    "YamateH",
+    "xy-",
+    "xFreedom",
+    "Ice"
+   ]
   },
   "vp": {
    "name": "Virtus.pro",
    "short": "VP",
-   "region": "RU"
+   "region": "RU",
+   "players": [
+    "Illidan",
+    "Crazy",
+    "KSi",
+    "ARS-ART",
+    "NS"
+   ]
   }
  },
  "rounds": [

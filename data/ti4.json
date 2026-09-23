@@ -16,42 +16,98 @@
   "vg": {
    "name": "Vici Gaming",
    "short": "VG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Sylar",
+    "Super",
+    "rOtk",
+    "fy",
+    "Fenrir"
+   ]
   },
   "newbee": {
    "name": "Newbee",
    "short": "Newbee",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Hao",
+    "Mu",
+    "xiao8",
+    "Banana",
+    "SanSheng"
+   ]
   },
   "eg": {
    "name": "Evil Geniuses",
    "short": "EG",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "mason",
+    "Arteezy",
+    "UNiVeRsE",
+    "zai",
+    "ppd"
+   ]
   },
   "dk": {
    "name": "Team DK",
    "short": "DK",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "BurNIng",
+    "Mushi",
+    "iceiceice",
+    "LaNm",
+    "MMY"
+   ]
   },
   "c9": {
    "name": "Cloud9",
    "short": "C9",
-   "region": "US"
+   "region": "US",
+   "players": [
+    "EternaLEnVy",
+    "SingSing",
+    "bOne7",
+    "Aui 2000",
+    "pieliedie"
+   ]
   },
   "navi": {
    "name": "Natus Vincere",
    "short": "Na'Vi",
-   "region": "UA"
+   "region": "UA",
+   "players": [
+    "XBOCT",
+    "Dendi",
+    "Funn1k",
+    "Puppey",
+    "KuroKy"
+   ]
   },
   "ig": {
    "name": "Invictus Gaming",
    "short": "iG",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Luo",
+    "Ferrari 430",
+    "YYF",
+    "ChuaN",
+    "Faith"
+   ]
   },
   "lgd": {
    "name": "LGD Gaming",
    "short": "LGD",
-   "region": "CN"
+   "region": "CN",
+   "players": [
+    "Rabbit",
+    "Yao",
+    "Lin",
+    "DD",
+    "DDC"
+   ]
   }
  },
  "rounds": [
